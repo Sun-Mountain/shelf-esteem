@@ -6,10 +6,10 @@ const UserAccountNav = () => {
 
   return (
     <>
-      <Button onClick={() => signOut({
+      <Button buttonAction={() => signOut({
         redirect: true,
         callbackUrl: `${window.location.origin}/sign-in`
-      })} variant='destructive'>
+      })}>
         Sign Out
       </Button>
     </>

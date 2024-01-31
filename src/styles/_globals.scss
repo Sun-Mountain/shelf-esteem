@@ -1,0 +1,165 @@
+// Variables
+$eggshell: rgba(244, 241, 222, 1);
+$eggshell-50: rgba(244, 241, 222, .5);
+$eggshell-30: rgba(244, 241, 222, .3);
+$eggshell-10: rgba(244, 241, 222, .1);
+$burnt-sienna: rgba(224, 122, 95, 1);
+$delft-blue: rgba(61, 64, 91, 1);
+$delft-blue-50: rgba(61, 64, 91, .5);
+$delft-blue-30: rgba(61, 64, 91, .3);
+$delft-blue-10: rgba(61, 64, 91, .1);
+$english-violet: rgba(86, 60, 92, 1);
+$english-violet-10: rgba(86, 60, 92, .1);
+$cambridge-blue: rgba(129, 178, 154, 1);
+$cambridge-blue-50: rgba(129, 178, 154, .5);
+$cambridge-blue-30: rgba(129, 178, 154, .3);
+$cambridge-blue-10: rgba(129, 178, 154, .1);
+$sunset: rgba(242, 204, 143, 1);
+$rufous: rgba(168, 50, 50, 1);
+
+$taupe: rgba(70, 63, 58, 1);
+$battleship-gray: rgba(138, 129, 124, 1);
+$silver: rgba(188, 184, 177, 1);
+$isabelline: rgba(244, 243, 238, 1);
+$melon: rgba(224, 175, 160, 1);
+
+$light-coral: rgba(240, 128, 128, 1);
+$coral-pink: rgba(244, 151, 142, 1);
+$melon: rgba(248, 173, 157, 1);
+$apricot: rgba(251, 196, 171, 1);
+$light-orange: rgba(255, 218, 185, 1);
+
+$rose: rgba(247, 37, 133, 1);
+$grape: rgba(114, 9, 183, 1);
+$zaffre: rgba(58, 12, 163, 1);
+$zaffre-50: rgba(58, 12, 163, .5);
+$zaffre-30: rgba(58, 12, 163, .3);
+$zaffre-10: rgba(58, 12, 163, .1);
+$neon-blue: rgba(67, 97, 238, 1);
+$neon-blue-50: rgba(67, 97, 238, .5);
+$neon-blue-30: rgba(67, 97, 238, .3);
+$neon-blue-10: rgba(67, 97, 238, .1);
+$vivid-sky-blue: rgba(76, 201, 240, 1);
+
+$white: rgba(255, 255, 255, 1);
+$seasalt: rgba(248, 249, 250, 1);
+$antiflash-white: rgba(233, 236, 239, 1);
+$platinum: rgba(222, 226, 230, 1);
+$french-gray: rgba(206, 212, 218, 1);
+$french-gray-2: rgba(173, 181, 189, 1);
+$slate-gray: rgba(108, 117, 125, 1);
+$slate-gray-10: rgba(108, 117, 125, .1);
+$outer-space: rgba(73, 80, 87, 1);
+$onyx: rgba(52, 58, 64, 1);
+$eerie-black: rgba(33, 37, 41, 1);
+
+// Breakpoints
+$mobile: 320px;
+$tablet: 768px;
+$laptop: 800px;
+$desktop: 1024px;
+$desktop-lg: 1440px;
+
+$nav-bg: $delft-blue;
+$nav-text: $eggshell;
+
+$background-bg: $eggshell-30;
+$font-color: $onyx;
+
+$link-color: $neon-blue;
+
+$main-bg: $white;
+$main-border: 1px solid $french-gray-2;
+$main-boxshadow: 0 0 5px $french-gray-2;
+
+$icon-container-bg: $eggshell;
+$icon-container-text: $delft-blue;
+
+$border-radius: 0.75rem;
+
+body {
+  background: $background-bg;
+  color: $font-color;
+  font-family: 'Roboto', sans-serif;
+  margin: 0 auto;
+  padding: 0;
+}
+
+a, a:visited {
+  color: $link-color;
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: $font-color;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  background-color: $main-bg;
+  border: $main-border;
+  box-shadow: $main-boxshadow;
+  margin: 2rem auto 0 auto;
+  min-width: $mobile;
+  max-width: $desktop;
+}
+
+section {
+  padding: 1.5rem;
+}
+
+nav {
+  background-color: $nav-bg;
+  color: $nav-text;
+
+  a, a:visited {
+    color: $nav-text;
+    margin: auto 0;
+  }
+
+  #main-nav-content {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    min-width: $mobile;
+    max-width: $desktop;
+    padding: 1rem;
+
+    .icon-container {
+      align-items: center;
+      background-color: $icon-container-bg;
+      color: $icon-container-text;
+      padding: 0.75rem;
+      border-radius: 50%;
+      transition: all .3s ease-in-out;
+      text-decoration: none;
+
+      &:hover {
+        background-color: $delft-blue;
+        color: $eggshell;
+        text-decoration: none;
+
+        a, a:visited {
+          color: $eggshell;
+        }
+      }
+    }
+
+    .icon {
+      color: $icon-container-text;
+      font-size: 2rem;
+      margin: 0.25rem 0.25rem 0 0.25rem;
+
+      &:hover {
+        color: $eggshell;
+      }
+    }
+  }
+}
+
+@import './forms.scss';
+@import './notices.scss';
+@import './welcome.scss';

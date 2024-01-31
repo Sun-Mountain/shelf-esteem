@@ -6,7 +6,9 @@ const User = () => {
   const { data: session } = useSession();
 
   return (
-    <pre>{JSON.stringify(session)}</pre>
+    <>
+      {JSON.stringify(session)}
+    </>
   )
 }
 

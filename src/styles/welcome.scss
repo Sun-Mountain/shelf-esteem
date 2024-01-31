@@ -1,0 +1,57 @@
+$welcome-bg: $silver;
+$welcome-text: $taupe;
+$return-background: $taupe;
+$return-text: $eggshell;
+
+.welcome {
+  background-color: $welcome-bg;
+  padding: 0;
+
+  h2 {
+    color: $welcome-text;
+    margin: 1rem 0;
+    text-align: center;
+  }
+}
+
+.no-user-welcome {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  
+  #return-user, #new-user {
+    width: 100%;
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      margin: 1rem 0;
+      width: 100%;
+    }
+
+    a, a:visited {
+      color: $return-text;
+      font-size: 1.25rem;
+      text-decoration: none;
+      text-transform: capitalize;
+    }
+  }
+
+  #return-user {
+    background-color: $return-background;
+    color: $return-text;
+
+    h2 {
+      color: $return-text;
+    }
+  }
+}
+
+@media screen and (min-width: $tablet){
+  .no-user-welcome {
+    #return-user, #new-user {
+      width: 50%;
+    }
+  }
+}

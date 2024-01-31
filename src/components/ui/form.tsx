@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as LabelPrimitive from '@radix-ui/react-label';
 import { Slot } from '@radix-ui/react-slot';
 import {
   Controller,
@@ -148,14 +147,14 @@ const FormMessage = React.forwardRef<
   }
 
   return (
-    <p
+    <div
       ref={ref}
       id={formMessageId}
-      className={cn('text-sm font-medium text-destructive', className)}
+      className='form-error-msg'
       {...props}
     >
       {body}
-    </p>
+    </div>
   );
 });
 FormMessage.displayName = 'FormMessage';
