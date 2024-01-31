@@ -14,6 +14,9 @@ dependencies:
   '@hookform/resolvers':
     specifier: ^3.1.1
     version: 3.3.4(react-hook-form@7.49.3)
+  '@mui/icons-material':
+    specifier: ^5.15.7
+    version: 5.15.7(@mui/material@5.15.7)(@types/react@18.2.17)(react@18.2.0)
   '@mui/material':
     specifier: ^5.15.7
     version: 5.15.7(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@types/react@18.2.17)(react-dom@18.2.0)(react@18.2.0)
@@ -23,6 +26,9 @@ dependencies:
   '@prisma/client':
     specifier: 5.9.0
     version: 5.9.0(prisma@5.9.0)
+  '@radix-ui/react-slot':
+    specifier: ^1.0.2
+    version: 1.0.2(@types/react@18.2.17)(react@18.2.0)
   '@types/node':
     specifier: 20.4.5
     version: 20.4.5
@@ -394,6 +400,23 @@ packages:
     resolution: {integrity: sha512-AuF+Wo2Mp/edaO6vJnWjg+gj4tzEz5ChMZnAQpc22DXpSvM8ddgGcZvM7D7F99pIBoSv8ub+Iz0viL+yuGVmhg==}
     dev: false
 
+  /@mui/icons-material@5.15.7(@mui/material@5.15.7)(@types/react@18.2.17)(react@18.2.0):
+    resolution: {integrity: sha512-EDAc8TVJGIA/imAvR3u4nANl2W5h3QeHieu2gK7Ypez/nIA55p08tHjf8UrMXEpxCAvfZO6piY9S9uaxETdicA==}
+    engines: {node: '>=12.0.0'}
+    peerDependencies:
+      '@mui/material': ^5.0.0
+      '@types/react': ^17.0.0 || ^18.0.0
+      react: ^17.0.0 || ^18.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.23.9
+      '@mui/material': 5.15.7(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@types/react@18.2.17)(react-dom@18.2.0)(react@18.2.0)
+      '@types/react': 18.2.17
+      react: 18.2.0
+    dev: false
+
   /@mui/material@5.15.7(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@types/react@18.2.17)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-l6+AiKZH3iOJmZCnlpel8ghYQe9Lq0BEuKP8fGj3g5xz4arO9GydqYAtLPMvuHKtArj8lJGNuT2yHYxmejincA==}
     engines: {node: '>=12.0.0'}
@@ -697,6 +720,35 @@ packages:
     resolution: {integrity: sha512-8CatX+E6eZxcOjJZe5hF8EXxdb5GsQTA/u7pdmUJSxGLacW9K3r5vDdgV8s22PubObQQ6979/rkCMItbCrG4Yg==}
     dependencies:
       '@prisma/debug': 5.9.0
+
+  /@radix-ui/react-compose-refs@1.0.1(@types/react@18.2.17)(react@18.2.0):
+    resolution: {integrity: sha512-fDSBgd44FKHa1FRMU59qBMPFcl2PZE+2nmqunj+BWFyYYjnhIDWL2ItDs3rrbJDQOtzt5nIebLCQc4QRfz6LJw==}
+    peerDependencies:
+      '@types/react': '*'
+      react: ^16.8 || ^17.0 || ^18.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.23.9
+      '@types/react': 18.2.17
+      react: 18.2.0
+    dev: false
+
+  /@radix-ui/react-slot@1.0.2(@types/react@18.2.17)(react@18.2.0):
+    resolution: {integrity: sha512-YeTpuq4deV+6DusvVUW4ivBgnkHwECUu0BiN43L5UCDFgdhsRUWAghhTF5MbvNTPzmiFOx90asDSUjWuCNapwg==}
+    peerDependencies:
+      '@types/react': '*'
+      react: ^16.8 || ^17.0 || ^18.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.23.9
+      '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.2.17)(react@18.2.0)
+      '@types/react': 18.2.17
+      react: 18.2.0
+    dev: false
 
   /@rushstack/eslint-patch@1.7.2:
     resolution: {integrity: sha512-RbhOOTCNoCrbfkRyoXODZp75MlpiHMgbE5MEBZAnnnLyQNgrigEj4p0lzsMDyc1zVsJDLrivB58tgg3emX0eEA==}

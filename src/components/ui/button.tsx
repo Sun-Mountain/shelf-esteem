@@ -9,7 +9,7 @@ export interface ButtonProps {
   className?: string;
   variant?: "text" | "outlined" | "contained";
   size?: "small" | "medium" | "large";
-  onClick?: () => void;
+  buttonAction?: () => void;
 }
 
 const ButtonUI = ({
@@ -19,11 +19,11 @@ const ButtonUI = ({
   href,
   className,
   variant = "contained",
-  onClick
+  buttonAction
 }: ButtonProps) => {
 
   function handleOnClick() {
-    if (onClick) onClick();
+    if (onClick) buttonAction();
   }
 
   return (

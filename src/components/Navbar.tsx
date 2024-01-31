@@ -1,18 +1,18 @@
 import Link from 'next/link';
 import { Button, buttonVariants } from './ui/Button';
-import { HandMetal } from 'lucide-react';
+import { MenuBookOutlined } from '@mui/icons-material';
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/authOptions";
 
-import UserAccountNav from './buttons/UserAccountNav';
+import UserAccountNav from './buttons/SignOutButton';
 
 const Navbar = async () => {
   const session = await getServerSession(authOptions);
   return (
-    <div>
+    <nav>
       <div>
         <Link href='/'>
-          <HandMetal />
+          <MenuBookOutlined />
         </Link>
         {session?.user ? (
           <UserAccountNav />
@@ -22,7 +22,7 @@ const Navbar = async () => {
           </Link>
         )}
       </div>
-    </div>
+    </nav>
   );
 };
 
