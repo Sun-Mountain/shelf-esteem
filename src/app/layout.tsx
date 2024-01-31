@@ -1,8 +1,9 @@
 import Navbar from '@/components/Navbar';
+import Provider from '@/components/Provider';
+import Footer from '@/components/Footer';
 import '@/styles/_globals.scss';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import Provider from '@/components/Provider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -24,6 +25,7 @@ export default function RootLayout({
           <main>
             {children}
           </main>
+          <Footer />
         </Provider>
       </body>
     </html>
