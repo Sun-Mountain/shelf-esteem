@@ -1,3 +1,5 @@
+'use client';
+
 import { ReactNode } from "react";
 import Button from '@mui/material/Button';
 
@@ -23,7 +25,7 @@ const ButtonUI = ({
 }: ButtonProps) => {
 
   function handleOnClick() {
-    if (onClick) buttonAction();
+    if (buttonAction) buttonAction();
   }
 
   return (

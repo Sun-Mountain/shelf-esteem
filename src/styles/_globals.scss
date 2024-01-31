@@ -15,6 +15,19 @@ $cambridge-blue-50: rgba(129, 178, 154, .5);
 $cambridge-blue-30: rgba(129, 178, 154, .3);
 $cambridge-blue-10: rgba(129, 178, 154, .1);
 $sunset: rgba(242, 204, 143, 1);
+$rufous: rgba(168, 50, 50, 1);
+
+$taupe: rgba(70, 63, 58, 1);
+$battleship-gray: rgba(138, 129, 124, 1);
+$silver: rgba(188, 184, 177, 1);
+$isabelline: rgba(244, 243, 238, 1);
+$melon: rgba(224, 175, 160, 1);
+
+$light-coral: rgba(240, 128, 128, 1);
+$coral-pink: rgba(244, 151, 142, 1);
+$melon: rgba(248, 173, 157, 1);
+$apricot: rgba(251, 196, 171, 1);
+$light-orange: rgba(255, 218, 185, 1);
 
 $rose: rgba(247, 37, 133, 1);
 $grape: rgba(114, 9, 183, 1);
@@ -50,7 +63,7 @@ $desktop-lg: 1440px;
 $nav-bg: $delft-blue;
 $nav-text: $eggshell;
 
-$background-bg: $eggshell-10;
+$background-bg: $eggshell-30;
 $font-color: $onyx;
 
 $link-color: $neon-blue;
@@ -92,7 +105,11 @@ main {
   margin: 2rem auto 0 auto;
   min-width: $mobile;
   max-width: $desktop;
-  padding: 1.5rem;
+  padding: 1.5rem 0 0 0;
+}
+
+section {
+  padding: 0 1.5rem;
 }
 
 nav {
@@ -142,3 +159,4 @@ nav {
 
 @import './forms.scss';
 @import './notices.scss';
+@import './welcome.scss';

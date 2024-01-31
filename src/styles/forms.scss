@@ -1,6 +1,7 @@
 $form-background: $slate-gray-10;
 $form-border: 3px solid $delft-blue;
 $form-label: $delft-blue;
+$error-color: $rufous;
 
 .form-container {
   border: $form-border;
@@ -10,11 +11,15 @@ $form-label: $delft-blue;
   .button-container {
     margin: 0.5rem 0 1rem 0;
   }
+
+  .form-error-msg {
+    color: $error-color;
+  }
 }
 
 .account-form {
   background-color: $form-background;
-  margin: 0 auto;
+  margin: 1rem auto 2.75rem auto;
   max-width: 500px;
 }
 
@@ -31,7 +36,7 @@ $form-label: $delft-blue;
     border: 1px solid $form-label;
     border-radius: 0.25rem;
     font-size: 1.25rem;
-    margin: 0.5rem 0 1rem 0;
+    margin: 0.5rem 0;
     padding: 0.5rem;
     width: 92%;
   }

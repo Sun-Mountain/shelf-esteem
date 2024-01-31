@@ -147,13 +147,14 @@ const FormMessage = React.forwardRef<
   }
 
   return (
-    <p
+    <div
       ref={ref}
       id={formMessageId}
+      className='form-error-msg'
       {...props}
     >
       {body}
-    </p>
+    </div>
   );
 });
 FormMessage.displayName = 'FormMessage';
