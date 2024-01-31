@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Button, buttonVariants } from './ui/button';
+import { Button, buttonVariants } from './ui/Button';
 import { HandMetal } from 'lucide-react';
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/authOptions";
