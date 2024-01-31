@@ -25,8 +25,9 @@ export async function POST(req: Request){
 
     if (existingUserByEmail) {
       return NextResponse.json(
-        { message: 'Email already exists' },
-        { status: 401 }
+        { message: 'Email already exists',
+          status: 401
+        }
       )
     }
 
@@ -37,8 +38,9 @@ export async function POST(req: Request){
 
     if (existingUserByUserName) {
       return NextResponse.json(
-        { message: 'Username already exists' },
-        { status: 401 }
+        { message: 'Username already exists',
+          status: 401
+        }
       )
     }
 
@@ -55,8 +57,8 @@ export async function POST(req: Request){
     const { password: _, ...user } = newUser;
     
     return NextResponse.json(JSON.stringify(
-      { user: user, message: 'User created successfully' },
-      { status: 200 }
+      { user: user, message: 'User created successfully',
+        status: 200 }
     ))
   } catch (error) {
     console.error(error)
