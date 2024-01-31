@@ -3,10 +3,18 @@ import { getServerSession } from "next-auth";
 
 const page = async () => {
   const session = await getServerSession(authOptions);
+  console.log(session);
 
   return (
-    <div>Dashboard</div>
+    <div>
+      <div>
+        Dashboard
+      </div>
+      <div>
+        Welcome {session?.user.username}!
+      </div>
+    </div>
   )
-}
+};
 
-export default page
+export default page;
