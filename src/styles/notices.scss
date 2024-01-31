@@ -1,0 +1,18 @@
+$notice-bg: $cambridge-blue-10;
+$notice-border: 3px solid $cambridge-blue;
+$notice-color: $slate-gray;
+
+.notice {
+  background-color: $notice-bg;
+  border: $notice-border;
+  border-radius: $border-radius;
+  color: $notice-color;
+  line-height: 1.25rem;
+  margin: 2rem auto;
+  max-width: 85%;
+  padding: 1.3rem;
+
+  strong {
+    color: $delft-blue;
+  }
+}

@@ -1,0 +1,33 @@
+$form-background: $english-violet-10;
+$form-border: 3px solid $english-violet;
+
+.form-container {
+  border: $form-border;
+  border-radius: $border-radius;
+  padding: 1.3rem;
+}
+
+.account-form {
+  background-color: $form-background;
+  margin: 0 auto;
+  max-width: $mobile;
+}
+
+.form-wrapper {
+  max-width: 100%;
+
+  label {
+    display: block;
+    font-size: 1.25rem;
+    margin-top: 1rem;
+  }
+
+  input {
+    border: 1px solid $slate-gray;
+    border-radius: 0.25rem;
+    font-size: 1.25rem;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    width: 92%;
+  }
+}

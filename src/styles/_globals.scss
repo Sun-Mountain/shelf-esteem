@@ -7,13 +7,25 @@ $burnt-sienna: rgba(224, 122, 95, 1);
 $delft-blue: rgba(61, 64, 91, 1);
 $delft-blue-50: rgba(61, 64, 91, .5);
 $delft-blue-30: rgba(61, 64, 91, .3);
+$delft-blue-10: rgba(61, 64, 91, .1);
+$english-violet: rgba(86, 60, 92, 1);
+$english-violet-10: rgba(86, 60, 92, .1);
 $cambridge-blue: rgba(129, 178, 154, 1);
+$cambridge-blue-50: rgba(129, 178, 154, .5);
+$cambridge-blue-30: rgba(129, 178, 154, .3);
+$cambridge-blue-10: rgba(129, 178, 154, .1);
 $sunset: rgba(242, 204, 143, 1);
 
 $rose: rgba(247, 37, 133, 1);
 $grape: rgba(114, 9, 183, 1);
 $zaffre: rgba(58, 12, 163, 1);
+$zaffre-50: rgba(58, 12, 163, .5);
+$zaffre-30: rgba(58, 12, 163, .3);
+$zaffre-10: rgba(58, 12, 163, .1);
 $neon-blue: rgba(67, 97, 238, 1);
+$neon-blue-50: rgba(67, 97, 238, .5);
+$neon-blue-30: rgba(67, 97, 238, .3);
+$neon-blue-10: rgba(67, 97, 238, .1);
 $vivid-sky-blue: rgba(76, 201, 240, 1);
 
 $white: rgba(255, 255, 255, 1);
@@ -38,6 +50,7 @@ $nav-bg: $delft-blue;
 $nav-text: $eggshell;
 
 $background-bg: $eggshell-10;
+$font-color: $onyx;
 
 $link-color: $neon-blue;
 
@@ -48,8 +61,11 @@ $main-boxshadow: 0 0 5px $french-gray-2;
 $icon-container-bg: $eggshell;
 $icon-container-text: $delft-blue;
 
+$border-radius: 0.75rem;
+
 body {
   background: $background-bg;
+  color: $font-color;
   font-family: 'Roboto', sans-serif;
   margin: 0 auto;
   padding: 0;
@@ -60,6 +76,14 @@ a, a:visited {
   text-decoration: none;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  color: $font-color;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+}
+
 main {
   background-color: $main-bg;
   border: $main-border;
@@ -67,7 +91,7 @@ main {
   margin: 2rem auto 0 auto;
   min-width: $mobile;
   max-width: $desktop;
-  padding: 1rem;
+  padding: 1.5rem;
 }
 
 nav {
@@ -114,3 +138,6 @@ nav {
     }
   }
 }
+
+@import './forms.scss';
+@import './notices.scss';

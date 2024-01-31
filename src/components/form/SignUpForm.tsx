@@ -62,10 +62,9 @@ const SignUpForm = () => {
 
   return (
     <Form {...form}>
-      <div>
-
+      <div className="form-container account-form">
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <div>
+          <div class="form-wrapper">
             <FormField
               control={form.control}
               name='username'
@@ -131,17 +130,17 @@ const SignUpForm = () => {
             Sign up
           </Button>
         </form>
+        <div>
+          or
+        </div>
+        {/* <GoogleSignInButton>Sign up with Google</GoogleSignInButton> */}
+        <div>
+          If you have an account, please&nbsp;
+          <Link href='/sign-in'>
+            Sign in
+          </Link>
+        </div>
       </div>
-      <div>
-        or
-      </div>
-      {/* <GoogleSignInButton>Sign up with Google</GoogleSignInButton> */}
-      <p>
-        If you have an account, please&nbsp;
-        <Link href='/sign-in'>
-          Sign in
-        </Link>
-      </p>
     </Form>
   );
 };
