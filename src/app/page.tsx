@@ -3,7 +3,7 @@ import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/authOptions";
 import Notice from "@/components/Notice";
-import { ButtonUI as Button } from "@/src/components/ui/Button";
+import { ButtonUI as Button } from '../components/ui/Button';
 
 
 const NoUserWelcome = () => {
