@@ -87,9 +87,11 @@ const SignInForm = () => {
               )}
             />
           </div>
-          <Button type='submit'>
-            Sign in
-          </Button>
+          <div className='button-container'>
+            <Button type='submit'>
+              Sign in
+            </Button>
+          </div>
         </form>
         <div>
           or

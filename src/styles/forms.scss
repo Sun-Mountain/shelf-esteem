@@ -1,32 +1,37 @@
-$form-background: $english-violet-10;
-$form-border: 3px solid $english-violet;
+$form-background: $slate-gray-10;
+$form-border: 3px solid $delft-blue;
+$form-label: $delft-blue;
 
 .form-container {
   border: $form-border;
   border-radius: $border-radius;
   padding: 1.3rem;
+
+  .button-container {
+    margin: 0.5rem 0 1rem 0;
+  }
 }
 
 .account-form {
   background-color: $form-background;
   margin: 0 auto;
-  max-width: $mobile;
+  max-width: 500px;
 }
 
 .form-wrapper {
   max-width: 100%;
 
   label {
+    color: $form-label;
     display: block;
     font-size: 1.25rem;
-    margin-top: 1rem;
   }
 
   input {
-    border: 1px solid $slate-gray;
+    border: 1px solid $form-label;
     border-radius: 0.25rem;
     font-size: 1.25rem;
-    margin: 0.5rem 0;
+    margin: 0.5rem 0 1rem 0;
     padding: 0.5rem;
     width: 92%;
   }
