@@ -1,5 +1,51 @@
+// Variables
+$eggshell: rgba(244, 241, 222, 1);
+$eggshell-50: rgba(244, 241, 222, .5);
+$eggshell-30: rgba(244, 241, 222, .3);
+$burnt-sienna: rgba(224, 122, 95, 1);
+$delft-blue: rgba(61, 64, 91, 1);
+$delft-blue-50: rgba(61, 64, 91, .5);
+$delft-blue-30: rgba(61, 64, 91, .3);
+$cambridge-blue: rgba(129, 178, 154, 1);
+$sunset: rgba(242, 204, 143, 1);
+
+// Breakpoints
+$mobile: 320px;
+$tablet: 768px;
+$laptop: 800px;
+$desktop: 1024px;
+$desktop-lg: 1440px;
+
+$nav-bg: $delft-blue;
+$nav-text: $eggshell;
+
 body {
   font-family: 'Roboto', sans-serif;
   margin: 0 auto;
   padding: 0;
+}
+
+main {
+  margin: 0 auto;
+  min-width: $mobile;
+  max-width: $desktop;
+  padding: 1rem;
+}
+
+nav {
+  background-color: $nav-bg;
+  color: $nav-text;
+
+  a, a:visited {
+    color: $nav-text;
+  }
+
+  #main-nav-content {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    min-width: $mobile;
+    max-width: $desktop;
+    padding: 1rem;
+  }
 }

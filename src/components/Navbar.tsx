@@ -10,7 +10,7 @@ const Navbar = async () => {
   const session = await getServerSession(authOptions);
   return (
     <nav>
-      <div>
+      <div id="main-nav-content">
         <Link href='/'>
           <MenuBookOutlined />
         </Link>
