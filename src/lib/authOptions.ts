@@ -13,8 +13,8 @@ export const authOptions: NextAuthOptions = {
     signIn: '/sign-in',
     signOut: '/sign-out'
   },
+  secret: process.env.SECRET,
   providers: [
-    secret: process.env.SECRET,
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
