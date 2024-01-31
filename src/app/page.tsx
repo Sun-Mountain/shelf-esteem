@@ -8,7 +8,7 @@ export default async function Home() {
 
   return (
     <>
-      <h1 className='text-4xl'>Home</h1>
+      <h1>Home</h1>
       <h2>Client Session</h2>
       <User />
       <h2>Server Session</h2>

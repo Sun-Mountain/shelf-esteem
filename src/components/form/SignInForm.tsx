@@ -53,8 +53,8 @@ const SignInForm = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className='w-full'>
-        <div className='space-y-2'>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
+        <div>
           <FormField
             control={form.control}
             name='email'
@@ -86,7 +86,7 @@ const SignInForm = () => {
             )}
           />
         </div>
-        <Button className='w-full mt-6' type='submit'>
+        <Button type='submit'>
           Sign in
         </Button>
       </form>
