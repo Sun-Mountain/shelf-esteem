@@ -3,23 +3,7 @@ import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/authOptions";
 import Notice from "@/components/Notice";
-import { ButtonUI as Button } from '../components/ui/Button';
-
-
-const NoUserWelcome = () => {
-  if (!session?.user) {
-    return (
-      <div>
-        <div>
-          Dashboard
-        </div>
-        <div>
-          You are not logged in!
-        </div>
-      </div>
-    )
-  }
-}
+import { Button } from '@/components/ui/button';
 
 
 export default async function Home() {
@@ -31,7 +15,7 @@ export default async function Home() {
         <h1>Welcome to Shelf Esteem!</h1>
         <div>The library cateloging web app.</div>
         <Notice>
-          <strong>Shelf Esteem Disclaimer:</strong> This was made as a personal coding project and is not intended for commercial use. Third-party integration is subject to their terms. Shelf Esteem doesn't endorse specific content, and external information accuracy is not guaranteed. The disclaimer may change, so users are urged to review periodically. For more information, <Link href="/termsofservice">please read the terms of service</Link>.
+          <strong>Shelf Esteem Disclaimer:</strong> This was made as a personal coding project and is not intended for commercial use. Third-party integration is subject to their terms. Shelf Esteem does not endorse specific content, and external information accuracy is not guaranteed. The disclaimer may change, so users are urged to review periodically. For more information, <Link href="/termsofservice">please read the terms of service</Link>.
         </Notice>
       </section>
       <section className="welcome">

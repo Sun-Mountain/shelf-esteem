@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Button, buttonVariants } from './ui/Button';
+import { Button } from '@/components/ui/button';
 import { AutoStoriesTwoTone } from '@mui/icons-material';
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/authOptions";

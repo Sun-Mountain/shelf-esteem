@@ -44,4 +44,4 @@ const ButtonUI = ({
 
 ButtonUI.displayName = "Button"
 
-export { ButtonUI }
+export { ButtonUI as Button }

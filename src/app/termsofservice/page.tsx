@@ -3,7 +3,7 @@ const page = () => {
     <>
       <h1>Terms of Service</h1>
       <p>
-        Shelf Esteem is a personal project application designed for cataloging and managing users' personal libraries. While we strive to provide a reliable and user-friendly experience, it's essential to understand and acknowledge the following disclaimer before using the application:
+        Shelf Esteem is a personal project application designed for cataloging and managing users` personal libraries. While we strive to provide a reliable and user-friendly experience, it`s essential to understand and acknowledge the following disclaimer before using the application:
       </p>
       <ol>
         <li>
@@ -40,7 +40,7 @@ const page = () => {
           <strong>
             Accuracy of Information:
           </strong>
-          While efforts are made to keep the application's database updated, Shelf Esteem cannot guarantee the accuracy of external book information, including but not limited to titles, authors, and cover images.
+          While efforts are made to keep the application`s database updated, Shelf Esteem cannot guarantee the accuracy of external book information, including but not limited to titles, authors, and cover images.
         </li>
         <li>
           <strong>
