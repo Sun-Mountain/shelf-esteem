@@ -10,6 +10,12 @@ $delft-blue-30: rgba(61, 64, 91, .3);
 $cambridge-blue: rgba(129, 178, 154, 1);
 $sunset: rgba(242, 204, 143, 1);
 
+$rose: rgba(247, 37, 133, 1);
+$grape: rgba(114, 9, 183, 1);
+$zaffre: rgba(58, 12, 163, 1);
+$neon-blue: rgba(67, 97, 238, 1);
+$vivid-sky-blue: rgba(76, 201, 240, 1);
+
 $white: rgba(255, 255, 255, 1);
 $seasalt: rgba(248, 249, 250, 1);
 $antiflash-white: rgba(233, 236, 239, 1);
@@ -33,6 +39,8 @@ $nav-text: $eggshell;
 
 $background-bg: $eggshell-10;
 
+$link-color: $neon-blue;
+
 $main-bg: $white;
 $main-border: 1px solid $french-gray-2;
 $main-boxshadow: 0 0 5px $french-gray-2;
@@ -45,6 +53,11 @@ body {
   font-family: 'Roboto', sans-serif;
   margin: 0 auto;
   padding: 0;
+}
+
+a, a:visited {
+  color: $link-color;
+  text-decoration: none;
 }
 
 main {
