@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Button, buttonVariants } from './ui/Button';
-import { MenuBookOutlined } from '@mui/icons-material';
+import { AutoStoriesTwoTone } from '@mui/icons-material';
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/authOptions";
 
@@ -11,9 +11,11 @@ const Navbar = async () => {
   return (
     <nav>
       <div id="main-nav-content">
-        <Link href='/'>
-          <MenuBookOutlined />
-        </Link>
+        <div className="icon-container">
+          <Link href='/'>
+            <AutoStoriesTwoTone className="icon" />
+          </Link>
+        </div>
         {session?.user ? (
           <UserAccountNav />
         ) : (
