@@ -12,7 +12,7 @@ import {
 import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Input } from '../ui/input';
-import { Button } from '../ui/Button';
+import { ButtonUI as Button } from '@/components/ui/Button';
 import Link from 'next/link';
 import GoogleSignInButton from '../GoogleSignInButton';
 import { signIn } from 'next-auth/react';

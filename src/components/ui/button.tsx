@@ -9,6 +9,7 @@ export interface ButtonProps {
   className?: string;
   variant?: "text" | "outlined" | "contained";
   size?: "small" | "medium" | "large";
+  onClick?: () => void;
 }
 
 const ButtonUI = ({
@@ -18,7 +19,13 @@ const ButtonUI = ({
   href,
   className,
   variant = "contained",
+  onClick
 }: ButtonProps) => {
+
+  function handleOnClick() {
+    if (onClick) onClick();
+  }
+
   return (
     <Button
       disabled={disabled}
@@ -26,6 +33,7 @@ const ButtonUI = ({
       href={href}
       className={className}
       variant={variant}
+      onClick={handleOnClick}
     >
       {children}
     </Button>
