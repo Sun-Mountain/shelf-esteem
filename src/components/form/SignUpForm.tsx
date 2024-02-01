@@ -64,7 +64,7 @@ const SignUpForm = () => {
     <Form {...form}>
       <div className="form-container account-form">
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <div class="form-wrapper">
+          <div className="form-wrapper">
             <FormField
               control={form.control}
               name='username'

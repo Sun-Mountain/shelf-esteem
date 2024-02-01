@@ -1,4 +1,4 @@
-import User from "@/components/User";
+import UserWelcome from "@/components/UserWelcome";
 import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/authOptions";
@@ -39,7 +39,7 @@ export default async function Home() {
             </div>
           </div>
         ) : (
-          <User />
+          <UserWelcome />
         )}
       </section>
     </>
