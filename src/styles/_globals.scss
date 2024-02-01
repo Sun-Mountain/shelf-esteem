@@ -72,6 +72,10 @@ $main-bg: $white;
 $main-border: 1px solid $french-gray-2;
 $main-boxshadow: 0 0 5px $french-gray-2;
 
+$footer-bg: $white;
+$footer-border: 1px solid $french-gray-2;
+$footer-link-color: $slate-gray;
+
 $icon-container-bg: $eggshell;
 $icon-container-text: $delft-blue;
 
@@ -80,7 +84,10 @@ $border-radius: 0.75rem;
 body {
   background: $background-bg;
   color: $font-color;
+  display: flex;
+  flex-direction: column;
   font-family: 'Roboto', sans-serif;
+  height: 100vh;
   margin: 0 auto;
   padding: 0;
 }
@@ -102,7 +109,8 @@ main {
   background-color: $main-bg;
   border: $main-border;
   box-shadow: $main-boxshadow;
-  margin: 2rem auto 0 auto;
+  flex: 1;
+  margin: 2rem auto;
   min-width: $mobile;
   max-width: $desktop;
 }
@@ -160,6 +168,32 @@ nav {
   }
 }
 
+footer {
+  background-color: $footer-bg;
+  border-top: $footer-border;
+
+  #footer-content {
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto;
+    min-width: $mobile;
+    max-width: $desktop;
+    padding: 2rem 0;
+  }
+
+  a, a:visited {
+    border-bottom: 1px solid $footer-bg;
+    color: $footer-link-color;
+    padding-bottom: 2px;
+
+    &:hover {
+      border-bottom: 1px solid $neon-blue;
+      color: $neon-blue;
+    }
+  }
+}
+
 @import './forms.scss';
 @import './notices.scss';
+@import './pages.scss';
 @import './welcome.scss';
