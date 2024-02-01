@@ -48,6 +48,25 @@ $return-text: $eggshell;
   }
 }
 
+#user-welcome {
+  .button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 0 auto;
+    min-width: $mobile;
+    max-width: 50%;
+  }
+
+  a, a:visited {
+    color: $return-text;
+    font-size: 1rem;
+    margin: 0.5rem;
+    text-decoration: none;
+    text-transform: capitalize;
+  }
+}
+
 @media screen and (min-width: $tablet){
   .no-user-welcome {
     #return-user, #new-user {

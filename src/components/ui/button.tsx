@@ -11,6 +11,7 @@ export interface ButtonProps {
   className?: string;
   variant?: "text" | "outlined" | "contained";
   size?: "small" | "medium" | "large";
+  startIcon?: ReactNode;
   buttonAction?: () => void;
 }
 
@@ -21,6 +22,8 @@ const ButtonUI = ({
   href,
   className,
   variant = "contained",
+  size,
+  startIcon,
   buttonAction
 }: ButtonProps) => {
 
@@ -34,7 +37,9 @@ const ButtonUI = ({
       type={type}
       href={href}
       className={className}
+      size={size}
       variant={variant}
+      startIcon={startIcon}
       onClick={handleOnClick}
     >
       {children}
