@@ -2,7 +2,7 @@
 
 import { useSession } from 'next-auth/react';
 import { Button } from '@/components/ui/button';
-import { BookMarkAdd, LocalLibrary } from '@mui/icons-material';
+import { BookmarkAddTwoTone, LocalLibrary } from '@mui/icons-material';
 
 const UserWelcome = () => {
   const { data: session } = useSession();
@@ -22,7 +22,7 @@ const UserWelcome = () => {
         </Button>
 
         <Button
-          startIcon={<BookMarkAdd />}
+          startIcon={<BookmarkAddTwoTone />}
           href="/books/new"
         >
           Add a Book
