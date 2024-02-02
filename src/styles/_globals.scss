@@ -116,7 +116,7 @@ main {
   box-shadow: $main-boxshadow;
   flex: 1;
   margin: 2rem auto;
-  min-width: $mobile;
+  width: 100%;
   max-width: $desktop;
 }
 
