@@ -3,6 +3,32 @@ $item-border: 1px solid $french-gray-2;
 .catalog-item {
   border: $item-border;
   border-radius: $border-radius;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   margin: 1rem 0;
   padding: 1rem;
+
+  .item-label {
+    line-height: 1rem;
+    margin: auto 0;
+  }
+
+  .icon-container {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .icon, .MuiCircularProgress-indeterminate {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+  }
+
+  .success {
+    color: $success-color;
+  }
+
+  .error {
+    color: $error-color;
+  }
 }

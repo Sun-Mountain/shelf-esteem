@@ -4,12 +4,18 @@ import { useState } from "react";
 import { fetchBookData } from "@/lib/queries";
 import CatalogItem from "@/components/CatalogItem";
 import AddBookForm from "@/components/form/AddBookForm";
-import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
+
+interface BookProps {
+  isbn: string;
+  found: boolean;
+  title?: string;
+  authorName?: string;
+  subject?: string[];
+}
 
 const Catalog = () => {
-  const [isbnList, setIsbnList] = useState(['0358653037']);
-  const [bookData, setBookData] = useState([] as any[]);
+  const [isbnList, setIsbnList] = useState([] as string[]);
+  const [bookData, setBookData] = useState([] as BookProps[]);
 
   const handleAddBook = () => {
     fetchBookData();

@@ -29,6 +29,8 @@ $melon: rgba(248, 173, 157, 1);
 $apricot: rgba(251, 196, 171, 1);
 $light-orange: rgba(255, 218, 185, 1);
 
+$dark-spring-green: rgba(23, 114, 69, 1);
+
 $rose: rgba(247, 37, 133, 1);
 $grape: rgba(114, 9, 183, 1);
 $zaffre: rgba(58, 12, 163, 1);
@@ -52,6 +54,9 @@ $slate-gray-10: rgba(108, 117, 125, .1);
 $outer-space: rgba(73, 80, 87, 1);
 $onyx: rgba(52, 58, 64, 1);
 $eerie-black: rgba(33, 37, 41, 1);
+
+$success-color: $dark-spring-green;
+$error-color: $rufous;
 
 // Breakpoints
 $mobile: 320px;

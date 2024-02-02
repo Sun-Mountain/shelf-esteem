@@ -7,6 +7,8 @@ export const fetchBookData = async (isbn:string) => {
                       })
                       .catch(error => {
                         console.error(error);
+
+                        return {};
                       });
 
   return response;

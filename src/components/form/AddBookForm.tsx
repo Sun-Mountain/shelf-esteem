@@ -67,14 +67,14 @@ const AddBookForm = ({
   }) => {
     addIsbn(isbn);
     const response = await fetchBookData(isbn);
-    const parsedData = JSON.parse(response);
     
-    if (!!parsedData) {
-      console.log('Book added');
-      addBook({ enteredIsbn: isbn, ...parsedData });
-    } else {
+    if (!response) {
       console.log('Book not found');
-      addBookData({ enteredIsbn: isbn, found: false });
+      addBookData({ isbn, found: false });
+    } else {
+      console.log('Book added');
+      const parsedData = JSON.parse(response);
+      addBook({ enteredIsbn: isbn, ...parsedData });
     }
   };
 
