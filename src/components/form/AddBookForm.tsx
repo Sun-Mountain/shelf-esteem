@@ -29,11 +29,13 @@ import { fetchBookData } from "@/lib/queries";
 
 interface AddBookFormProps {
   addIsbn: (isbn: string) => void;
+  addBookData: (data: any) => void;
 }
 
 const AddBookForm = ({
-  addIsbn
-}) => {
+  addIsbn,
+  addBookData
+}: AddBookFormProps) => {
 
   const form = useForm({
     defaultValues: {
@@ -48,12 +50,16 @@ const AddBookForm = ({
   //   },
   // });
 
-  const addBook = ({
-    title,
-    author_name,
-
-  }) => {
-
+  const addBook = ({ enteredIsbn, title, author_name, subject }) => {
+    const book = {
+      isbn: enteredIsbn,
+      title,
+      authorName: author_name,
+      subject,
+      found: true,
+    }
+    
+    addBookData(book);
   }
 
   const onSubmit = async ({ isbn }: {
@@ -61,12 +67,14 @@ const AddBookForm = ({
   }) => {
     addIsbn(isbn);
     const response = await fetchBookData(isbn);
+    const parsedData = JSON.parse(response);
     
-    if (response) {
+    if (!!parsedData) {
       console.log('Book added');
-      console.log(response);
+      addBook({ enteredIsbn: isbn, ...parsedData });
     } else {
       console.log('Book not found');
+      addBookData({ enteredIsbn: isbn, found: false });
     }
   };
 

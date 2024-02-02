@@ -1,0 +1,8 @@
+$item-border: 1px solid $french-gray-2;
+
+.catalog-item {
+  border: $item-border;
+  border-radius: $border-radius;
+  margin: 1rem 0;
+  padding: 1rem;
+}
