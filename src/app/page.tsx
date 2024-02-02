@@ -28,6 +28,14 @@ export default async function Home() {
                   Sign Up Here
                 </Button>
               </div>
+              <div className="button-divider">
+                - or -
+              </div>
+              <div className="button-container">
+                <Button href="/catalog">
+                  Try It Out
+                </Button>
+              </div>
             </div>
             <div id="return-user">
               <h2>Returning?</h2>

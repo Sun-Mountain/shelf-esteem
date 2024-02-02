@@ -4,9 +4,7 @@ $form-label: $delft-blue;
 $error-color: $rufous;
 
 .form-container {
-  border: $form-border;
-  border-radius: $border-radius;
-  padding: 1.3rem;
+  margin: 2rem auto;
 
   .button-container {
     margin: 0.5rem 0 1rem 0;
@@ -19,8 +17,10 @@ $error-color: $rufous;
 
 .account-form {
   background-color: $form-background;
-  margin: 2rem auto;
+  border: $form-border;
+  border-radius: $border-radius;
   max-width: 500px;
+  padding: 1.3rem;
 }
 
 .form-wrapper {

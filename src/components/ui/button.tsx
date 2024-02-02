@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode } from "react";
+import { MouseEventHandler, ReactNode } from "react";
 import Button from '@mui/material/Button';
 
 export interface ButtonProps {
@@ -11,7 +11,7 @@ export interface ButtonProps {
   className?: string;
   variant?: "text" | "outlined" | "contained";
   size?: "small" | "medium" | "large";
-  buttonAction?: () => void;
+  buttonAction?: MouseEventHandler<HTMLButtonElement> | undefined;
 }
 
 const ButtonUI = ({
