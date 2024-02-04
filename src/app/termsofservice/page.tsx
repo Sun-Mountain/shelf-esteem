@@ -1,6 +1,6 @@
 const page = () => {
   return (
-    <div className="page-container">
+    <div className="page-container terms-of-service">
       <h1>Terms of Service</h1>
       <p>
         Shelf Esteem is a personal project application designed for cataloging and managing users` personal libraries. While we strive to provide a reliable and user-friendly experience, it`s essential to understand and acknowledge the following disclaimer before using the application:

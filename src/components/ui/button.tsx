@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode } from "react";
+import { MouseEventHandler, ReactNode } from "react";
 import Button from '@mui/material/Button';
 
 export interface ButtonProps {
@@ -12,7 +12,8 @@ export interface ButtonProps {
   variant?: "text" | "outlined" | "contained";
   size?: "small" | "medium" | "large";
   startIcon?: ReactNode;
-  buttonAction?: () => void;
+  buttonAction?: MouseEventHandler<HTMLButtonElement> | undefined;
+  testId?: string;
 }
 
 const ButtonUI = ({
@@ -24,7 +25,8 @@ const ButtonUI = ({
   variant = "contained",
   size,
   startIcon,
-  buttonAction
+  buttonAction,
+  testId
 }: ButtonProps) => {
 
   function handleOnClick() {
@@ -41,6 +43,7 @@ const ButtonUI = ({
       variant={variant}
       startIcon={startIcon}
       onClick={handleOnClick}
+      data-testid={testId}
     >
       {children}
     </Button>

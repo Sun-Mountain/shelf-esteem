@@ -30,6 +30,10 @@ $return-text: $eggshell;
       width: 100%;
     }
 
+    .button-divider {
+      text-align: center;
+    }
+
     a, a:visited {
       color: $return-text;
       font-size: 1.25rem;

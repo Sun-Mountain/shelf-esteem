@@ -24,15 +24,23 @@ export default async function Home() {
             <div id="new-user">
               <h2>New?</h2>
               <div className="button-container">
-                <Button href="/sign-up">
+                <Button href="/sign-up" testId="sign-up">
                   Sign Up Here
+                </Button>
+              </div>
+              <div className="button-divider">
+                - or -
+              </div>
+              <div className="button-container">
+                <Button href="/catalog">
+                  Try It Out
                 </Button>
               </div>
             </div>
             <div id="return-user">
               <h2>Returning?</h2>
               <div className="button-container">
-                <Button href="/sign-in">
+                <Button href="/sign-in" testId="sign-in">
                   Sign In Here
                 </Button>
               </div>
