@@ -1,4 +1,7 @@
 
+$cambridge-blue: rgba(129, 178, 154, 1);
+$cambridge-blue-10: rgba(129, 178, 154, .1);
+$dark-spring-green: rgba(23, 114, 69, 1);
 $delft-blue: rgba(61, 64, 91, 1);
 $eggshell: rgba(244, 241, 222, 1);
 $eggshell-30: rgba(244, 241, 222, .3);
@@ -6,7 +9,9 @@ $french-gray: rgba(206, 212, 218, 1);
 $french-gray-2: rgba(173, 181, 189, 1);
 $neon-blue: rgba(67, 97, 238, 1);
 $onyx: rgba(52, 58, 64, 1);
+$rufous: rgba(168, 50, 50, 1);
 $slate-gray: rgba(108, 117, 125, 1);
+$slate-gray-10: rgba(108, 117, 125, .1);
 $white: rgba(255, 255, 255, 1);
 
 // Breakpoints
@@ -18,6 +23,9 @@ $desktop-lg: 1440px;
 
 // Global styles
 // General variables
+$border-radius: 0.75rem;
+$success-color: $dark-spring-green;
+$error-color: $rufous;
 
 // Body
 $background-bg: $eggshell-30;
@@ -67,6 +75,12 @@ main {
   max-width: $desktop;
 }
 
+section {
+  padding: 1.5rem;
+}
+
 @import './footer.scss';
+@import './forms.scss';
 @import './navigation-main.scss';
+@import './notices.scss';
 @import './pages.scss';
