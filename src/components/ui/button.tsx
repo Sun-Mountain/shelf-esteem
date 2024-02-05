@@ -28,12 +28,9 @@ const ButtonUI = ({
   buttonAction,
   testId
 }: ButtonProps) => {
-  const action = buttonAction;
 
-  function handleOnClick() {
-    if (action) {
-      action()
-    };
+  function handleOnClick(e: any) {
+    if (buttonAction) buttonAction(e);
   }
 
   return (
