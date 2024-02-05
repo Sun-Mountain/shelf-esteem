@@ -14,7 +14,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Input } from '../ui/input';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import GoogleSignInButton from '../GoogleSignInButton';
 import { useRouter } from 'next/navigation';
 
 const FormSchema = z
@@ -135,7 +134,6 @@ const SignUpForm = () => {
         <div>
           or
         </div>
-        {/* <GoogleSignInButton>Sign up with Google</GoogleSignInButton> */}
         <div>
           If you have an account, please&nbsp;
           <Link href='/sign-in'>

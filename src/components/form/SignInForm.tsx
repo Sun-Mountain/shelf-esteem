@@ -14,7 +14,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Input } from '../ui/input';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import GoogleSignInButton from '../GoogleSignInButton';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 
@@ -96,7 +95,6 @@ const SignInForm = () => {
         <div>
           or
         </div>
-        {/* <GoogleSignInButton>Sign in with Google</GoogleSignInButton> */}
         <div>
           If you don&apos;t have an account, please&nbsp;
           <Link href='/sign-up'>

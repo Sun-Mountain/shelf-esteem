@@ -5,8 +5,8 @@ import Button from '@mui/material/Button';
 
 export interface ButtonProps {
   children: ReactNode;
-  type: "button" | "submit" | "reset";
-  disabled: boolean;
+  type?: "button" | "submit" | "reset";
+  disabled?: boolean;
   href?: string;
   className?: string;
   variant?: "text" | "outlined" | "contained";
@@ -28,9 +28,12 @@ const ButtonUI = ({
   buttonAction,
   testId
 }: ButtonProps) => {
+  const action = buttonAction;
 
   function handleOnClick() {
-    if (buttonAction) buttonAction();
+    if (action) {
+      action()
+    };
   }
 
   return (
