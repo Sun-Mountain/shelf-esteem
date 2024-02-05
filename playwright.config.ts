@@ -70,8 +70,8 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: 'pnpm run build && pnpm run preview',
-    timeout: 120 * 1000, // time to launch server, 6o by default
-    url: 'http://localhost:4000/', // app url
+    command: process.env.CI ? "pnpm build && pnpm preview --port 4000" : "pnpm dev",
+    port: 4000,
+    reuseExistingServer: !process.env.CI,
   },
 });
