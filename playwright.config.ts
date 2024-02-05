@@ -72,6 +72,6 @@ export default defineConfig({
   webServer: {
     command: 'pnpm run build && pnpm run preview',
     timeout: 120 * 1000, // time to launch server, 6o by default
-    url: 'http://localhost:3000/', // app url
+    url: 'http://localhost:4000/', // app url
   },
 });
