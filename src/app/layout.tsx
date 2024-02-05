@@ -1,7 +1,7 @@
 import Navbar from '@/components/Navbar';
 import Provider from '@/components/Provider';
 // import Footer from '@/components/Footer';
-// import '@/styles/_globals.scss';
+import '@/styles/_globals.scss';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
