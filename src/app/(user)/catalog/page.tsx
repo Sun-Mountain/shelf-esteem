@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from "react";
-import { BookProps } from "@/types";
+import { BookProps } from "@/types/booktypes";
 import CatalogItem from "@/components/CatalogItem";
 import AddBookForm from "@/components/form/AddBookForm";
 

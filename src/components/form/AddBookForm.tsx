@@ -1,7 +1,7 @@
 'use client';
 
 import { useForm } from 'react-hook-form';
-import { BookProps } from "@/types";
+import { BookProps } from "@/types/booktypes";
 import {
   Form,
   FormControl,
