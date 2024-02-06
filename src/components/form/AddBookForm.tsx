@@ -86,17 +86,21 @@ const AddBookForm = ({
     if (!response) {
       addBookData({ isbn, found: false });
     } else {
-      const res = await fetch(`/api/books`, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        method: 'POST',
-        body: JSON.stringify({
-          thumbnail: response.imageLinks?.thumbnail,
-          id: isbn,
-          ...response
-        }),
-      });
+      const res = await fetch(`api/books/${isbn}`, {})
+
+      if(!res.ok) {
+        await fetch(`/api/books`, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          method: 'POST',
+          body: JSON.stringify({
+            thumbnail: response.imageLinks?.thumbnail,
+            id: isbn,
+            ...response
+          }),
+        });
+      }
 
       addBook({ enteredIsbn: isbn, ...response });
     }
