@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from "react";
-import { fetchBookData } from "@/lib/queries";
 import CatalogItem from "@/components/CatalogItem";
 import AddBookForm from "@/components/form/AddBookForm";
 
@@ -16,13 +15,17 @@ interface BookProps {
 const Catalog = () => {
   const [isbnList, setIsbnList] = useState([] as string[]);
   const [bookData, setBookData] = useState([] as BookProps[]);
-
-  const handleAddBook = () => {
-    fetchBookData();
-  }
+  const [error, setError] = useState('');
 
   function addIsbn(isbn: string) {
-    setIsbnList([...isbnList, isbn]);
+    // Check if the isbn is already in the list
+    if (isbnList.includes(isbn)) {
+      setError('This ISBN is already in your library');
+      return;
+    } else {
+      // Add the new isbn to the list of isbns
+      setIsbnList([...isbnList, isbn]);
+    }
   }
 
   function addBookData(data: any) {
@@ -47,7 +50,12 @@ const Catalog = () => {
         )}
       </div>
 
-      <AddBookForm addIsbn={addIsbn} addBookData={addBookData} />
+      <AddBookForm
+        addIsbn={addIsbn}
+        addBookData={addBookData}
+        setError={setError}
+        error={error}
+      />
     </div>
   )
 }

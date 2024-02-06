@@ -16,6 +16,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
 import { fetchBookData } from "@/lib/queries";
+import { Dispatch, SetStateAction } from 'react';
 
 // const FormSchema = z.object({
 //   isbn: z.custom<string>((value) => {
@@ -30,11 +31,15 @@ import { fetchBookData } from "@/lib/queries";
 interface AddBookFormProps {
   addIsbn: (isbn: string) => void;
   addBookData: (data: any) => void;
+  setError: Dispatch<SetStateAction<string>>;
+  error?: string;
 }
 
 const AddBookForm = ({
   addIsbn,
-  addBookData
+  addBookData,
+  setError,
+  error
 }: AddBookFormProps) => {
 
   const form = useForm({
@@ -69,7 +74,7 @@ const AddBookForm = ({
     const response = await fetchBookData(isbn);
     
     if (!response) {
-      console.log('Book not found');
+      setError('Book not found');
       addBookData({ isbn, found: false });
     } else {
       console.log('Book added');
@@ -97,6 +102,7 @@ const AddBookForm = ({
               )}
             />
           </div>
+          {error && <div className='error'>{error}</div>}
           <div className='button-container'>
             <Button type='submit'>
               Add Book

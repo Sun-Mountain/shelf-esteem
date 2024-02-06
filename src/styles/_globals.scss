@@ -81,6 +81,14 @@ section {
   padding: 1.5rem;
 }
 
+.success {
+  color: $success-color;
+}
+
+.error {
+  color: $error-color;
+}
+
 @import './footer.scss';
 @import './forms.scss';
 @import './library.scss';

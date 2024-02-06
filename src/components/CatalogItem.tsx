@@ -31,11 +31,11 @@ const CatalogItem = ({
             isbn
           )}
         </div>
-        {book && (
+        {book?.found ? (
           <div className="item-author">
             {book.authorName ? book.authorName.join(', ') : 'Author not found'}
           </div>
-        )}
+        ) : null}
         {book?.title && (
           <div className="item-isbn">
             {book.isbn}
