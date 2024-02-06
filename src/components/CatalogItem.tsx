@@ -23,24 +23,33 @@ const CatalogItem = ({
 
   return (
     <div className="catalog-item">
-      <div className="item-label">
-        <div className='item-title'>
-          {book ? (
-            book.title ? book.title : isbn
-          ) : (
-            isbn
+      <div className='item-info'>
+        {book?.thumbnail ? (
+          <img
+            className="item-thumbnail"
+            src={book.thumbnail}
+            alt={book.title}
+          />
+        ) : null}
+        <div className="item-label">
+          <div className='item-title'>
+            {book ? (
+              book.title ? book.title : isbn
+            ) : (
+              isbn
+            )}
+          </div>
+          {book?.found ? (
+            <div className="item-author">
+              {book.authors ? book.authors.join(', ') : 'Author not found'}
+            </div>
+          ) : null}
+          {book?.title && (
+            <div className="item-isbn">
+              {book.isbn}
+            </div>
           )}
         </div>
-        {book?.found ? (
-          <div className="item-author">
-            {book.authorName ? book.authorName.join(', ') : 'Author not found'}
-          </div>
-        ) : null}
-        {book?.title && (
-          <div className="item-isbn">
-            {book.isbn}
-          </div>
-        )}
       </div>
 
       <div className='icon-container'>

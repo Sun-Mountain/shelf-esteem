@@ -55,12 +55,33 @@ const AddBookForm = ({
   //   },
   // });
 
-  const addBook = ({ enteredIsbn, title, author_name, subject }) => {
+  const addBook = ({
+    enteredIsbn,
+    title,
+    authors,
+    publisher,
+    publishedDate,
+    description,
+    industryIdentifiers,
+    pageCount,
+    categories,
+    maturityRating,
+    imageLinks,
+    language,
+  }) => {
     const book = {
       isbn: enteredIsbn,
       title,
-      authorName: author_name,
-      subject,
+      authors,
+      publisher,
+      publishedDate,
+      description,
+      industryIdentifiers,
+      pageCount,
+      categories,
+      maturityRating,
+      thumbnail: imageLinks.thumbnail,
+      language,
       found: true,
     }
     

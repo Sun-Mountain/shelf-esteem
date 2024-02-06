@@ -4,12 +4,25 @@ import { useState } from "react";
 import CatalogItem from "@/components/CatalogItem";
 import AddBookForm from "@/components/form/AddBookForm";
 
+interface industryIdentifier {
+  type: string;
+  identifier: string;
+}
+
 interface BookProps {
   isbn: string;
   found: boolean;
+  authors?: string[];
+  categories?: string[];
+  description?: string;
+  industryIdentifiers: industryIdentifier[];
+  language?: string;
+  maturityRating?: string;
+  pageCount?: number;
+  publishedDate?: string;
+  publisher?: string;
+  thumbnail?: string;
   title?: string;
-  authorName?: string;
-  subject?: string[];
 }
 
 const Catalog = () => {

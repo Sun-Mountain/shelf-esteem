@@ -9,6 +9,11 @@ $item-border: 1px solid $french-gray-2;
   margin: 1rem 0;
   padding: 1rem;
 
+  .item-info {
+    display: flex;
+    flex-direction: row;
+  }
+
   .item-label {
     line-height: 1rem;
     margin: auto 0;
@@ -22,5 +27,11 @@ $item-border: 1px solid $french-gray-2;
   .icon, .MuiCircularProgress-indeterminate {
     width: 1.5rem !important;
     height: 1.5rem !important;
+  }
+
+  .item-thumbnail {
+    width: 2.5rem;
+    height: auto;
+    margin-right: 1rem;
   }
 }
