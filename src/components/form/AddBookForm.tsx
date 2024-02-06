@@ -68,6 +68,8 @@ const AddBookForm = ({
     maturityRating,
     imageLinks,
     language,
+  }: {
+    enteredIsbn: string;
   }) => {
     const book = {
       isbn: enteredIsbn,
