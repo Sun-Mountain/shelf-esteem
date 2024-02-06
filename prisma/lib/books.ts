@@ -1,5 +1,9 @@
 import { db } from '@/db/lib';
 import { Book, Prisma } from '@prisma/client';
+import { IndustryIdentifierProps } from '@/lib/types';
+import { getLogger } from '@/lib/logger';
+
+const logger = getLogger();
 
 export type CategoryCreateInput = Prisma.CategoryCreateInput;
 
@@ -12,11 +16,17 @@ export type BookCreateInput = Prisma.BookCreateInput&{
   industryIdentifiers: IndustryIdentifierCreateInput;
 };
 
-export type BookFull = Prisma.BookGetPayload<{
+export type BookGetFullPayload = Prisma.BookGetPayload<{
   include: {
     industryIdentifiers: true;
+    categories: true;
   }
 }>;
+
+export type BookFull = BookGetFullPayload&{
+  categories: string[];
+  industryIdentifiers: IndustryIdentifierProps[];
+}
 
 export async function getIndustryIdentifiers(industryIdentifiers: IndustryIdentifierCreateInput[]): Promise<Prisma.IndustryIdentifierCreateInput[]> {
   const result = await db.industryIdentifier.findMany({
@@ -39,6 +49,31 @@ export async function getCategories(categories: CategoryCreateInput[]): Promise<
   });
   return result;
 };
+
+export async function getBook(id: string): Promise<BookFull | undefined> {
+  const book = await db.book.findUnique({
+    where: {
+      id
+    },
+    include: {
+      industryIdentifiers: true,
+      categories: true
+    }
+  });
+
+  if (!book) {
+    return;
+  }
+
+  return {
+    ...book,
+    categories: book.categories.map((c) => c.categoryName),
+    industryIdentifiers: book.industryIdentifiers.map((ii) => ({
+      type: ii.type,
+      identifier: ii.identifier
+    }))
+  };
+}
 
 export async function createBook(values: BookCreateInput): Promise<BookFull | undefined> {
   const {
@@ -87,10 +122,13 @@ export async function createBook(values: BookCreateInput): Promise<BookFull | un
         skipDuplicates: true,
       });
     }
-
-    console.log(newBook);
+    
+    const findBook = await getBook(newBook.id);
+    return findBook;
   } catch (error) {
-    console.error(error);
-  }
-  
+    logger.error(error);
+    if (e instanceof Prisma.PrismaClientValidationError) {
+      throw e;
+    }
+  }  
 }

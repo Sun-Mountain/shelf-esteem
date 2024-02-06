@@ -1,8 +1,6 @@
 'use client';
 
 import { useForm } from 'react-hook-form';
-import { BookSearchProps } from "@/types/booktypes";
-import { createBook } from '@/db/lib/books';
 import {
   Form,
   FormControl,
@@ -11,6 +9,8 @@ import {
   FormLabel,
   FormMessage,
 } from '../ui/form';
+import { BookSearchProps } from "@/types/booktypes";
+import { createBook } from '@/db/lib/books';
 import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Input } from '../ui/input';
@@ -20,15 +20,9 @@ import Link from 'next/link';
 import { fetchBookData } from "@/lib/queries";
 import { Dispatch, SetStateAction } from 'react';
 
-// const FormSchema = z.object({
-//   isbn: z.custom<string>((value) => {
-//     if (value.length === 10 || value.length === 13) {
-//       return true;
-//     } else {
-//       return 'ISBN must be 10 or 13 characters long';
-//     }
-//   }
-// });
+const FormSchema = z.object({
+  isbn: z.string().min(1, 'ISBN is required'),
+});
 
 interface AddBookFormProps {
   addIsbn: (isbn: string) => void;
@@ -43,19 +37,12 @@ const AddBookForm = ({
   setError,
   error
 }: AddBookFormProps) => {
-
-  const form = useForm({
+  const form = useForm<z.infer<typeof FormSchema>>({
+    resolver: zodResolver(FormSchema),
     defaultValues: {
       isbn: '',
-    }
-  })
-  // const form = useForm<z.infer<typeof FormSchema>>({
-  //   resolver: zodResolver(FormSchema),
-  //   defaultValues: {
-  //     email: '',
-  //     password: '',
-  //   },
-  // });
+    },
+  });
 
   const addBook = ({
     enteredIsbn,
@@ -127,7 +114,10 @@ const AddBookForm = ({
                 <FormItem>
                   <FormLabel>ISBN</FormLabel>
                   <FormControl>
-                    <Input placeholder='ex. 0544003415 or 978-0544003415' {...field} />
+                    <Input
+                      placeholder='ex. 0544003415 or 978-0544003415'
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

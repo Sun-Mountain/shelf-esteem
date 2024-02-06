@@ -69,7 +69,7 @@ const SignUpForm = () => {
               name='username'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Username</FormLabel>
+                  <FormLabel id='username-label'>Username</FormLabel>
                   <FormControl>
                     <Input placeholder='johndoe' {...field} />
                   </FormControl>

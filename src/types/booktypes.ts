@@ -1,4 +1,4 @@
-interface industryIdentifier {
+export interface IndustryIdentifierProps {
   type: string;
   identifier: string;
 }
@@ -14,7 +14,7 @@ export interface BookSearchProps {
     smallThumbnail: string;
     thumbnail: string;
   },
-  industryIdentifiers: industryIdentifier[];
+  industryIdentifiers: IndustryIdentifierProps[];
   language?: string;
   maturityRating?: string;
   pageCount?: number;
