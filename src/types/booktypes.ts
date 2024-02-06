@@ -5,6 +5,10 @@ export interface BookProps {
   authors?: string[];
   categories?: string[];
   description?: string;
+  imageLinks?: {
+    smallThumbnail: string;
+    thumbnail: string;
+  },
   industryIdentifiers: industryIdentifier[];
   language?: string;
   maturityRating?: string;
