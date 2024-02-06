@@ -1,6 +1,7 @@
 'use client';
 
 import { useForm } from 'react-hook-form';
+import { BookProps } from "@/types";
 import {
   Form,
   FormControl,
@@ -68,9 +69,7 @@ const AddBookForm = ({
     maturityRating,
     imageLinks,
     language,
-  }: {
-    enteredIsbn: string;
-  }) => {
+  }: BookProps) => {
     const book = {
       isbn: enteredIsbn,
       title,
