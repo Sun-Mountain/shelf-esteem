@@ -81,7 +81,7 @@ const AddBookForm = ({
       pageCount,
       categories,
       maturityRating,
-      thumbnail: imageLinks.thumbnail,
+      thumbnail: imageLinks?.thumbnail,
       language,
       found: true,
     }
@@ -100,7 +100,7 @@ const AddBookForm = ({
       addBookData({ isbn, found: false });
     } else {
       console.log('Book added');
-      const parsedData = JSON.parse(response);
+      const parsedData = response;
       addBook({ enteredIsbn: isbn, ...parsedData });
     }
   };

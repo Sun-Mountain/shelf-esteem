@@ -1,3 +1,8 @@
+interface industryIdentifier {
+  type: string;
+  identifier: string;
+}
+
 export interface BookProps {
   isbn: string;
   found: boolean;

@@ -5,11 +5,6 @@ import { BookProps } from "@/types/booktypes";
 import CatalogItem from "@/components/CatalogItem";
 import AddBookForm from "@/components/form/AddBookForm";
 
-interface industryIdentifier {
-  type: string;
-  identifier: string;
-}
-
 const Catalog = () => {
   const [isbnList, setIsbnList] = useState([] as string[]);
   const [bookData, setBookData] = useState([] as BookProps[]);
