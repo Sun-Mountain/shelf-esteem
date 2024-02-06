@@ -1,13 +1,13 @@
 'use client';
 
 import { useState } from "react";
-import { BookProps } from "@/types/booktypes";
+import { BookSearchProps } from "@/types/booktypes";
 import CatalogItem from "@/components/CatalogItem";
 import AddBookForm from "@/components/form/AddBookForm";
 
 const Catalog = () => {
   const [isbnList, setIsbnList] = useState([] as string[]);
-  const [bookData, setBookData] = useState([] as BookProps[]);
+  const [bookData, setBookData] = useState([] as BookSearchProps[]);
   const [error, setError] = useState('');
 
   function addIsbn(isbn: string) {

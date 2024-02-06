@@ -3,7 +3,7 @@ interface industryIdentifier {
   identifier: string;
 }
 
-export interface BookProps {
+export interface BookSearchProps {
   isbn: string;
   found: boolean;
   enteredIsbn?: string;
