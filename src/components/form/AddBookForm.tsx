@@ -2,6 +2,7 @@
 
 import { useForm } from 'react-hook-form';
 import { BookSearchProps } from "@/types/booktypes";
+import { createBook } from '@/db/lib/books';
 import {
   Form,
   FormControl,
@@ -96,12 +97,21 @@ const AddBookForm = ({
     const response = await fetchBookData(isbn);
     
     if (!response) {
-      setError('Book not found');
       addBookData({ isbn, found: false });
     } else {
-      console.log('Book added');
-      const parsedData = response;
-      addBook({ enteredIsbn: isbn, ...parsedData });
+      const res = await fetch(`/api/books`, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        method: 'POST',
+        body: JSON.stringify({
+          thumbnail: response.imageLinks?.thumbnail,
+          id: isbn,
+          ...response
+        }),
+      });
+
+      addBook({ enteredIsbn: isbn, ...response });
     }
   };
 

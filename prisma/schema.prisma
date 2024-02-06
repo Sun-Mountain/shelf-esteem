@@ -8,19 +8,34 @@ datasource db {
   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
+model Category {
+  name  String
+  books BookCategory[]
+
+  @@id([name])
+}
+
 model IndustryIdentifier {
   type       String
   identifier String
-  Book       Book?   @relation(fields: [bookId], references: [id])
+  Book       Book?   @relation(fields: [bookId], references: [id], onDelete: Cascade)
   bookId     String?
 
   @@id([identifier])
 }
 
+model BookCategory {
+  id           Int      @id @default(autoincrement())
+  book         Book     @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  bookId       String
+  category     Category @relation(fields: [categoryName], references: [name], onDelete: Cascade)
+  categoryName String
+}
+
 model Book {
-  id                  String               @id @default(cuid())
+  id                  String               @unique
   authors             String[]
-  categories          String[]
+  categories          BookCategory[]
   description         String
   industryIdentifiers IndustryIdentifier[]
   language            String
@@ -30,6 +45,7 @@ model Book {
   publisher           String
   thumbnail           String
   title               String
+  addedBy             String
 }
 
 model User {
