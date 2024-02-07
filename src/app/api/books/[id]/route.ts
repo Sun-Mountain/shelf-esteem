@@ -8,9 +8,7 @@ export async function GET(
 ) {
   const id = params?.id;
   const book = await getBook(id);
-  console.log({book});
   if (!book) {
-    console.log('Book not found');
     const failedResponse =  NextResponse.json(
       { error: 'Ouch, GET is not working my friend' },
       { status: 404 }

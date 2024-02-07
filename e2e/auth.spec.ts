@@ -21,14 +21,17 @@ test.describe('Home Page',() => {
     const title = page.locator('h1');
     await expect(title).toHaveText('Register');
 
-    const usernameField = page.getByTestId('username-field');
-    usernameField.fill('CaptainHook');
-    const emailField = page.getByTestId('email-field');
-    emailField.fill('hook@gmail.com');
-    const passwordField = page.getByTestId('password-field');
-    passwordField.fill('password');
-    const confirmPasswordField = page.getByTestId('confirm-password-field');
-    confirmPasswordField.fill('password');
+    await page.getByTestId('username-field').fill('hook');
+    await page.getByTestId('email-field').fill('hook@gmail.com');
+    await page.getByTestId('password-field').fill('password');
+    await page.getByTestId('confirm-password-field').fill('password');
     const submitButton = page.getByTestId('submit-button');
+    // const emailField = page.getByTestId('email-field');
+    // await emailField.fill('hook@gmail.com');
+    // const passwordField = page.getByTestId('password-field');
+    // await passwordField.fill('password');
+    // const confirmPasswordField = page.getByTestId('confirm-password-field');
+    // await confirmPasswordField.fill('password');
+    // const submitButton = page.getByTestId('submit-button');
   });
 });
