@@ -90,7 +90,7 @@ const AddBookForm = ({
 
       console.log(res)
 
-      if(!res.ok) {
+      if(res.status === 404) {
         const newBook = await fetch(`/api/books`, {
           headers: {
             'Content-Type': 'application/json',
@@ -124,6 +124,7 @@ const AddBookForm = ({
                   <FormControl>
                     <Input
                       placeholder='ex. 0544003415 or 978-0544003415'
+                      data-testid='isbn-input'
                       {...field}
                     />
                   </FormControl>
