@@ -6,23 +6,29 @@ test.beforeEach(async ({ page }) => {
 
 test.describe('Home Page',() => {
   test('should display the sign up and sign in buttons', async ({ page }) => {
+    await page.route('**/api/user', (route) => {
+      const request = route.request();
+      const url = request.url();
+      console.log(request);
+      console.log(url);
+
+      route.abort();
+    });
+
     const signUpButton = page.getByTestId('sign-up')
     await expect(signUpButton).toHaveText('Sign Up Here');
     signUpButton.click();
     const title = page.locator('h1');
     await expect(title).toHaveText('Register');
-    // await page.route('**/*', (route) => {
-    //   const request = route.request();
-    //   const url = request.url();
 
-    //   // Check if the request URL matches image types
-    //   if (url.match(/\.(png|jpg|jpeg|svg)$/i)) {
-    //     console.log(`Aborting request for ${url}`);
-    //     route.abort(); // Abort the request if the URL matches image types
-    //     console.log(`Request aborted for ${url}`);
-    //   } else {
-    //     route.continue();
-    //   }
-    // });
+    const usernameField = page.getByTestId('username-field');
+    usernameField.fill('CaptainHook');
+    const emailField = page.getByTestId('email-field');
+    emailField.fill('hook@gmail.com');
+    const passwordField = page.getByTestId('password-field');
+    passwordField.fill('password');
+    const confirmPasswordField = page.getByTestId('confirm-password-field');
+    confirmPasswordField.fill('password');
+    const submitButton = page.getByTestId('submit-button');
   });
 });
