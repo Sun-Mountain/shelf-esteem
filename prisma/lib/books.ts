@@ -110,7 +110,7 @@ export async function createBook(values: BookCreateInput): Promise<BookFull | un
         publisher: book.publisher || "Publisher not available",
         thumbnail: book.thumbnail,
         title: book.title,
-        addedBy: book.addedBy
+        addedBy: book.addedBy || "Unknown",
       },
       include: {
         industryIdentifiers: true,
