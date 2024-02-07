@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
     console.log('body before', body);
     body.addedBy = session.user.id;
     console.log('body after', body);
-    const book = await createBook(withAddedBy);
+    const book = await createBook(body);
     return NextResponse.json(
       { status: 'ok' }
     );
