@@ -110,7 +110,7 @@ export async function createBook(values: BookCreateInput): Promise<BookFull | un
         publisher: book.publisher,
         thumbnail: book.thumbnail,
         title: book.title,
-        addedBy: 'test'
+        addedBy: book.addedBy
       },
       include: {
         industryIdentifiers: true,
