@@ -11,10 +11,7 @@ export async function GET(
   console.log({book});
   if (!book) {
     console.log('Book not found');
-    const failedResponse =  NextResponse.json({
-      status: 404,
-      message: 'Book not found'
-    });
+    const failedResponse =  NextResponse.error('Book not found', 404);
     console.log(failedResponse);
     return failedResponse;
   }

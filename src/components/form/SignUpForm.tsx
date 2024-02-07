@@ -71,7 +71,7 @@ const SignUpForm = () => {
                 <FormItem>
                   <FormLabel id='username-label'>Username</FormLabel>
                   <FormControl>
-                    <Input placeholder='johndoe' {...field} />
+                    <Input placeholder='johndoe' data-testid='username-field' {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -84,7 +84,7 @@ const SignUpForm = () => {
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input placeholder='mail@example.com' {...field} />
+                    <Input placeholder='mail@example.com' data-testid='email-field' {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -100,6 +100,7 @@ const SignUpForm = () => {
                     <Input
                       type='password'
                       placeholder='Enter your password'
+                      data-testid='password-field'
                       {...field}
                     />
                   </FormControl>
@@ -117,6 +118,7 @@ const SignUpForm = () => {
                     <Input
                       placeholder='Re-Enter your password'
                       type='password'
+                      data-testid='confirm-password-field'
                       {...field}
                     />
                   </FormControl>
@@ -126,7 +128,7 @@ const SignUpForm = () => {
             />
           </div>
           <div className='button-container'>
-            <Button type='submit'>
+            <Button type='submit' data-testid='submit-button'>
               Sign up
             </Button>
           </div>

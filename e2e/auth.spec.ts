@@ -9,18 +9,20 @@ test.describe('Home Page',() => {
     const signUpButton = page.getByTestId('sign-up')
     await expect(signUpButton).toHaveText('Sign Up Here');
     signUpButton.click();
-    await page.route('**/*', (route) => {
-      const request = route.request();
-      const url = request.url();
+    const title = page.locator('h1');
+    await expect(title).toHaveText('Register');
+    // await page.route('**/*', (route) => {
+    //   const request = route.request();
+    //   const url = request.url();
 
-      // Check if the request URL matches image types
-      // if (url.match(/\.(png|jpg|jpeg|svg)$/i)) {
-      //   console.log(`Aborting request for ${url}`);
-      //   route.abort(); // Abort the request if the URL matches image types
-      //   console.log(`Request aborted for ${url}`);
-      // } else {
-      //   route.continue();
-      // }
-    });
+    //   // Check if the request URL matches image types
+    //   if (url.match(/\.(png|jpg|jpeg|svg)$/i)) {
+    //     console.log(`Aborting request for ${url}`);
+    //     route.abort(); // Abort the request if the URL matches image types
+    //     console.log(`Request aborted for ${url}`);
+    //   } else {
+    //     route.continue();
+    //   }
+    // });
   });
 });
