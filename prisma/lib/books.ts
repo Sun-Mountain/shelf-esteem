@@ -53,7 +53,10 @@ export async function getCategories(categories: CategoryCreateInput[]): Promise<
 export async function getBook(id: string): Promise<BookFull | undefined> {
   const book = await db.book.findUnique({
     where: {
-      id
+      OR: [
+        { id },
+        { industryIdentifiers: { some: { identifier: id } } }
+      ]
     },
     include: {
       industryIdentifiers: true,

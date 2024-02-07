@@ -1,16 +1,21 @@
 import { CircularProgress } from '@mui/material';
-import { Check, DoNotDisturb } from '@mui/icons-material';
+import { Check, Close, DoNotDisturb } from '@mui/icons-material';
+import { Button } from '@/components/ui/button';
 
 interface CatalogItemProps {
+  index: number;
   isbn: string;
   isbnIndex: number;
   bookData: any[];
+  removeData: (index: number) => void;
 }
 
 const CatalogItem = ({
+  index,
   isbn,
   isbnIndex,
-  bookData
+  bookData,
+  removeData
 }: CatalogItemProps) => {
 
   let book
@@ -19,6 +24,10 @@ const CatalogItem = ({
     if (!!bookData.find((book) => book.isbn === isbn)) {
       book = bookData.find((book) => book.isbn === isbn);
     }
+  }
+
+  function handleRemoveData() {
+    removeData(index);
   }
 
   return (
@@ -52,16 +61,25 @@ const CatalogItem = ({
         </div>
       </div>
 
-      <div className='icon-container'>
-        { book ? (
-          book.found ? (
-            <Check className="icon success" />
+      <div>
+        <div className='icon-container'>
+          { book ? (
+            book.found ? (
+              <Check className="icon success" />
+            ) : (
+              <DoNotDisturb className="icon error" />
+            )
           ) : (
-            <DoNotDisturb className="icon error" />
-          )
-        ) : (
-          <CircularProgress disableShrink />
-        )}
+            <CircularProgress disableShrink />
+          )}
+        </div>
+        <Button
+          buttonAction={handleRemoveData}
+          color="error"
+          variant="text"
+        >
+          <Close className="icon" />
+        </Button>
       </div>
     </div>
   )
