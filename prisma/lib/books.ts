@@ -1,6 +1,6 @@
 import { db } from '@/db/lib';
 import { Book, Prisma } from '@prisma/client';
-import { IndustryIdentifierProps } from '@/lib/types';
+import { IndustryIdentifierProps } from '@/types/booktypes';
 import { getLogger } from '@/lib/logger';
 
 const logger = getLogger();
