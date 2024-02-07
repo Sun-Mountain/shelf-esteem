@@ -1,4 +1,5 @@
 $item-border: 1px solid $french-gray-2;
+$item-isbn-color: $slate-gray;
 
 .catalog-item {
   border: $item-border;
@@ -9,9 +10,19 @@ $item-border: 1px solid $french-gray-2;
   margin: 1rem 0;
   padding: 1rem;
 
+  .item-author {
+    margin-top: 0.25rem;
+  }
+
   .item-info {
     display: flex;
     flex-direction: row;
+  }
+
+  .item-isbn {
+    color: $item-isbn-color;
+    font-size: 0.9rem;
+    margin-top: 0.3rem;
   }
 
   .item-label {
@@ -19,9 +30,14 @@ $item-border: 1px solid $french-gray-2;
     margin: auto 0;
   }
 
+  .item-title {
+    font-weight: 700;
+  }
+
   .icon-container {
     width: 2rem;
     height: 2rem;
+    margin: 0 auto;
   }
 
   .icon, .MuiCircularProgress-indeterminate {

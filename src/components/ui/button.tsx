@@ -9,6 +9,7 @@ export interface ButtonProps {
   disabled?: boolean;
   href?: string;
   className?: string;
+  color?: "secondary" | "success" | "error";
   variant?: "text" | "outlined" | "contained";
   size?: "small" | "medium" | "large";
   startIcon?: ReactNode;
@@ -22,6 +23,7 @@ const ButtonUI = ({
   disabled = false,
   href,
   className,
+  color,
   variant = "contained",
   size,
   startIcon,
@@ -39,6 +41,7 @@ const ButtonUI = ({
       type={type}
       href={href}
       className={className}
+      color={color}
       size={size}
       variant={variant}
       startIcon={startIcon}

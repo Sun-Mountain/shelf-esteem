@@ -1,14 +1,23 @@
 'use client';
 
 import { useState } from "react";
-import { BookProps } from "@/types/booktypes";
+import { BookSearchProps } from "@/types/booktypes";
 import CatalogItem from "@/components/CatalogItem";
 import AddBookForm from "@/components/form/AddBookForm";
 
 const Catalog = () => {
   const [isbnList, setIsbnList] = useState([] as string[]);
-  const [bookData, setBookData] = useState([] as BookProps[]);
+  const [bookData, setBookData] = useState([] as BookSearchProps[]);
   const [error, setError] = useState('');
+
+  function removeData(index: number) {
+    // Remove the isbn from the list of isbns
+    const newIsbnList = isbnList.filter((isbn, i) => i !== index);
+    setIsbnList(newIsbnList);
+    // Remove the book data from the list of book data
+    const newBookData = bookData.filter((book, i) => i !== index);
+    setBookData(newBookData);
+  }
 
   function addIsbn(isbn: string) {
     // Check if the isbn is already in the list
@@ -33,9 +42,11 @@ const Catalog = () => {
           isbnList.map((isbn, index) => (
             <CatalogItem
               key={index}
+              index={index}
               isbn={isbn}
               isbnIndex={isbnList.indexOf(isbn)}
               bookData={bookData}
+              removeData={removeData}
             />
           ))
         ) : (
