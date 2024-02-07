@@ -9,7 +9,7 @@ export async function POST(req: NextRequest) {
 
   if (!!session?.user) {
     const body = await req.json();
-    console.log('body before', body);
+    console.log('body before', session.user);
     body.addedBy = session.user.id;
     console.log('body after', body);
     const book = await createBook(body);
