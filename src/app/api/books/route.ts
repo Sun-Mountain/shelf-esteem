@@ -10,6 +10,12 @@ export async function POST(req: NextRequest) {
   if (!!session?.user) {
     const body = await req.json();
     const book = await createBook({addedBy: session?.user.id, ...body});
+    return NextResponse.json(
+      { status: 'ok' }
+    );
   }
-  // return NextResponse.json(book);
+  return NextResponse.json(
+    { message: 'You are not authenticated' },
+    { status: 401 }
+  );
 }
