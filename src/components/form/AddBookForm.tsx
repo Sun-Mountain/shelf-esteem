@@ -10,8 +10,6 @@ import {
   FormMessage,
 } from '../ui/form';
 import { BookSearchProps } from "@/types/booktypes";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/authOptions";
 import { createBook } from '@/db/lib/books';
 import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -82,32 +80,26 @@ const AddBookForm = ({
   const onSubmit = async ({ isbn }: {
     isbn: string;
   }) => {
-    const session = await getServerSession(authOptions);
-  
     addIsbn(isbn);
-  
     const response = await fetchBookData(isbn);
     
     if (!response) {
       addBookData({ isbn, found: false });
     } else {
-      if (!!session?.user) {
-        const res = await fetch(`api/books/${isbn.trim()}`)
-  
-        if(res.status === 404) {
-          const newBook = await fetch(`/api/books`, {
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            method: 'POST',
-            body: JSON.stringify({
-              thumbnail: response.imageLinks?.thumbnail,
-              id: isbn.trim(),
-              addedBy: session.user.id,
-              ...response
-            }),
-          });
-        }
+      const res = await fetch(`api/books/${isbn.trim()}`)
+
+      if(res.status === 404) {
+        const newBook = await fetch(`/api/books`, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          method: 'POST',
+          body: JSON.stringify({
+            thumbnail: response.imageLinks?.thumbnail,
+            id: isbn.trim(),
+            ...response
+          }),
+        });
       }
 
       addBook({ enteredIsbn: isbn, ...response });
