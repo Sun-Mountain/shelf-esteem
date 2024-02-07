@@ -88,8 +88,10 @@ const AddBookForm = ({
     } else {
       const res = await fetch(`api/books/${isbn}`, {})
 
+      console.log(res)
+
       if(!res.ok) {
-        await fetch(`/api/books`, {
+        const newBook = await fetch(`/api/books`, {
           headers: {
             'Content-Type': 'application/json',
           },
@@ -100,6 +102,8 @@ const AddBookForm = ({
             ...response
           }),
         });
+
+        console.log(newBook)
       }
 
       addBook({ enteredIsbn: isbn, ...response });
