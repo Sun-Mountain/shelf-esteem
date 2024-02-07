@@ -9,7 +9,8 @@ export async function POST(req: NextRequest) {
 
   if (!!session?.user) {
     const body = await req.json();
-    const book = await createBook({addedBy: session?.user.id, ...body});
+    const withAddedBy = body.addedBy ? body : {...body, addedBy: session?.user.id};
+    const book = await createBook(withAddedBy);
     return NextResponse.json(
       { status: 'ok' }
     );
