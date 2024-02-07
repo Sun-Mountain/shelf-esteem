@@ -12,7 +12,7 @@ export type IndustryIdentifierCreateInput = Prisma.IndustryIdentifierCreateInput
 export type BookCategoryCreateInput = Prisma.BookCategoryCreateInput;
 
 export type BookCreateInput = Prisma.BookCreateInput&{
-  categories: CategoryCreateInput;
+  categories: string[] | FieldRef<"Category", "String[]"> | undefined;
   industryIdentifiers: IndustryIdentifierCreateInput;
 };
 
@@ -24,7 +24,7 @@ export type BookGetFullPayload = Prisma.BookGetPayload<{
 }>;
 
 export type BookFull = BookGetFullPayload&{
-  categories: string[];
+  categories: string[] | FieldRef<"Category", "String[]"> | undefined;
   industryIdentifiers: IndustryIdentifierProps[];
 }
 
