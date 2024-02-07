@@ -86,7 +86,7 @@ const AddBookForm = ({
     if (!response) {
       addBookData({ isbn, found: false });
     } else {
-      const res = await fetch(`api/books/${isbn.trim()}`, {})
+      const res = await fetch(`api/books/${isbn.trim()}`)
 
       console.log(res)
 

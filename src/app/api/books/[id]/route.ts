@@ -8,11 +8,15 @@ export async function GET(
 ) {
   const id = params?.id;
   const book = await getBook(id);
+  console.log({book});
   if (!book) {
-    return NextResponse.json({
+    console.log('Book not found');
+    const failedResponse =  NextResponse.json({
       status: 404,
       message: 'Book not found'
     });
+    console.log(failedResponse);
+    return failedResponse;
   }
   return NextResponse.json(book);
 }
