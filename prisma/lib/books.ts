@@ -1,5 +1,6 @@
 import { db } from '@/db/lib';
 import { Book, Prisma } from '@prisma/client';
+import { FieldRef } from '@prisma/client/runtime/library';
 import { IndustryIdentifierProps } from '@/types/booktypes';
 import { getLogger } from '@/lib/logger';
 
@@ -12,19 +13,14 @@ export type IndustryIdentifierCreateInput = Prisma.IndustryIdentifierCreateInput
 export type BookCategoryCreateInput = Prisma.BookCategoryCreateInput;
 
 export type BookCreateInput = Prisma.BookCreateInput&{
-  categories: string[] | FieldRef<"Category", "String[]"> | undefined;
+  categories: string[] | undefined;
   industryIdentifiers: IndustryIdentifierCreateInput;
 };
 
-export type BookGetFullPayload = Prisma.BookGetPayload<{
-  include: {
-    industryIdentifiers: true;
-    categories: true;
-  }
-}>;
+export type BookGetFullPayload = Prisma.BookGetPayload<{}>;
 
 export type BookFull = BookGetFullPayload&{
-  categories: string[] | FieldRef<"Category", "String[]"> | undefined;
+  categories: string[] | undefined;
   industryIdentifiers: IndustryIdentifierProps[];
 }
 
@@ -39,7 +35,12 @@ export async function getIndustryIdentifiers(industryIdentifiers: IndustryIdenti
   return result;
 }
 
-export async function getCategories(categories: CategoryCreateInput[]): Promise<Prisma.CategoryCreateInput[]> {
+export async function getCategories(
+  categories: (Prisma.BookCategoryCreateNestedManyWithoutBookInput & string[]) | undefined
+): Promise<{name: string}[] | undefined> {
+  if (!categories) {
+    return;
+  }
   const result = await db.category.findMany({
     where: {
       name: {
@@ -53,10 +54,7 @@ export async function getCategories(categories: CategoryCreateInput[]): Promise<
 export async function getBook(id: string): Promise<BookFull | undefined> {
   const book = await db.book.findUnique({
     where: {
-      OR: [
-        { id },
-        { industryIdentifiers: { some: { identifier: id } } }
-      ]
+      id
     },
     include: {
       industryIdentifiers: true,
@@ -68,9 +66,11 @@ export async function getBook(id: string): Promise<BookFull | undefined> {
     return;
   }
 
+  const categories = book.categories.map((c) => c.categoryName);
+
   return {
     ...book,
-    categories: book.categories.map((c) => c.categoryName),
+    categories: categories,
     industryIdentifiers: book.industryIdentifiers.map((ii) => ({
       type: ii.type,
       identifier: ii.identifier
@@ -88,8 +88,7 @@ export async function createBook(values: BookCreateInput): Promise<BookFull | un
   try {
 
     const existingCategories = await getCategories(categories);
-  
-    if (existingCategories.length < categories.length) {
+    if (existingCategories && categories && existingCategories.length < categories.length) {
       const newCategories = categories.filter((c) => !existingCategories.some((ec) => ec.name === c));
       await db.category.createMany({
         data: newCategories.map((c) => ({ name: c }))
@@ -118,7 +117,7 @@ export async function createBook(values: BookCreateInput): Promise<BookFull | un
       }
     });
 
-    if (newBook && categories.length > 0) {
+    if (newBook && categories && categories.length > 0) {
       const bookCategories = categories.map((c) => ({ categoryName: c, bookId: newBook.id }));
       await db.bookCategory.createMany({
         data: bookCategories,
@@ -130,8 +129,6 @@ export async function createBook(values: BookCreateInput): Promise<BookFull | un
     return findBook;
   } catch (error) {
     logger.error(error);
-    if (e instanceof Prisma.PrismaClientValidationError) {
-      throw e;
-    }
+    return;
   }  
 }

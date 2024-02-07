@@ -9,7 +9,7 @@ export async function GET(
   const id = params?.id;
   const book = await getBook(id);
   if (!book) {
-    return NextResponse.error({
+    return NextResponse.json({
       status: 404,
       message: 'Book not found'
     });
