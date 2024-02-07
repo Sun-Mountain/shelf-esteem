@@ -107,7 +107,7 @@ export async function createBook(values: BookCreateInput): Promise<BookFull | un
         maturityRating: book.maturityRating,
         pageCount: book.pageCount,
         publishedDate: book.publishedDate,
-        publisher: book.publisher,
+        publisher: book.publisher || "Publisher not available",
         thumbnail: book.thumbnail,
         title: book.title,
         addedBy: book.addedBy
