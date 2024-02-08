@@ -28,7 +28,8 @@ const ButtonUI = ({
   size,
   startIcon,
   buttonAction,
-  testId
+  testId,
+  ...props
 }: ButtonProps) => {
 
   function handleOnClick(e: any) {
@@ -47,6 +48,7 @@ const ButtonUI = ({
       startIcon={startIcon}
       onClick={handleOnClick}
       data-testid={testId}
+      {...props}
     >
       {children}
     </Button>
