@@ -14,7 +14,6 @@ export interface ButtonProps {
   size?: "small" | "medium" | "large";
   startIcon?: ReactNode;
   buttonAction?: MouseEventHandler<HTMLButtonElement> | undefined;
-  testId?: string;
 }
 
 const ButtonUI = ({
@@ -26,9 +25,8 @@ const ButtonUI = ({
   color,
   variant = "contained",
   size,
-  startIcon,
   buttonAction,
-  testId
+  props
 }: ButtonProps) => {
 
   function handleOnClick(e: any) {
@@ -47,6 +45,7 @@ const ButtonUI = ({
       startIcon={startIcon}
       onClick={handleOnClick}
       data-testid={testId}
+      {...props}
     >
       {children}
     </Button>
