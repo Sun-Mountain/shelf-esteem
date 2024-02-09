@@ -45,7 +45,6 @@ const ButtonUI = ({
       variant={variant}
       startIcon={startIcon}
       onClick={handleOnClick}
-      data-testid={testId}
       {...props}
     >
       {children}
