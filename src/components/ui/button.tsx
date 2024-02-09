@@ -25,6 +25,7 @@ const ButtonUI = ({
   color,
   variant = "contained",
   size,
+  startIcon,
   buttonAction,
   props
 }: ButtonProps) => {
