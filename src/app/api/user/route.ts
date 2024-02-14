@@ -18,31 +18,31 @@ export async function POST(req: Request){
     const body = await req.json();
     const { email, username, password } = userSchema.parse(body);
 
-    // // check if email already exists
-    // const existingUserByEmail = await db.user.findUnique({
-    //   where: { email }
-    // });
+    // check if email already exists
+    const existingUserByEmail = await db.user.findUnique({
+      where: { email }
+    });
 
-    // if (existingUserByEmail) {
-    //   return NextResponse.json(
-    //     { message: 'Email already exists',
-    //       status: 401
-    //     }
-    //   )
-    // }
+    if (existingUserByEmail) {
+      return NextResponse.json({
+        message: "Email already exists"
+      }, {
+        status: 409,
+      })
+    }
 
-    // // check if username already exists
-    // const existingUserByUserName = await db.user.findUnique({
-    //   where: { username }
-    // });
+    // check if username already exists
+    const existingUserByUserName = await db.user.findUnique({
+      where: { username }
+    });
 
-    // if (existingUserByUserName) {
-    //   return NextResponse.json(
-    //     { message: 'Username already exists',
-    //       status: 401
-    //     }
-    //   )
-    // }
+    if (existingUserByUserName) {
+      return NextResponse.json({
+        message: "Username already exists"
+      }, {
+        status: 409,
+      })
+    }
 
     const hashedPassword = await hash(password, 10);
 
