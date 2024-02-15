@@ -1,6 +1,6 @@
-import { Alert as MuiAlert, AlertTitle } from "@mui/material";
+import { Alert, AlertTitle } from "@mui/material";
 
-const Alert = ({
+const AlertItem = ({
   message,
   severity,
   title,
@@ -14,11 +14,11 @@ const Alert = ({
   const alertTitle = title || `${severity[0].toUpperCase()}${severity.slice(1)}`
 
   return (
-    <MuiAlert severity={severity}>
+    <Alert severity={severity}>
       <AlertTitle>{alertTitle}</AlertTitle>
       {message}
-    </MuiAlert>
+    </Alert>
   )
 }
 
-export default Alert
+export default AlertItem

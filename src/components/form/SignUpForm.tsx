@@ -14,7 +14,6 @@ import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import Alert from '@/components/Alert';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
@@ -34,7 +33,6 @@ const FormSchema = z
   });
 
 const SignUpForm = () => {
-  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -68,13 +66,11 @@ const SignUpForm = () => {
                   });
     } else {
       console.log('Registration failed.')
-      setError(msg.message);
     }
   };
 
   return (
     <>
-      {error && <Alert message={error} severity='error' title='Error' />}
       <Form {...form}>
         <div className="form-container account-form">
           <form onSubmit={form.handleSubmit(onSubmit)}>
