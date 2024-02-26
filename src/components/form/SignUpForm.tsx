@@ -16,6 +16,8 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import Notification from '@/components/Notification';
+import { toast } from 'react-toastify';
 
 const FormSchema = z
   .object({
@@ -45,6 +47,11 @@ const SignUpForm = () => {
   });
 
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
+    Notification({
+      message: 'Loading...',
+      toastId: 'sign-up-loading',
+    })
+
     const response = await fetch('/api/user', {
       method: 'POST',
       body: JSON.stringify(values),
@@ -54,18 +61,22 @@ const SignUpForm = () => {
     });
     
     const msg = await response.json();
-    console.log(msg);
+
+    Notification({ type: 'dismiss' })
 
     if (response.ok) {
-      router.push('/sign-in',
-                  undefined,
-                  {
-                    state: {
-                      message: 'Registration successful. Please sign in.'
-                    }
-                  });
+      router.push('/sign-in');
+      Notification({
+        type: 'success',
+        message: 'Registration successful. Sign in to continue.',
+        toastId: 'sign-up-toast',
+      });
     } else {
-      console.log('Registration failed.')
+      Notification({
+        type: 'error',
+        message: msg.error,
+        toastId: 'sign-up-toast'
+      });
     }
   };
 
