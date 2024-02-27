@@ -12,6 +12,11 @@ nav {
     margin: auto 0;
   }
 
+  a:hover {
+    background-color: $nav-text;
+    color: $delft-blue;
+  }
+
   #main-nav-content {
     display: flex;
     justify-content: space-between;
@@ -49,5 +54,20 @@ nav {
         color: $nav-text;
       }
     }
+  }
+}
+
+.nav-link-group {
+  margin: auto 0;
+
+  a {
+    border-radius: $border-radius;
+    font-weight: 500;
+    letter-spacing: 0.1rem;
+    padding: 1rem;
+  }
+
+  .nav-link {
+    margin: 0 1rem;
   }
 }
