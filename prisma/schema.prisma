@@ -53,16 +53,26 @@ model Book {
   thumbnail           String
   title               String
   addedBy             String
+  libraries           UserLibraryBook[]
+}
+
+model UserLibraryBook {
+  id     String @id @default(cuid())
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+  books  Book   @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  bookId String
 }
 
 model User {
-  id        String   @id @default(cuid())
-  username  String   @unique
-  email     String   @unique
-  password  String
-  role      Role     @default(USER)
-  createdAt DateTime @default(now()) @map(name: "created_at")
-  updatedAt DateTime @updatedAt @map(name: "updated_at")
+  id           String            @id @default(cuid())
+  username     String            @unique
+  email        String            @unique
+  password     String
+  role         Role              @default(USER)
+  createdAt    DateTime          @default(now()) @map(name: "created_at")
+  updatedAt    DateTime          @updatedAt @map(name: "updated_at")
+  libraryBooks UserLibraryBook[]
 
   @@map(name: "users")
 }
