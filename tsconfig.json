@@ -22,9 +22,10 @@
     ],
     "paths": {
       "@/": ["src/*"],
-      "@/db/*": ["prisma/*"],
-      "@/lib/*": ["src/lib/*"],
       "@/components/*": ["src/components/*"],
+      "@/db/*": ["prisma/*"],
+      "@/helpers/*": ["src/helpers/*"],
+      "@/lib/*": ["src/lib/*"],
       "@/styles/*": ["src/styles/*"],
       "@/types/*": ["src/types/*"],
     }
