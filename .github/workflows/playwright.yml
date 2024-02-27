@@ -21,10 +21,10 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: 18
-    - name: Install CI dependencies
-      run: npm ci
     - name: Install dependencies
       run: npm install -g pnpm && pnpm install
+    - name: Install CI dependencies
+      run: pnpm ci
     - name: Build App
       run: pnpm build
     - name: Install Playwright Browsers
