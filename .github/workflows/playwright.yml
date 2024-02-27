@@ -8,6 +8,11 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shardIndex: [1, 2, 3, 4]
+        shardTotal: [4]
     env:
       SECRET: "secret"
       NEXTAUTH_SECRET: "secret"
@@ -16,19 +21,22 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: 18
+    - name: Install CI dependencies
+      run: npm ci
     - name: Install dependencies
       run: npm install -g pnpm && pnpm install
     - name: Build App
       run: pnpm build
     - name: Install Playwright Browsers
-      run: npx playwright install
+      run: npx playwright install --with-deps
     - name: Build the project
       run: pnpm build
     - name: Run Playwright tests
-      run: npx playwright test
-    - uses: actions/upload-artifact@v3
+      run: npx playwright test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+    - name: Upload blob report to GitHub Actions Artifacts
       if: always()
+      uses: actions/upload-artifact@v4
       with:
-        name: playwright-report
-        path: playwright-report/
-        retention-days: 30
+        name: blob-report-${{ matrix.shardIndex }}
+        path: blob-report
+        retention-days: 1
