@@ -1,10 +1,10 @@
 import { test, expect, type Page } from '@playwright/test';
 
 test.beforeEach(async ({ page }) => {
-  await page.goto('/catalog');
+  await page.goto('/library');
 });
 
-test.describe('Catalog Page',() => {
+test.describe('Library Page',() => {
   test('should display the title', async ({ page }) => {
     const title = page.locator('h1');
     await expect(title).toHaveText('Catalog Your Library');

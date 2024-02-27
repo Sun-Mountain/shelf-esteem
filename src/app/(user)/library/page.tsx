@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import { BookSearchProps } from "@/types/booktypes";
-import CatalogItem from "@/components/CatalogItem";
+import LibraryItem from "@/components/LibraryItem";
 import AddBookForm from "@/components/form/AddBookForm";
 
-const Catalog = () => {
+const Library = () => {
   const [isbnList, setIsbnList] = useState([] as string[]);
   const [bookData, setBookData] = useState([] as BookSearchProps[]);
   const [error, setError] = useState('');
@@ -40,7 +40,7 @@ const Catalog = () => {
       <div className="books-processing">
         {isbnList.length > 0 ? (
           isbnList.map((isbn, index) => (
-            <CatalogItem
+            <LibraryItem
               key={index}
               index={index}
               isbn={isbn}
@@ -64,4 +64,4 @@ const Catalog = () => {
   )
 }
 
-export default Catalog
+export default Library

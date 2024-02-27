@@ -2,7 +2,7 @@ import { CircularProgress } from '@mui/material';
 import { Check, Close, DoNotDisturb } from '@mui/icons-material';
 import { Button } from '@/components/ui/button';
 
-interface CatalogItemProps {
+interface LibraryItemProps {
   index: number;
   isbn: string;
   isbnIndex: number;
@@ -10,13 +10,13 @@ interface CatalogItemProps {
   removeData: (index: number) => void;
 }
 
-const CatalogItem = ({
+const LibraryItem = ({
   index,
   isbn,
   isbnIndex,
   bookData,
   removeData
-}: CatalogItemProps) => {
+}: LibraryItemProps) => {
 
   let book
 
@@ -31,7 +31,7 @@ const CatalogItem = ({
   }
 
   return (
-    <div className="catalog-item">
+    <div className="library-item">
       <div className='item-info'>
         {book?.thumbnail ? (
           <img
@@ -85,4 +85,4 @@ const CatalogItem = ({
   )
 }
 
-export default CatalogItem
+export default LibraryItem

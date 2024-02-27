@@ -30,7 +30,7 @@ export default async function Home() {
                 - or -
               </div>
               <div className="button-container">
-                <Button href="/catalog">
+                <Button href="/library">
                   Try It Out
                 </Button>
               </div>
