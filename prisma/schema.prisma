@@ -8,6 +8,13 @@ datasource db {
   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
+enum Role {
+  USER
+  BETA
+  MOD
+  ADMIN
+}
+
 model Category {
   name  String
   books BookCategory[]
@@ -53,6 +60,7 @@ model User {
   username  String   @unique
   email     String   @unique
   password  String
+  role      Role     @default(USER)
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @updatedAt @map(name: "updated_at")
 

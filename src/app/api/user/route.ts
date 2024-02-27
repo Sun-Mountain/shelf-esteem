@@ -24,11 +24,11 @@ export async function POST(req: Request){
     });
 
     if (existingUserByEmail) {
-      return NextResponse.json(
-        { message: 'Email already exists',
-          status: 401
-        }
-      )
+      return NextResponse.json({
+        message: "Email already exists"
+      }, {
+        status: 409,
+      })
     }
 
     // check if username already exists
@@ -37,11 +37,11 @@ export async function POST(req: Request){
     });
 
     if (existingUserByUserName) {
-      return NextResponse.json(
-        { message: 'Username already exists',
-          status: 401
-        }
-      )
+      return NextResponse.json({
+        message: "Username already exists"
+      }, {
+        status: 409,
+      })
     }
 
     const hashedPassword = await hash(password, 10);
