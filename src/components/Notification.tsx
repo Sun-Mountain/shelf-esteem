@@ -7,7 +7,7 @@ interface NotificationProps {
   hideProgressBar?: boolean;
   pauseOnHover?: boolean;
   position?: 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right';
-  type?: 'success' | 'error' | 'info' | 'promise' | 'dismiss';
+  type?: 'success' | 'error' | 'info' | 'promise' | 'dismiss' | 'default';
   message?: any;
   toastId?: string;
   promise?: Promise<any>;
