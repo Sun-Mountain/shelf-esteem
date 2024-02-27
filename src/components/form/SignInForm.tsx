@@ -13,9 +13,10 @@ import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Input } from '../ui/input';
 import { Button } from '@/components/ui/button';
-import Link from 'next/link';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import Notification from '@/components/Notification';
 
 const FormSchema = z.object({
   email: z.string().min(1, 'Email is required').email('Invalid email'),
@@ -36,17 +37,32 @@ const SignInForm = () => {
   });
 
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
+    Notification({
+      message: 'Loading...',
+      toastId: 'sign-in-loading',
+    })
     const signInData = await signIn('credentials', {
       redirect: false,
       email: values.email,
       password: values.password,
     });
 
+    Notification({ type: 'dismiss' })
+
     if (signInData?.error) {
-      console.log(`Sign in failed!`);
+      Notification({
+        type: 'error',
+        message: signInData.error,
+        toastId: 'sign-up-toast'
+      });
     } else {
       router.refresh();
       router.push('/dashboard');
+      Notification({
+        type: 'success',
+        message: 'Welcome back!',
+        toastId: 'sign-in-toast',
+      });
     }
   };
 
