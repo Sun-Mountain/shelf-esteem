@@ -21,7 +21,7 @@ const Notification = ({
   message,
   pauseOnHover = true,
   position = 'top-center',
-  type,
+  type = 'default',
   toastId,
   promise
 }: NotificationProps) => {
