@@ -1,12 +1,12 @@
 import { toast } from 'react-toastify';
 
 interface NotificationProps {
-  autoClose: number;
-  closeOnClick: boolean;
-  draggable: boolean;
-  hideProgressBar: boolean;
-  pauseOnHover: boolean;
-  position: 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right';
+  autoClose?: number;
+  closeOnClick?: boolean;
+  draggable?: boolean;
+  hideProgressBar?: boolean;
+  pauseOnHover?: boolean;
+  position?: 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right';
   type: 'success' | 'error' | 'info' | 'promise' | 'dismiss';
   message?: any;
   toastId?: string;
