@@ -46,11 +46,6 @@ const SignUpForm = () => {
   });
 
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
-    Notification({
-      message: 'Loading...',
-      toastId: 'sign-up-loading',
-    })
-
     const response = await fetch('/api/user', {
       method: 'POST',
       body: JSON.stringify(values),
@@ -60,8 +55,6 @@ const SignUpForm = () => {
     });
     
     const msg = await response.json();
-
-    Notification({ type: 'dismiss' })
 
     if (response.ok) {
       router.push('/sign-in');

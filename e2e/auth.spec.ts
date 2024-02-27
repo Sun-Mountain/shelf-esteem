@@ -14,7 +14,7 @@ test.describe('User Registration',() => {
     
         // Replace the response with the modified data
         route.fulfill(
-          {status: 200}
+          { status: 200, ok: true }
         );
       });
   
@@ -45,7 +45,7 @@ test.describe('User Registration',() => {
     
         // Replace the response with the modified data
         route.fulfill(
-          {status: 409}
+          { status: 409 }
         );
       });
   
