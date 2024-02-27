@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 4000",
     "build": "next build",
-    "start": "next start",
+    "dev": "next dev -p 4000",
     "lint": "next lint",
+    "db:migrate": "npx prisma db migrate",
     "postinstall": "prisma generate",
+    "start": "next start",
     "test": "exec playwright test"
   },
   "dependencies": {
@@ -40,6 +41,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.50.1",
+    "react-toastify": "^10.0.4",
     "sass": "^1.71.1",
     "typescript": "5.1.6",
     "zod": "^3.22.4"
