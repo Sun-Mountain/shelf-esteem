@@ -1,5 +1,5 @@
 'use client';
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import Button from '@/components/UI/Button';
@@ -30,8 +30,6 @@ const SignUpForm: FC = () => {
         'Content-Type': 'application/json',
       },
     });
-
-    console.log(response);
 
     if (response.ok) {
       router.push('/sign-in');

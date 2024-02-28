@@ -1,9 +1,8 @@
 'use client';
-import {
-  Controller,
-  FormProvider,
-  useForm
-} from 'react-hook-form';
+import { FC, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
+import { signIn } from 'next-auth/react';
 import Button from '@/components/UI/Button';
 import TextInput from '@/components/UI/TextInput';
 
@@ -13,49 +12,53 @@ interface SignInFormValues {
 }
 
 const SignInForm = () => {
-  const methods = useForm<SignInFormValues>()
-  const {
-    control,
-    formState: { errors, isDirty, isValid },
-    handleSubmit
-  } = methods;
-  
+  const router = useRouter();
+  const [formValues, setFormValues] = useState<SignInFormValues>({
+    email: '',
+    password: ''
+  } as SignInFormValues);
+
+  const { handleSubmit } = useForm<SignInFormValues>();
+
+  const submitForm = async () => {
+    const response = await signIn('credentials', {
+      redirect: false,
+      email: formValues.email,
+      password: formValues.password,
+    });
+    
+    if (response.error) {
+      console.log('Sign in failed.')
+    } else {
+      router.refresh();
+      router.push('/');
+    }
+  }
+
   return (
     <div className='form-container'>
-      <FormProvider {...methods} >
+      <form onSubmit={handleSubmit(submitForm)}>
         <div className='input-container'>
-          <Controller
-            control={control}
-            name="email"
-            render={({ field }) => (
-              <TextInput
-                {...field}
-                id="email"
-                label="Email"
-                required
-              />
-            )}
+          <TextInput
+            id="email"
+            label="Email"
+            onChange={(e) => setFormValues({ ...formValues, email: e.target.value })}
+            required
           />
         </div>
         <div className='input-container'>
-          <Controller
-            control={control}
-            name="password"
-            render={({ field }) => (
-              <TextInput
-                {...field}
-                id="password"
-                label="Password"
-                type="password"
-                required
-              />
-            )}
+          <TextInput
+            id="password"
+            label="Password"
+            onChange={(e) => setFormValues({ ...formValues, password: e.target.value })}
+            required
+            type="password"
           />
         </div>
         <Button type='submit'>
           Sign In
         </Button>
-      </FormProvider>
+      </form>
     </div>
   )
 };

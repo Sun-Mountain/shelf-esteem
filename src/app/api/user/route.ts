@@ -12,8 +12,6 @@ export async function POST(req: Request){
       where: { email }
     });
 
-    console.log({existingUserByEmail})
-
     if (existingUserByEmail) {
       return NextResponse.json({
         message: "Email already exists"
@@ -46,11 +44,9 @@ export async function POST(req: Request){
     });
 
     const { password: _, ...user } = newUser;
-    console.log({user})
     
     return NextResponse.json(JSON.stringify(
-      { user: user, message: 'User created successfully',
-        status: 200 }
+      { status: 200 }
     ))
   } catch (error) {
     console.error(error)

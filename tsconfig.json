@@ -22,6 +22,7 @@
       "@/*": ["./src/*"],
       "@/images/*": ["./src/assets/images/*"],
       "@/db/*": ["./prisma/*"],
+      "@/lib/*": ["./src/lib/*"],
       "@/styles/*": ["./src/assets/styles/*"],
     }
   },
