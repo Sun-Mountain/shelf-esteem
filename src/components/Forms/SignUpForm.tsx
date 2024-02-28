@@ -88,9 +88,6 @@ export default function SignUpForm () {
           Sign Up
         </Button>
       </FormProvider>
-      <div>
-        Already have an account? Sign in here.
-      </div>
     </div>
   )
 };

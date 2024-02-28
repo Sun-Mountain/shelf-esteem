@@ -60,6 +60,19 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0;
 }
 
+// Links
+$link-color: $neon-blue;
+
+a, a:visited {
+  border-bottom: 1px solid $link-color;
+  color: $link-color;
+  text-decoration: none;
+}
+
+a:hover {
+  border-bottom: 0px;
+}
+
 // Main
 $main-bg: $white;
 $main-border: 1px solid $french-gray-2;
