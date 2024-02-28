@@ -5,12 +5,14 @@ import { hash } from "bcrypt";
 export async function POST(req: Request){
   try {
     const body = await req.json();
-    const { email, username, password } = JSON.parse(body);
+    const { email, username, password } = body;
 
     // check if email already exists
     const existingUserByEmail = await db.user.findUnique({
       where: { email }
     });
+
+    console.log({existingUserByEmail})
 
     if (existingUserByEmail) {
       return NextResponse.json({
@@ -44,6 +46,7 @@ export async function POST(req: Request){
     });
 
     const { password: _, ...user } = newUser;
+    console.log({user})
     
     return NextResponse.json(JSON.stringify(
       { user: user, message: 'User created successfully',
