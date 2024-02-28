@@ -9,6 +9,7 @@ nav {
   color: $nav-text;
 
   a, a:visited {
+    border: 0px;
     color: $nav-text;
     margin: auto 0;
   }
@@ -42,6 +43,7 @@ nav {
 
         a, a:visited {
           color: $nav-text;
+          text-decoration: none;
         }
       }
     }
@@ -56,4 +58,20 @@ nav {
       }
     }
   }
+
+  .nav-link-group {
+    margin: auto 0;
+
+    a {
+      border-radius: $border-radius;
+      font-weight: 500;
+      letter-spacing: 0.1rem;
+      padding: 1rem;
+    }
+
+    .nav-link {
+      margin: 0 1rem;
+    }
+  }
 }
+

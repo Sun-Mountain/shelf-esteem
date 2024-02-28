@@ -10,6 +10,11 @@ const MainNavigation = () => {
             <AutoStoriesTwoTone className="icon" />
           </Link>
         </div>
+        <div className='nav-link-group'>
+          <Link href='/sign-in'>
+            Sign In
+          </Link>
+        </div>
       </div>
     </nav>
   )
