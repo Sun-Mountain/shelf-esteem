@@ -13,6 +13,6 @@ const MainNavigation = () => {
       </div>
     </nav>
   )
-}
+};
 
-export default MainNavigation
+export default MainNavigation;

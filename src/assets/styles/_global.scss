@@ -30,6 +30,12 @@ $border-radius: 0.75rem;
 $success-color: $dark-spring-green;
 $error-color: $rufous;
 
+// Components
+// Buttons
+button {
+  font-family: "Roboto", sans-serif !important;
+}
+
 // Body
 $background-bg: $eggshell-30;
 $font-color: $onyx;
@@ -42,6 +48,15 @@ body {
   font-family: 'Roboto', sans-serif;
   height: 100vh;
   margin: 0 auto;
+  padding: 0;
+}
+
+// Headers
+h1, h2, h3, h4, h5, h6 {
+  color: $font-color;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  margin: 0;
   padding: 0;
 }
 
@@ -65,4 +80,5 @@ section {
   padding: 1.5rem;
 }
 
+@import './forms.scss';
 @import './navigation.scss';
