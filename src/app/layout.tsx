@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Footer from "@/components/Footer";
-import MainNavigation from "@/components/MainNavigation";
+import MainNavigation from "@/components/Navigation/MainNavigation";
 import Provider from '@/components/Provider';
 import '@/styles/_global.scss';
 
