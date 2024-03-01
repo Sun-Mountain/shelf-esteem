@@ -23,7 +23,7 @@ const SignUpForm: FC = () => {
   const { handleSubmit } = useForm<SignUpFormValues>();
 
   const submitForm = async () => {
-    const response = await fetch('/api/user', {
+    const response = await fetch('/api/users', {
       method: 'POST',
       body: JSON.stringify(formValues),
       headers: {
