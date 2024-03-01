@@ -29,6 +29,9 @@ dependencies:
   bcrypt:
     specifier: ^5.1.1
     version: 5.1.1
+  isbn3:
+    specifier: ^1.1.46
+    version: 1.1.46
   next:
     specifier: 14.1.0
     version: 14.1.0(react-dom@18.2.0)(react@18.2.0)(sass@1.71.1)
@@ -2131,6 +2134,12 @@ packages:
   /isarray@2.0.5:
     resolution: {integrity: sha512-xHjhDr3cNBK0BzdUJSPXZntQUx/mwMS5Rw4A7lPJ90XGAO6ISP/ePDNuo0vhqOZU+UD5JoodwCAAoZQd3FeAKw==}
     dev: true
+
+  /isbn3@1.1.46:
+    resolution: {integrity: sha512-hvQRSh/183SrwyXTjkSpUF7d14Bn/+sS/x+ECwQC+WmsPbKVs+6rmUou7f31KeFghPGYVwcnqYaddkTt34s3bw==}
+    engines: {node: '>= 6.4.0'}
+    hasBin: true
+    dev: false
 
   /isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
