@@ -15,9 +15,14 @@ const UserNav = () => {
   };
 
   return (
-    <Button buttonAction={handleSignOut}>
-      Sign Out
-    </Button>
+    <>
+      <Link className='nav-link' href="/library">
+        Library
+      </Link>
+      <Button className='nav-link' buttonAction={handleSignOut}>
+        Sign Out
+      </Button>
+    </>
   )
 }
 

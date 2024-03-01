@@ -12,8 +12,6 @@ async function getSession() {
 const MainNavigation = async () => {
   const session = await getSession();
 
-  console.log('session:', session)
-
   return (
     <nav>
       <div id="main-navigation">

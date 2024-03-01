@@ -40,7 +40,7 @@ model BookCategory {
 }
 
 model Book {
-  id                  String               @unique
+  id                  String               @unique @default(cuid())
   authors             String[]
   categories          BookCategory[]
   description         String
@@ -54,14 +54,17 @@ model Book {
   title               String
   addedBy             String
   libraries           UserLibraryBook[]
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @default(now())
 }
 
 model UserLibraryBook {
-  id     String @id @default(cuid())
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId String
-  books  Book   @relation(fields: [bookId], references: [id], onDelete: Cascade)
-  bookId String
+  id        String   @id @default(cuid())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  books     Book     @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  bookId    String
+  createdAt DateTime @default(now())
 }
 
 model User {
