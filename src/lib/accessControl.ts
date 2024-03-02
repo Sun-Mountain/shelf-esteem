@@ -6,6 +6,7 @@ let grantsObject = {
     categories: { 'read:any': ['*'] },
     books: {
       'create:any': ['*'],
+      'update:any': ['libraries'],
       'read:any': ['*', '!addedBy', '!createdAt', '!udpatedAt']
     },
     userLibraryBooks: {

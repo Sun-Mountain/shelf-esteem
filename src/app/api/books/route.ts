@@ -1,5 +1,6 @@
 import { db } from '@/db/lib'; 
-import { createBook } from '@/db/lib/books';
+import { createBook, findBookById, findIndustryIdentifiers } from '@/db/lib/books';
+import { createUserLibraryBook, findUserLibraryBook } from '@/db/lib/libraries';
 import { withAuth } from '@/lib/auth';
 import { getLogger } from '@/lib/logger';
 import {
@@ -22,16 +23,40 @@ export async function POST(req: NextRequest) {
     try {
       const body = await req.json();
       const { isbn, language, addedBy } = body;
-      console.log({ isbn, language, addedBy })
-      // Find book in database
-      const apiBook = await fetch(`https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&jscmd=data&format=json`)
-                            .then(function(response) {
-                                return response.json();
-                            });
-      const isbnObj = 'ISBN:' + isbn;
-      const bookData = apiBook[isbnObj];
+      let book;
 
-      const book = await createBook({ ...bookData, language, addedBy })
+      // Check if book already exists
+      const bookExists = await findIndustryIdentifiers([{ identifier: isbn }]);
+
+      if (bookExists[0].bookId) {
+        book = await findBookById(bookExists[0].bookId);
+      } else {
+        // Find book in database
+        const apiBook = await fetch(`https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&jscmd=data&format=json`)
+                              .then(function(response) {
+                                  return response.json();
+                              });
+        const isbnObj = 'ISBN:' + isbn;
+        const bookData = apiBook[isbnObj];
+  
+        book = await createBook({ ...bookData, language, addedBy })
+        book = await findBookById(book.id);
+      }
+
+      // Check if book is already in user's library
+      const userLibraryBookExists = await findUserLibraryBook({ bookId: book.id, userId: addedBy });
+
+      if (userLibraryBookExists[0].bookId) {
+        return NextResponse.json(
+          { status: 409, message: 'Book already exists in user library' }
+        );
+      } else {
+        // Add book to user's library
+        const userLibraryBook = await createUserLibraryBook({
+          bookId: book.id,
+          userId: addedBy
+        });
+      }
 
       return NextResponse.json(
         { status: 'ok' }

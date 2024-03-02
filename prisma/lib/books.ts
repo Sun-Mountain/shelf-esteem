@@ -1,6 +1,5 @@
 import { db } from '@/db/lib';
 import { Book, Prisma } from '@prisma/client';
-import { FieldRef } from '@prisma/client/runtime/library';
 import { IndustryIdentifierProps } from '@/types/booktypes';
 import { getLogger } from '@/lib/logger';
 
@@ -25,11 +24,13 @@ export type BookFull = BookGetFullPayload& {
 };
 
 export async function findIndustryIdentifiers(industryIdentifiers: IndustryIdentifierCreateInput[]): Promise<IndustryIdentifierCreateInput[]> {
+  console.log(industryIdentifiers)
+
   try {
     const foundIndustryIdentifiers = await db.industryIdentifier.findMany({
       where: {
         OR: industryIdentifiers.map((ii) => ({
-          identifier: ii.identifier,
+          identifier: ii.identifier.trim(),
           type: ii.type,
         })),
       },
@@ -67,14 +68,15 @@ export async function findBookById(id: string): Promise<BookFull | undefined> {
   const book = await db.book.findUnique({
     where: { id },
     include: {
-      categories: {
-        select: { name: true },
-      },
+      categories: true,
       industryIdentifiers: true,
     },
   });
 
-  const categories = await findCategories(book?.categories);
+  const categories = book?.categories.map((c) => ({
+    categoryId: c.id,
+    category: c.categoryName
+  }));
 
   const industryIdentifiers = book?.industryIdentifiers.map((ii) => ({
     identifier: ii.identifier,
