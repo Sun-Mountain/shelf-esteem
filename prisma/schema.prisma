@@ -43,19 +43,20 @@ model Book {
   id                  String               @unique @default(cuid())
   authors             String[]
   categories          BookCategory[]
-  description         String
+  description         String?
   industryIdentifiers IndustryIdentifier[]
   language            String
-  maturityRating      String
+  maturityRating      String?
   pageCount           Int
   publishedDate       String
-  publisher           String
+  publishers          String[]
   thumbnail           String
   title               String
+  user                User  @relation(fields: [addedBy], references: [id])
   addedBy             String
   libraries           UserLibraryBook[]
   createdAt           DateTime             @default(now())
-  updatedAt           DateTime             @default(now())
+  updatedAt           DateTime?
 }
 
 model UserLibraryBook {
@@ -68,14 +69,15 @@ model UserLibraryBook {
 }
 
 model User {
-  id           String            @id @default(cuid())
-  username     String            @unique
-  email        String            @unique
-  password     String
-  role         Role              @default(USER)
-  createdAt    DateTime          @default(now()) @map(name: "created_at")
-  updatedAt    DateTime          @updatedAt @map(name: "updated_at")
-  libraryBooks UserLibraryBook[]
+  id            String            @id @default(cuid())
+  username      String            @unique
+  email         String            @unique
+  password      String
+  role          Role              @default(USER)
+  createdAt     DateTime          @default(now()) @map(name: "created_at")
+  updatedAt     DateTime          @updatedAt @map(name: "updated_at")
+  libraryBooks  UserLibraryBook[]
+  booksAdded    Book[]
 
   @@map(name: "users")
 }

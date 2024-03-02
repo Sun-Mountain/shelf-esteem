@@ -2,23 +2,33 @@
 
 import { useState } from "react";
 import TextInput from "@/components/UI/TextInput";
-import { audit } from "isbn3";
+import { parse } from "isbn3";
 
 
-const AddBookForm = () => {
+const AddBookForm = ({
+  userId
+}: {
+  userId: string;
+}) => {
   const [isError, setIsError] = useState(false);
   const errorText = 'Please enter a valid ISBN';
 
   const handleChange = (value: string) => {
     setIsError(false);
     // Validate the ISBN
-    if (value >= 10 && audit(value).validIsbn) {
-      const isbn = audit(value).validIsbn;
-      console.log(isbn);
-    } else if (value === '') {
-      setIsError(false);
-    } else {
+    if (value >= 10 && parse(value).isValid) {
+      const response = fetch('/api/books', {
+        method: 'POST',
+        body: JSON.stringify({ isbn: value, language: parse(value)?.groupname, addedBy: userId }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      console.log(response);
+    } else if (value > 9) {
       setIsError(true);
+    } else {
+      return;
     }
   };
 

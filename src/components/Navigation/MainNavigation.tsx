@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { getServerSession } from "next-auth";
-import { AutoStoriesTwoTone } from '@mui/icons-material';
 import { authOptions } from "@/lib/authOptions";
+import { AutoStoriesTwoTone } from '@mui/icons-material';
 import UserNav from '@/components/Navigation/UserNav';
 
 async function getSession() {

@@ -1,11 +1,8 @@
+import { db } from '@/db/lib'; 
 import { createBook } from '@/db/lib/books';
 import { withAuth } from '@/lib/auth';
 import { getLogger } from '@/lib/logger';
 import {
-  // CandidateStatus,
-  // Degree,
-  // EmploymentType,
-  // LevelOfExperience,
   Book,
   Prisma,
 } from '@prisma/client';
@@ -22,6 +19,26 @@ export async function POST(req: NextRequest) {
     action: 'create:any',
     authErrorMessage: 'You are not authorized to create a book',
   })(async (session: Session, permission: Permission) => {
-    const body = await req.json();
-    console.log('body', body);
+    try {
+      const body = await req.json();
+      const { isbn, language, addedBy } = body;
+      console.log({ isbn, language, addedBy })
+      // Find book in database
+      const apiBook = await fetch(`https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&jscmd=data&format=json`)
+                            .then(function(response) {
+                                return response.json();
+                            });
+      const isbnObj = 'ISBN:' + isbn;
+      const bookData = apiBook[isbnObj];
+
+      const book = await createBook({ ...bookData, language, addedBy })
+
+      return NextResponse.json(
+        { status: 'ok' }
+      );
+    } catch (error) {
+      logger.error(error);
+      return NextResponse.json({ message: `Something went wrong: ${error}`, status: 500});
+    }
   });
+};
