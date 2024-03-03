@@ -24,8 +24,6 @@ export type BookFull = BookGetFullPayload& {
 };
 
 export async function findIndustryIdentifiers(industryIdentifiers: IndustryIdentifierCreateInput[]): Promise<IndustryIdentifierCreateInput[]> {
-  console.log(industryIdentifiers)
-
   try {
     const foundIndustryIdentifiers = await db.industryIdentifier.findMany({
       where: {
@@ -35,6 +33,8 @@ export async function findIndustryIdentifiers(industryIdentifiers: IndustryIdent
         })),
       },
     });
+
+    console.log(foundIndustryIdentifiers)
 
     return foundIndustryIdentifiers;
   } catch (error) {
@@ -144,7 +144,7 @@ export async function createBook(
     let categoryList;
     let industryIdentifiers;
 
-    if (subjects.length > 0) {
+    if (subjects && !!subjects.length) {
       categoryList = await createCategories(subjects);
     }
 

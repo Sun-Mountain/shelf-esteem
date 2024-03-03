@@ -19,12 +19,11 @@ const AddBookForm = ({
     if (value >= 10 && parse(value).isValid) {
       const response = fetch('/api/books', {
         method: 'POST',
-        body: JSON.stringify({ isbn: value, language: parse(value)?.groupname, addedBy: userId }),
+        body: JSON.stringify({ isbn: value.trim(), language: parse(value)?.groupname, addedBy: userId }),
         headers: {
           'Content-Type': 'application/json',
         },
       });
-      console.log(response);
     } else if (value > 9) {
       setIsError(true);
     } else {

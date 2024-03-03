@@ -28,10 +28,9 @@ export async function POST(req: NextRequest) {
       // Check if book already exists
       const bookExists = await findIndustryIdentifiers([{ identifier: isbn }]);
 
-      if (bookExists[0].bookId) {
-        book = await findBookById(bookExists[0].bookId);
-      } else {
+      if (!bookExists.length) {
         // Find book in database
+        logger.info(`Book with ISBN ${isbn} not found in database. Fetching from Open Library API`);
         const apiBook = await fetch(`https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&jscmd=data&format=json`)
                               .then(function(response) {
                                   return response.json();
@@ -41,22 +40,24 @@ export async function POST(req: NextRequest) {
   
         book = await createBook({ ...bookData, language, addedBy })
         book = await findBookById(book.id);
-      }
-
-      // Check if book is already in user's library
-      const userLibraryBookExists = await findUserLibraryBook({ bookId: book.id, userId: addedBy });
-
-      if (userLibraryBookExists[0].bookId) {
-        return NextResponse.json(
-          { status: 409, message: 'Book already exists in user library' }
-        );
       } else {
-        // Add book to user's library
-        const userLibraryBook = await createUserLibraryBook({
-          bookId: book.id,
-          userId: addedBy
-        });
+        book = await findBookById(bookExists[0].bookId);
       }
+
+      // // Check if book is already in user's library
+      // const userLibraryBookExists = await findUserLibraryBook({ bookId: book.id, userId: addedBy });
+
+      // if (userLibraryBookExists.length > 0 || userLibraryBookExists[0].bookId) {
+      //   return NextResponse.json(
+      //     { status: 409, message: 'Book already exists in user library' }
+      //   );
+      // } else {
+      //   // Add book to user's library
+      //   const userLibraryBook = await createUserLibraryBook({
+      //     bookId: book.id,
+      //     userId: addedBy
+      //   });
+      // }
 
       return NextResponse.json(
         { status: 'ok' }
