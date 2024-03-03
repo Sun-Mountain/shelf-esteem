@@ -13,6 +13,11 @@ let grantsObject = {
       'create:own': ['*'],
       'read:own': ['*'],
       'delete:own': ['*']
+    },
+    users: {
+      'read:own': ['*'],
+      'update:own': ['*'],
+      'delete:own': ['*']
     }
   },
 };

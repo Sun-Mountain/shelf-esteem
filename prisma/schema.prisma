@@ -45,13 +45,13 @@ model Book {
   categories          BookCategory[]
   description         String?
   industryIdentifiers IndustryIdentifier[]
-  language            String
+  language            String?
   maturityRating      String?
-  pageCount           Int
-  publishedDate       String
+  pageCount           Int?
+  publishedDate       String?
   publishers          String[]
-  thumbnail           String
-  title               String
+  thumbnail           String?
+  title               String?
   user                User  @relation(fields: [addedBy], references: [id])
   addedBy             String
   libraries           UserLibraryBook[]
