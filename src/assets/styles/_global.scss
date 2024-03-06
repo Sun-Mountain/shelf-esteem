@@ -13,6 +13,7 @@ $onyx: rgba(52, 58, 64, 1);
 $rufous: rgba(168, 50, 50, 1);
 $silver: rgba(188, 184, 177, 1);
 $slate-gray: rgba(108, 117, 125, 1);
+$slate-gray-80: rgba(108, 117, 125, .8);
 $slate-gray-10: rgba(108, 117, 125, .1);
 $taupe: rgba(70, 63, 58, 1);
 $white: rgba(255, 255, 255, 1);
@@ -95,5 +96,6 @@ section {
 
 @import './forms.scss';
 @import './footer.scss';
+@import './library.scss';
 @import './navigation.scss';
 @import './pages.scss';

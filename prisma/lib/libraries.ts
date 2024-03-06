@@ -51,3 +51,27 @@ export async function createUserLibraryBook(values: UserLibraryBookCreateInput):
     return error;
   }
 }
+
+export async function getUserLibraryBooks(userId: string) {
+  try {
+    const userLibraryBooks = await db.userLibraryBook.findMany({
+      where: {
+        userId: userId
+      },
+      include: {
+        book: {
+          include: {
+            authors: true,
+            industryIdentifiers: true
+          }
+        }
+      },
+      orderBy: { createdAt: 'desc' }
+    });
+
+    return userLibraryBooks;
+  } catch (error) {
+    logger.error(error);
+    return error;
+  }
+}
