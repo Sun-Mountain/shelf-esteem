@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@emotion/cache": "^11.11.0",
+    "@emotion/react": "^11.11.4",
     "@hookform/resolvers": "^3.3.4",
     "@mui/icons-material": "^5.15.11",
     "@mui/material-next": "6.0.0-alpha.124",
