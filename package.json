@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "prisma generate && npx prisma migrate diff"
+    "postinstall": "prisma generate && npx prisma migrate diff --to-schema-datamodel prisma/schema.prisma"
   },
   "dependencies": {
     "@emotion/cache": "^11.11.0",
