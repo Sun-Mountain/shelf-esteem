@@ -37,25 +37,21 @@ export async function POST(req: NextRequest) {
                               });
         const bookData = apiBook.items[0].volumeInfo;
         book = await createBook({ ...bookData, addedBy })
-        // console.log(book);
       } else {
-        // book = await findBookById(bookExists[0].bookId);
+        book = await findBookById(bookExists[0].bookId);
       }
 
-      // // Check if book is already in user's library
-      // const userLibraryBookExists = await findUserLibraryBook({ bookId: book.id, userId: addedBy });
+      // Check if book is already in user's library
+      const userLibraryBookExists = await findUserLibraryBook({ bookId: book.id, userId: addedBy });
+      console.log(userLibraryBookExists);
 
-      // if (userLibraryBookExists.length > 0 || userLibraryBookExists[0].bookId) {
-      //   return NextResponse.json(
-      //     { status: 409, message: 'Book already exists in user library' }
-      //   );
-      // } else {
-      //   // Add book to user's library
-      //   const userLibraryBook = await createUserLibraryBook({
-      //     bookId: book.id,
-      //     userId: addedBy
-      //   });
-      // }
+      if (!userLibraryBookExists) {
+        // Add book to user's library
+        const userLibraryBook = await createUserLibraryBook({
+          bookId: book.id,
+          userId: addedBy
+        });
+      }
 
       return NextResponse.json(
         { status: 'ok' }

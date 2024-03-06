@@ -1,9 +1,12 @@
 import { db } from '@/db/lib';
 import { Book, Prisma } from '@prisma/client';
-import { IndustryIdentifierProps } from '@/types/booktypes';
+import type { AuthorBook as AuthorBookProps } from '@prisma/client';
+import { AuthorProps, IndustryIdentifierProps } from '@/types/booktypes';
 import { getLogger } from '@/lib/logger';
 
 const logger = getLogger();
+
+export type AuthorCreateInput = Prisma.AuthorBookCreateOrConnectWithoutBookInput;
 
 export type CategoryCreateInput = Prisma.CategoryCreateInput;
 
@@ -12,6 +15,7 @@ export type IndustryIdentifierCreateInput = Prisma.IndustryIdentifierCreateInput
 export type BookCategoryCreateInput = Prisma.BookCategoryCreateInput;
 
 export type BookCreateInput = Prisma.BookCreateInput&{
+  authors: AuthorCreateInput;
   categories: string[] | undefined;
   industryIdentifiers: IndustryIdentifierCreateInput;
 }
@@ -19,6 +23,7 @@ export type BookCreateInput = Prisma.BookCreateInput&{
 export type BookGetFullPayload = Prisma.BookGetPayload<{}>;
 
 export type BookFull = BookGetFullPayload& {
+  authors: AuthorBookProps[];
   categories: string[] | undefined;
   industryIdentifiers: IndustryIdentifierProps[];
 };
@@ -34,12 +39,31 @@ export async function findIndustryIdentifiers(industryIdentifiers: IndustryIdent
       },
     });
 
-    console.log(foundIndustryIdentifiers)
-
     return foundIndustryIdentifiers;
   } catch (error) {
     logger.error(error);
     return [];
+  }
+}
+
+export async function findAuthors(
+  authors: AuthorCreateInput[]
+): Promise<AuthorProps[]> {
+  if (!authors) return;
+
+  try {
+    const foundAuthors = await db.author.findMany({
+      where: {
+        name: {
+          in: authors.map((a) => a)
+        }
+      }
+    });
+
+    return foundAuthors;
+  } catch (error) {
+    logger.error(error);
+    return;
   }
 }
 
@@ -93,18 +117,6 @@ export async function findBookById(id: string): Promise<BookFull | undefined> {
 export async function createCategories(categories: string[]): Promise<CategoryCreateInput[]> {
   let categoryList = categories.map(subject => subject.toUpperCase());
 
-  categoryList = categoryList.map((category) => {
-    let newCategory;
-    newCategory = category.replace('-', ' ');
-    if (!category.includes(':') && !category.includes(',')) {
-      return newCategory;
-    } else {
-      return;
-    }
-  });
-
-  categoryList = categoryList.filter((category) => category !== undefined);
-
   categoryList = [...new Set(categoryList)];
 
   const bookCategories = categoryList;
@@ -125,6 +137,10 @@ export async function createCategories(categories: string[]): Promise<CategoryCr
   return bookCategories;
 }
 
+export async function createAuthors(authors: string[]): Promise<AuthorCreateInput[]> {
+
+}
+
 export async function createBook(
   values: BookCreateInput
 ): Promise<BookFull | undefined> {
@@ -142,43 +158,63 @@ export async function createBook(
     imageLinks,
     addedBy
   } = values;
+
   try {
-
-    if (categories && !!categories.length) {
-      await createCategories(categories);
-    }
-
     const newBook = await db.book.create({
       data: {
-        authors,
+        title,
         description,
-        industryIdentifiers: {
-          create: industryIdentifiers
-        },
+        pageCount,
         language,
         maturityRating,
-        pageCount,
+        publisher,
         publishedDate,
-        publishers: publisher,
         thumbnail: imageLinks?.thumbnail,
-        title,
-        addedBy
+        addedBy,
+        industryIdentifiers: {
+          create: industryIdentifiers,
+        },
       }
     });
 
-    const bookCategories = await findCategories(categories);
-
-    if (bookCategories) {
-      await db.bookCategory.createMany({
-        data: bookCategories.map((category) => ({
-          bookId: newBook.id,
-          categoryName: category.name
-        }))
-      });
+    if (categories && newBook) {
+      const bookCategories = await findCategories(categories);
+      if (bookCategories?.length < categories.length) {
+        const newCategories = categories.filter((c) => !bookCategories.some((ec) => ec.name === c));
+        await db.category.createMany({
+          data: newCategories.map((c) => ({ name: c.toUpperCase() }))
+        });
+      }
+  
+      if (categories?.length > 0) {
+        const bookCategoryMatches = categories.map((c) => ({ categoryName: c.toUpperCase(), bookId: newBook.id }));
+        await db.bookCategory.createMany({
+          data: bookCategoryMatches,
+          skipDuplicates: true,
+        });
+      }
     }
 
-    // const findBook = await findBookById(newBook.id);
-    // return findBook;
+    if (authors && newBook) {
+      const existingAuthors = await findAuthors(authors);
+      if (existingAuthors?.length < authors.length) {
+        const newAuthors = authors.filter((a) => !existingAuthors.some((ea) => ea.name === a));
+        await db.author.createMany({
+          data: newAuthors.map((a) => ({ name: a }))
+        });
+      }
+  
+      if (authors?.length > 0) {
+        const authorBookMatches = authors.map((a) => ({ authorName: a, bookId: newBook.id }));
+        await db.authorBook.createMany({
+          data: authorBookMatches,
+          skipDuplicates: true,
+        });
+      }
+    }
+
+    const findBook = await findBookById(newBook.id);
+    return findBook;
   } catch (error) {
     logger.error(error);
     return;

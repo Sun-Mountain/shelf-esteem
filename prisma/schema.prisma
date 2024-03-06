@@ -15,6 +15,20 @@ enum Role {
   ADMIN
 }
 
+model Author {
+  id      String               @id @default(cuid())
+  name    String               @unique
+  books   AuthorBook[]
+}
+
+model AuthorBook {
+  id          String     @id @default(cuid())
+  author      Author  @relation(fields: [authorName], references: [name], onDelete: Cascade)
+  authorName  String
+  book        Book    @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  bookId      String
+}
+
 model Category {
   name  String  @id @unique
   books BookCategory[]
@@ -30,7 +44,7 @@ model IndustryIdentifier {
 }
 
 model BookCategory {
-  id           Int      @id @default(autoincrement())
+  id           String      @id @default(cuid())
   book         Book     @relation(fields: [bookId], references: [id], onDelete: Cascade)
   bookId       String
   category     Category @relation(fields: [categoryName], references: [name], onDelete: Cascade)
@@ -39,7 +53,7 @@ model BookCategory {
 
 model Book {
   id                  String               @unique @default(cuid())
-  authors             String[]
+  authors             AuthorBook[]
   categories          BookCategory[]
   description         String?
   industryIdentifiers IndustryIdentifier[]
@@ -47,7 +61,7 @@ model Book {
   maturityRating      String?
   pageCount           Int?
   publishedDate       String?
-  publishers          String?
+  publisher           String?
   subtitle            String?
   thumbnail           String?
   title               String?

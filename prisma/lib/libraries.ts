@@ -10,19 +10,23 @@ export type UserLibraryBookGetFullPayload = Prisma.UserLibraryBookGetPayload<{}>
 
 export async function findUserLibraryBook({ bookId, userId }): Promise<UserLibraryBookGetFullPayload[]> {
   try {
-    const foundUserLibraryBooks = await db.userLibraryBook.findUnique({
+    const foundUserLibraryBooks = await db.userLibraryBook.findFirst({
       where: {
         AND: [
-          bookId,
-          userId
+          { bookId: bookId },
+          { userId: userId }
         ]
       },
     });
 
+    if (!foundUserLibraryBooks) {
+      return;
+    }
+
     return foundUserLibraryBooks;
   } catch (error) {
     logger.error(error);
-    return [];
+    return error;
   }
 }
 
@@ -40,8 +44,6 @@ export async function createUserLibraryBook(values: UserLibraryBookCreateInput):
     });
 
     const foundUserLibraryBook = await findUserLibraryBook({ bookId: values.bookId, userId: values.userId });
-
-    console.log(foundUserLibraryBook)
 
     return foundUserLibraryBook;
   } catch (error) {
