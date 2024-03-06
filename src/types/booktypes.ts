@@ -5,30 +5,20 @@ export interface IndustryIdentifierProps {
   identifier: string;
 }
 
-
 export interface AuthorProps {
   id: string;
   name: string;
   books: AuthorBook;
 }
 
-export interface BookSearchProps {
-  isbn: string;
-  found: boolean;
-  enteredIsbn?: string;
-  authors?: string[];
-  categories?: string[];
-  description?: string;
-  imageLinks?: {
-    smallThumbnail: string;
-    thumbnail: string;
-  },
-  industryIdentifiers: IndustryIdentifierProps[];
-  language?: string;
-  maturityRating?: string;
-  pageCount?: number;
-  publishedDate?: string;
-  publisher?: string;
-  thumbnail?: string;
-  title?: string;
+export interface BookItemProps {
+  id: string,
+  authors: AuthorProps[],
+  isbn: string,
+  thumbnail: string,
+  title: string
+}
+
+export interface RecentlyAddedBooksProps {
+  recentlyAdded: BookItemProps
 }
