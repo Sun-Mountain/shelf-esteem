@@ -52,7 +52,7 @@ export async function findCategories(
     const foundCategories = await db.category.findMany({
       where: {
         name: {
-          in: categories.map((c) => c)
+          in: categories.map((c) => c.toUpperCase())
         }
       }
     });
@@ -90,8 +90,8 @@ export async function findBookById(id: string): Promise<BookFull | undefined> {
   };
 };
 
-export async function createCategories(subjects: string[]): Promise<CategoryCreateInput[]> {
-  let categoryList = subjects.map(subject => subject.name.toLowerCase());
+export async function createCategories(categories: string[]): Promise<CategoryCreateInput[]> {
+  let categoryList = categories.map(subject => subject.toUpperCase());
 
   categoryList = categoryList.map((category) => {
     let newCategory;
@@ -131,52 +131,54 @@ export async function createBook(
   const {
     title,
     authors,
-    number_of_pages,
-    identifiers,
+    description,
+    categories,
+    pageCount,
+    industryIdentifiers,
     language,
-    publishers,
-    publish_date,
-    subjects,
-    cover,
+    maturityRating,
+    publisher,
+    publishedDate,
+    imageLinks,
     addedBy
   } = values;
   try {
-    let categoryList;
-    let industryIdentifiers;
 
-    if (subjects && !!subjects.length) {
-      categoryList = await createCategories(subjects);
-    }
-
-    if (identifiers) {
-      const keys = Object.keys(identifiers);
-      industryIdentifiers = keys.map((key) => ({
-        identifier: identifiers[key][0],
-        type: key,
-      }));
+    if (categories && !!categories.length) {
+      await createCategories(categories);
     }
 
     const newBook = await db.book.create({
       data: {
-        authors: authors.map(a => a.name),
-        categories: {
-          create: categoryList?.map((c) => ({ categoryName: c })),
-        },
+        authors,
+        description,
         industryIdentifiers: {
-          create: industryIdentifiers,
+          create: industryIdentifiers
         },
         language,
-        pageCount: number_of_pages,
-        publishedDate: publish_date,
-        publishers: publishers.map(p => p.name),
-        thumbnail: cover.medium,
+        maturityRating,
+        pageCount,
+        publishedDate,
+        publishers: publisher,
+        thumbnail: imageLinks?.thumbnail,
         title,
         addedBy
       }
-    })
+    });
 
-    const findBook = await findBookById(newBook);
-    return findBook;
+    const bookCategories = await findCategories(categories);
+
+    if (bookCategories) {
+      await db.bookCategory.createMany({
+        data: bookCategories.map((category) => ({
+          bookId: newBook.id,
+          categoryName: category.name
+        }))
+      });
+    }
+
+    // const findBook = await findBookById(newBook.id);
+    // return findBook;
   } catch (error) {
     logger.error(error);
     return;

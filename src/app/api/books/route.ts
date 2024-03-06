@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
   })(async (session: Session, permission: Permission) => {
     try {
       const body = await req.json();
-      const { isbn, language, addedBy } = body;
+      const { isbn, addedBy } = body;
       let book;
 
       // Check if book already exists
@@ -31,17 +31,15 @@ export async function POST(req: NextRequest) {
       if (!bookExists.length) {
         // Find book in database
         logger.info(`Book with ISBN ${isbn} not found in database. Fetching from Open Library API`);
-        const apiBook = await fetch(`https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&jscmd=data&format=json`)
+        const apiBook = await fetch(`${process.env.BOOK_API_URL}?q=isbn:${isbn.trim()}&key=${process.env.BOOK_API_KEY}`)
                               .then(function(response) {
                                   return response.json();
                               });
-        const isbnObj = 'ISBN:' + isbn;
-        const bookData = apiBook[isbnObj];
-  
-        book = await createBook({ ...bookData, language, addedBy })
-        book = await findBookById(book.id);
+        const bookData = apiBook.items[0].volumeInfo;
+        book = await createBook({ ...bookData, addedBy })
+        // console.log(book);
       } else {
-        book = await findBookById(bookExists[0].bookId);
+        // book = await findBookById(bookExists[0].bookId);
       }
 
       // // Check if book is already in user's library

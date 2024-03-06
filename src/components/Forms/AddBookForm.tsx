@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from "react";
-import TextInput from "@/components/UI/TextInput";
 import { parse } from "isbn3";
+import TextInput from "@/components/UI/TextInput";
 
 
 const AddBookForm = ({
@@ -10,22 +10,24 @@ const AddBookForm = ({
 }: {
   userId: string;
 }) => {
-  const [isError, setIsError] = useState(false);
-  const errorText = 'Please enter a valid ISBN';
+  const [isbn, setIsbn] = useState('');
 
   const handleChange = (value: string) => {
-    setIsError(false);
+    setIsbn(value);
     // Validate the ISBN
     if (value >= 10 && parse(value).isValid) {
       const response = fetch('/api/books', {
         method: 'POST',
-        body: JSON.stringify({ isbn: value.trim(), language: parse(value)?.groupname, addedBy: userId }),
+        body: JSON.stringify({ isbn: value.trim(), addedBy: userId }),
         headers: {
           'Content-Type': 'application/json',
         },
       });
+      if (response.status === 200) {
+        setIsbn('');
+      }
     } else if (value > 9) {
-      setIsError(true);
+      // setIsError(true);
     } else {
       return;
     }
@@ -35,12 +37,10 @@ const AddBookForm = ({
     <div className='form-container'>
       <div>
         <TextInput
-          error={isError}
-          helperText={isError ? errorText : ''}
           id='isbn'
           label='ISBN'
-          onChange={e => handleChange(e.target.value)}
-          required
+          onChange={(e) => handleChange(e.target.value)}
+          value={isbn}
         />
       </div>
     </div>
