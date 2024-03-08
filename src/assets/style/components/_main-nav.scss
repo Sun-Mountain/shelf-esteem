@@ -3,6 +3,10 @@ $nav-bg: $primary;
 $nav-text: $secondary;
 $nav-icon-bg: $secondary;
 $nav-icon-text: $primary;
+$nav-btn-color: $base-darkest;
+$drawer-link: $rose-taupe;
+$drawer-link-hover: $eerie-black;
+$drawer-link-bg-h: $rose-taupe1;
 
 nav {
   background-color: $nav-bg;
@@ -82,14 +86,55 @@ nav {
   }
 }
 
-@media screen and (min-width: calc($tablet-md - 1px)) {
-  #drawer-container {
-    display: none;
+#main-nav-drawer {
+  display: flex;
+  flex-direction: column;
+  width: $mobile;
+
+  a, a:visited {
+    color: $drawer-link;
+    font-weight: 500;
+    letter-spacing: 0.1rem;
+    padding: 1rem 0;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+
+    &:hover {
+      background-color: $drawer-link-bg-h;
+      color: $drawer-link-hover;
+    }
+  }
+
+  a + a {
+    position: relative;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0px;
+      left: 25%;
+      width: 50%;
+      border-top: 1px solid $base-dark;
+    }
+  }
+
+  .close-btn-container {
+    color: $drawer-link-hover;
+    display: flex;
+    justify-content: flex-end;
+    padding: 0.5rem 1rem;
   }
 }
 
-@media screen and (max-width: $tablet-md) {
-  #nav-link-group {
-    display: none;
-  }
-}
+// @media screen and (min-width: calc($tablet-md - 1px)) {
+//   #drawer-container {
+//     display: none;
+//   }
+// }
+
+// @media screen and (max-width: $tablet-md) {
+//   #nav-link-group {
+//     display: none;
+//   }
+// }

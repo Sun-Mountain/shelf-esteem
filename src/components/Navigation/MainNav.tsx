@@ -3,7 +3,11 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { Drawer, IconButton } from '@mui/material';
-import { AutoStoriesTwoTone, Menu } from '@mui/icons-material';
+import {
+  AutoStoriesTwoTone,
+  Close,
+  Menu
+} from '@mui/icons-material';
 
 const MainNavigation = () => {
   const [open, setOpen] = useState(false);
@@ -27,7 +31,12 @@ const MainNavigation = () => {
             open={open}
             onClose={() => setOpen(false)}
           >
-            <div className="nav-content">
+            <div id="main-nav-drawer" className="nav-content">
+              <div className="close-btn-container">
+                <IconButton onClick={() => setOpen(false)}>
+                  <Close />
+                </IconButton>
+              </div>
               <Link href="/about">
                 About
               </Link>
@@ -37,14 +46,14 @@ const MainNavigation = () => {
             </div>
           </Drawer>
         </div>
-        <div id="nav-link-group">
+        {/* <div id="nav-link-group">
           <Link href="/about">
             About
           </Link>
           <Link href="/contact">
             Contact
           </Link>
-        </div>
+        </div> */}
       </div>
     </nav>
   )
