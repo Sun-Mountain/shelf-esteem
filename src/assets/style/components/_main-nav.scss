@@ -16,6 +16,26 @@ nav {
     max-width: $desktop;
     padding: 1rem;
 
+    button {
+      color: $nav-text;
+      cursor: pointer;
+      padding: 0.5rem;
+      transition: all .3s ease-in-out;
+
+      &:hover {
+        background-color: $nav-text;
+        color: $nav-bg;
+      }
+
+      svg {
+        font-size: 2rem;
+      }
+    }
+
+    .button-container {
+      margin: auto 0;
+    }
+
     .home-icon {
       align-items: center;
       background-color: $nav-icon-bg;
@@ -36,7 +56,7 @@ nav {
       }
     }
 
-    .nav-link-group {
+    #nav-link-group {
       margin: auto 0;
 
       a, a:visited {
@@ -59,5 +79,17 @@ nav {
         margin: 0 1rem;
       }
     }
+  }
+}
+
+@media screen and (min-width: calc($tablet-md - 1px)) {
+  #drawer-container {
+    display: none;
+  }
+}
+
+@media screen and (max-width: $tablet-md) {
+  #nav-link-group {
+    display: none;
   }
 }

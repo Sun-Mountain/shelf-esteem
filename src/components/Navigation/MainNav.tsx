@@ -1,7 +1,12 @@
-import Link from 'next/link';
-import { AutoStoriesTwoTone } from '@mui/icons-material';
+'use client';
 
-const MainNavigation = async () => {
+import { useState } from 'react';
+import Link from 'next/link';
+import { Drawer, IconButton } from '@mui/material';
+import { AutoStoriesTwoTone, Menu } from '@mui/icons-material';
+
+const MainNavigation = () => {
+  const [open, setOpen] = useState(false);
 
   return (
     <nav>
@@ -13,12 +18,32 @@ const MainNavigation = async () => {
             </div>
           </Link>
         </div>
-        <div className='nav-link-group'>
-          <div>
-            <Link href='/about'>
-              About
-            </Link>
-          </div>
+        <div id="drawer-container">
+          <IconButton onClick={() => setOpen(true)}>
+            <Menu />
+          </IconButton>
+          <Drawer
+            anchor="right"
+            open={open}
+            onClose={() => setOpen(false)}
+          >
+            <div className="nav-content">
+              <Link href="/about">
+                About
+              </Link>
+              <Link href="/contact">
+                Contact
+              </Link>
+            </div>
+          </Drawer>
+        </div>
+        <div id="nav-link-group">
+          <Link href="/about">
+            About
+          </Link>
+          <Link href="/contact">
+            Contact
+          </Link>
         </div>
       </div>
     </nav>
