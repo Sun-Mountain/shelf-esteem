@@ -1,0 +1,54 @@
+@import "breakpoints.scss";
+@import "colors.scss";
+@import "general.scss";
+
+// Components
+@import "components/footer.scss";
+@import "components/main-nav.scss";
+
+// Pages
+@import "pages/tos-page.scss";
+
+$body-bg: $base;
+$main-bg: $white;
+$main-border: 1px solid $base-dark;
+$main-boxshadow: 0 0 5px $base-dark;
+
+a, a:visited {
+  color: $neon-blue;
+  text-decoration: none;
+}
+
+body {
+  background: $body-bg;
+  color: $ink;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Roboto', sans-serif;
+  height: 100vh;
+  margin: 0 auto;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: $ink;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  background-color: $main-bg;
+  border: $main-border;
+  box-shadow: $main-boxshadow;
+  flex: 1;
+  margin: 2rem auto;
+  min-width: $mobile;
+  width: 100%;
+  max-width: $desktop;
+}
+
+section {
+  padding: 1.5rem;
+}
