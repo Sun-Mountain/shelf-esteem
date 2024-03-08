@@ -1,0 +1,50 @@
+// Main Navigation
+$nav-bg: $primary;
+$nav-text: $secondary;
+$nav-icon-bg: $secondary;
+$nav-icon-text: $primary;
+
+nav {
+  background-color: $nav-bg;
+  color: $nav-text;
+
+  a, a:visited {
+    border: 0px;
+    color: $nav-text;
+    margin: auto 0;
+  }
+
+  a:hover {
+    background-color: $nav-text;
+    color: $nav-bg;
+  }
+
+  #main-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    min-width: $mobile;
+    max-width: $desktop;
+    padding: 1rem;
+  }
+
+  .home-icon {
+    align-items: center;
+    background-color: $nav-icon-bg;
+    color: $nav-icon-text;
+    padding: 0.75rem;
+    border-radius: 50%;
+    transition: all .3s ease-in-out;
+    text-decoration: none;
+
+    &:hover {
+      background-color: $nav-bg;
+      color: $nav-text;
+      cursor: pointer;
+
+      a {
+        color: $nav-text;
+      }
+    }
+  }
+}

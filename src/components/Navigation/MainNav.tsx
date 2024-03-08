@@ -7,8 +7,10 @@ const MainNavigation = async () => {
     <nav>
       <div id="main-navigation">
         <div className="icon-container">
-          <Link href='/'>
-            <AutoStoriesTwoTone className="icon" />
+          <Link href="/">
+            <div className="home-icon">
+              <AutoStoriesTwoTone className="icon" />
+            </div>
           </Link>
         </div>
         <div className='nav-link-group'>
