@@ -1,0 +1,28 @@
+$footer-bg: $white;
+$footer-border: 1px solid $french-gray-2;
+$footer-link-color: $slate-gray;
+
+footer {
+  background-color: $footer-bg;
+  border-top: $footer-border;
+
+  #footer-content {
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto;
+    min-width: $mobile;
+    max-width: $desktop;
+    padding: 2rem 0;
+  }
+
+  a, a:visited {
+    border-bottom: 1px solid $footer-bg;
+    color: $footer-link-color;
+    padding-bottom: 2px;
+
+    &:hover {
+      border-bottom: 1px solid $neon-blue;
+      color: $neon-blue;
+    }
+  }
+}

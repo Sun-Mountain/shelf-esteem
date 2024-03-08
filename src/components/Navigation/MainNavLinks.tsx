@@ -4,8 +4,8 @@ import { Home } from "@mui/icons-material";
 const NavLinks = () => {
   return (
     <>
-      <Link href="/">
-        Home
+      <Link className="link-w-icon" href="/">
+        Home <Home />
       </Link>
       <Link href="/sign-in">
         Sign In
