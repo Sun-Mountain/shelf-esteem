@@ -38,11 +38,18 @@ $slate-gray: rgba(108, 117, 125, 1);
 $outer-space: rgba(73, 80, 87, 1);
 $onyx: rgba(52, 58, 64, 1);
 $eerie-black: rgba(33, 37, 41, 1);
+$white: rgba(255, 255, 255, 1);
 
 // THEME COLORS
 $base: $eggshell3;
 $base-cool: $delft-blue5;
 $base-warm: $sunset5;
+$base-lightest: $white;
+$base-lighter: $antiflash-white;
+$base-light: $platinum;
+$base-dark: $french-gray-2;
+$base-darker: $slate-gray;
+$base-darkest: $outer-space;
 $ink: $onyx;
 $primary: $delft-blue;
 $secondary: $eggshell;
