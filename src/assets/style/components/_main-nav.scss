@@ -61,6 +61,8 @@ nav {
     }
 
     #nav-link-group {
+      display: flex;
+      flex-direction: row;
       margin: auto 0;
 
       a, a:visited {
@@ -81,6 +83,17 @@ nav {
 
       .nav-link {
         margin: 0 1rem;
+      }
+
+      .link-w-icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem 0;
+
+        svg {
+          margin-right: 0.5rem;
+        }
       }
     }
   }
@@ -127,14 +140,22 @@ nav {
   }
 }
 
-// @media screen and (min-width: calc($tablet-md - 1px)) {
-//   #drawer-container {
-//     display: none;
-//   }
-// }
+@media screen and (min-width: calc($tablet-md - 1px)) {
+  #drawer-container {
+    display: none;
+  }
+}
 
-// @media screen and (max-width: $tablet-md) {
-//   #nav-link-group {
-//     display: none;
-//   }
-// }
+@media screen and (max-width: $tablet-md) {
+  nav {
+    #main-navigation {
+      .button-container {
+        display: none;
+      }
+
+      #nav-link-group {
+        display: none;
+      }
+    }
+  }
+}

@@ -8,6 +8,9 @@ import {
   Close,
   Menu
 } from '@mui/icons-material';
+import NavLinks from './MainNavLinks';
+
+
 
 const MainNavigation = () => {
   const [open, setOpen] = useState(false);
@@ -37,23 +40,13 @@ const MainNavigation = () => {
                   <Close />
                 </IconButton>
               </div>
-              <Link href="/about">
-                About
-              </Link>
-              <Link href="/contact">
-                Contact
-              </Link>
+              <NavLinks />
             </div>
           </Drawer>
         </div>
-        {/* <div id="nav-link-group">
-          <Link href="/about">
-            About
-          </Link>
-          <Link href="/contact">
-            Contact
-          </Link>
-        </div> */}
+        <div id="nav-link-group">
+          <NavLinks />
+        </div>
       </div>
     </nav>
   )
