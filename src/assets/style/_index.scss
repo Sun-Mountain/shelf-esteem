@@ -25,16 +25,9 @@ body {
   display: flex;
   flex-direction: column;
   font-family: 'Roboto', sans-serif;
+  font-size: 1.125rem;
   height: 100vh;
   margin: 0 auto;
-  padding: 0;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  color: $ink;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400;
-  margin: 0;
   padding: 0;
 }
 
@@ -51,4 +44,8 @@ main {
 
 section {
   padding: 1.5rem;
+
+  h1:first-of-type {
+    margin-top: 0;
+  }
 }
