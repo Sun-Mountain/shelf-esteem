@@ -1,12 +1,12 @@
 // Main Navigation
 $nav-bg: $primary;
-$nav-text: $secondary;
-$nav-icon-bg: $secondary;
+$nav-text: $base;
+$nav-icon-bg: $base;
 $nav-icon-text: $primary;
-$nav-btn-color: $base-darkest;
-$drawer-link: $rose-taupe;
-$drawer-link-hover: $eerie-black;
-$drawer-link-bg-h: $rose-taupe1;
+$nav-btn-color: $greyscale03;
+$drawer-link: $neutral;
+$drawer-link-hover: $greyscale01;
+$drawer-link-bg-h: $neutral10;
 
 nav {
   background-color: $nav-bg;

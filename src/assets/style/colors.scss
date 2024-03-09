@@ -1,22 +1,28 @@
 $eggshell: rgba(244, 241, 222, 1);
-$eggshell5: rgba(244, 241, 222, 0.5);
-$eggshell3: rgba(244, 241, 222, 0.3);
+$eggshell50: rgba(244, 241, 222, 0.5);
+$eggshell30: rgba(244, 241, 222, 0.3);
+$eggshell10: rgba(244, 241, 222, 0.1);
+$eggshell05: rgba(244, 241, 222, 0.05);
 $apricot: rgba(234, 182, 159, 1);
-$apricot5: rgba(234, 182, 159, .5);
-$apricot3: rgba(234, 182, 159, .3);
+$apricot50: rgba(234, 182, 159, .5);
+$apricot30: rgba(234, 182, 159, .3);
+$apricot10: rgba(234, 182, 159, .1);
+$apricot05: rgba(234, 182, 159, .05);
 $burnt-sienna: rgba(224, 122, 95, 1);
 $burnt-sienna5: rgba(224, 122, 95, .5);
 $burnt-sienna3: rgba(224, 122, 95, .3);
 $rose-taupe: rgba(143, 93, 93, 1);
-$rose-taupe5: rgba(143, 93, 93, .5);
-$rose-taupe3: rgba(143, 93, 93, .3);
-$rose-taupe1: rgba(143, 93, 93, .1);
+$rose-taupe50: rgba(143, 93, 93, .5);
+$rose-taupe30: rgba(143, 93, 93, .3);
+$rose-taupe10: rgba(143, 93, 93, .1);
+$rose-taupe05: rgba(143, 93, 93, .05);
 $eggplant: rgba(102, 79, 92, 1);
 $eggplant5: rgba(102, 79, 92, .5);
 $eggplant3: rgba(102, 79, 92, .3);
-$delft-blue: rgba(61, 64, 91, 1);
-$delft-blue5: rgba(61, 64, 91, .5);
-$delft-blue3: rgba(61, 64, 91, .3);
+$delft-blue: #3d405b;
+$delft-blue50: rgba(61, 64, 91, .5);
+$delft-blue30: rgba(61, 64, 91, .3);
+$delft-blue10: rgba(61, 64, 91, .1);
 $delft-blue05: rgba(61, 64, 91, .05);
 $slate-gray: rgba(95, 121, 123, 1);
 $slate-gray5: rgba(95, 121, 123, .5);
@@ -25,42 +31,246 @@ $cambridge-blue: rgba(129, 178, 154, 1);
 $cambridge-blue5: rgba(129, 178, 154, .5);
 $cambridge-blue3: rgba(129, 178, 154, .3);
 $sage: rgba(186, 191, 149, 1);
-$sage5: rgba(186, 191, 149, .5);
-$sage3: rgba(186, 191, 149, .3);
+$sage50: rgba(186, 191, 149, .5);
+$sage30: rgba(186, 191, 149, .3);
+$sage10: rgba(186, 191, 149, .1);
+$sage05: rgba(186, 191, 149, .05);
 $sunset: rgba(242, 204, 143, 1);
-$sunset5: rgba(242, 204, 143, .5);
-$sunset3: rgba(242, 204, 143, .3);
+$sunset50: rgba(242, 204, 143, .5);
+$sunset30: rgba(242, 204, 143, .3);
+$sunset10: rgba(242, 204, 143, .1);
+$sunset05: rgba(242, 204, 143, .05);
 $neon-blue: rgba(67, 97, 238, 1);
+$neon-blue50: rgba(67, 97, 238, .5);
+$neon-blue30: rgba(67, 97, 238, .3);
+$neon-blue10: rgba(67, 97, 238, .1);
+$neon-blue05: rgba(67, 97, 238, .05);
 
+$eerie-black: rgba(33, 37, 41, 1);
+$onyx: rgba(52, 58, 64, 1);
+$outer-space: rgba(73, 80, 87, 1);
+$slate-gray: rgba(108, 117, 125, 1);
+$french-gray-2: rgba(173, 181, 189, 1);
+$french-gray: rgba(206, 212, 218, 1);
 $seasalt: rgba(248, 249, 250, 1);
 $antiflash-white: rgba(233, 236, 239, 1);
 $platinum: rgba(222, 226, 230, 1);
-$french-gray: rgba(206, 212, 218, 1);
-$french-gray-2: rgba(173, 181, 189, 1);
-$slate-gray: rgba(108, 117, 125, 1);
-$outer-space: rgba(73, 80, 87, 1);
-$onyx: rgba(52, 58, 64, 1);
-$eerie-black: rgba(33, 37, 41, 1);
 $white: rgba(255, 255, 255, 1);
 
 // THEME COLORS
-$base: $eggshell3;
-$base-cool: $delft-blue5;
-$base-warm: $sunset5;
+$base: $eggshell;
+$base50: $eggshell50;
+$base30: $eggshell30;
+$base10: $eggshell10;
+$base05: $eggshell05;
+$primary: $delft-blue;
+$primary50: $delft-blue50;
+$primary30: $delft-blue30;
+$primary10: $delft-blue10;
+$primary05: $delft-blue05;
+$secondary: $sunset;
+$secondary50: $sunset50;
+$secondary30: $sunset30;
+$secondary10: $sunset10;
+$secondary05: $sunset05;
+$tertiary: $sage;
+$tertiary50: $sage50;
+$tertiary30: $sage30;
+$tertiary10: $sage10;
+$tertiary05: $sage05;
+$accent: $neon-blue;
+$accent50: $neon-blue50;
+$accent30: $neon-blue30;
+$accent10: $neon-blue10;
+$accent05: $neon-blue05;
+$neutral: $rose-taupe;
+$neutral50: $rose-taupe50;
+$neutral30: $rose-taupe30;
+$neutral10: $rose-taupe10;
+$neutral05: $rose-taupe05;
+$greyscale01: $eerie-black;
+$greyscale02: $onyx;
+$greyscale03: $outer-space;
+$greyscale04: $slate-gray;
+$greyscale05: $french-gray-2;
+$greyscale06: $french-gray;
+$greyscale07: $platinum;
+$greyscale08: $antiflash-white;
+$greyscale09: $seasalt;
+$greyscale10: $white;
 $base-lightest: $white;
 $base-lighter: $antiflash-white;
 $base-light: $platinum;
 $base-dark: $french-gray;
 $base-darker: $slate-gray;
 $base-darkest: $outer-space;
-$ink: $onyx;
-$primary: $delft-blue;
-$primary-light: $delft-blue5;
-$primary-lighter: $delft-blue3;
-$primary-lightest: $delft-blue05;
 
-$secondary: $eggshell;
-$tertiary: $sage;
+$ink: $onyx;
+
+// CLASSNAMES
+.base-color {
+  background-color: $base;
+}
+
+.base50-color {
+  background-color: $base50;
+}
+
+.base30-color {
+  background-color: $base30;
+}
+
+.base10-color {
+  background-color: $base10;
+}
+
+.base05-color {
+  background-color: $base05;
+}
+
+.primary-color {
+  background-color: $primary;
+}
+
+.primary50-color {
+  background-color: $primary50;
+}
+
+.primary30-color {
+  background-color: $primary30;
+}
+
+.primary10-color {
+  background-color: $primary10;
+}
+
+.primary05-color {
+  background-color: $primary05;
+}
+
+.secondary-color {
+  background-color: $secondary;
+}
+
+.secondary50-color {
+  background-color: $secondary50;
+}
+
+.secondary30-color {
+  background-color: $secondary30;
+}
+
+.secondary10-color {
+  background-color: $secondary10;
+}
+
+.secondary05-color {
+  background-color: $secondary05;
+}
+
+.tertiary-color {
+  background-color: $tertiary;
+}
+
+.tertiary50-color {
+  background-color: $tertiary50;
+}
+
+.tertiary30-color {
+  background-color: $tertiary30;
+}
+
+.tertiary10-color {
+  background-color: $tertiary10;
+}
+
+.tertiary05-color {
+  background-color: $tertiary05;
+}
+
+.accent-color {
+  background-color: $accent;
+}
+
+.accent50-color {
+  background-color: $accent50;
+}
+
+.accent30-color {
+  background-color: $accent30;
+}
+
+.accent10-color {
+  background-color: $accent10;
+}
+
+.accent05-color {
+  background-color: $accent05;
+}
+
+.neutral-color {
+  background-color: $neutral;
+}
+
+.neutral50-color {
+  background-color: $neutral50;
+}
+
+.neutral30-color {
+  background-color: $neutral30;
+}
+
+.neutral10-color {
+  background-color: $neutral10;
+}
+
+.neutral05-color {
+  background-color: $neutral05;
+}
+
+.greyscale1-color {
+  background-color: $greyscale01;
+}
+
+.greyscale2-color {
+  background-color: $greyscale02;
+}
+
+.greyscale3-color {
+  background-color: $greyscale03;
+}
+
+.greyscale4-color {
+  background-color: $greyscale04;
+}
+
+.greyscale5-color {
+  background-color: $greyscale05;
+}
+
+.greyscale6-color {
+  background-color: $greyscale06;
+}
+
+.greyscale7-color {
+  background-color: $greyscale07;
+}
+
+.greyscale8-color {
+  background-color: $greyscale08;
+}
+
+.greyscale9-color {
+  background-color: $greyscale09;
+}
+
+.greyscale10-color {
+  background-color: $greyscale10;
+}
+
+.white-text {
+  color: $white;
+}
 
 // $base-lightest: $gray-5;
 // $base-lighter: $gray-10;

@@ -1,6 +1,7 @@
-$footer-bg: $white;
-$footer-border: 1px solid $french-gray-2;
-$footer-link-color: $slate-gray;
+$footer-bg: $greyscale10;
+$footer-border: 1px solid $greyscale05;
+$footer-link-color: $greyscale04;
+$footer-link-hover: $accent;
 
 footer {
   background-color: $footer-bg;
@@ -21,8 +22,8 @@ footer {
     padding-bottom: 2px;
 
     &:hover {
-      border-bottom: 1px solid $neon-blue;
-      color: $neon-blue;
+      border-bottom: 1px solid $footer-link-hover;
+      color: $footer-link-hover;
     }
   }
 }
