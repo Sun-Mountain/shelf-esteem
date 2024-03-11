@@ -20,6 +20,8 @@
     "paths": {
       "@/*": ["./src/*"],
       "@components/*": ["./src/components/*"],
+      "@db/*": ["./prisma/*"],
+      "@lib/*": ["./src/lib/*"],
       "@styles/*": ["./src/assets/style/*"],
     }
   },

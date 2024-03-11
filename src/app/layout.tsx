@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
+import Provider from "@components/Provider";
+
 import "@styles/_index.scss";
+
 import Footer from "@components/Footer";
 import MainNavigation from "@components/Navigation/MainNav";
 
@@ -16,11 +19,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <Provider>
           <MainNavigation />
           <main>
             {children}
           </main>
           <Footer />
+        </Provider>
       </body>
     </html>
   );
