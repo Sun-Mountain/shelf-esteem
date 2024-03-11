@@ -1,45 +1,27 @@
 import { ReactNode } from 'react';
-import { Button as MuiButton } from '@material-ui/core';
+import { Button as MuiButton} from '@mui/material';
 
 interface ButtonProps {
   children: ReactNode;
-  ariaLabel: string;
-  color?: 'primary' | 'secondary' | 'tertiary' | 'error' | 'success';
-  disabled?: boolean;
-  link?: string;
-  size?: 'small' | 'medium' | 'large';
-  startIcon?: ReactNode;
-  endIcon?: ReactNode;
-  variant?: 'text' | 'outlined' | 'contained';
+  color?: 'primary' | 'secondary' | 'tertiary' | 'error' | 'inherit' | 'accent' | 'default';
+  size?: 'small' | 'medium' | 'large'; 
+  type?: 'button' | 'submit' | 'reset';
+  variant?: 'contained' | 'outlined' | 'text';
 }
 
 const Button = ({
   children,
-  ariaLabel,
-  color = 'primary',
-  disabled = false,
-  link,
+  color = 'accent',
   size = 'medium',
-  startIcon,
-  endIcon,
+  type = 'button',
   variant = 'contained',
 }: ButtonProps) => {
-
-  const handleOnClick = () => {
-    console.log('Button clicked');
-  }
-
   return (
     <MuiButton
-      aria-label={ariaLabel}
       color={color}
-      disabled={disabled}
-      href={link}
-      onClick={handleOnClick}
       size={size}
+      type={type}
       variant={variant}
-      startIcon={startIcon}
-      endIcon={endIcon}
     >
       {children}
     </MuiButton>

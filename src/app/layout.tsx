@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
-import Provider from "@components/Provider";
+import { AppProps } from 'next/app';
 
 import "@styles/_index.scss";
 
 import Footer from "@components/Footer";
 import MainNavigation from "@components/Navigation/MainNav";
+import Provider from "@/components/Providers/SessionProvider";
+import ThemeProvider from "@/components/Providers/ThemeProvider";
 
 export const metadata: Metadata = {
   title: "Shelf Esteem",
@@ -20,11 +22,13 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Provider>
-          <MainNavigation />
-          <main>
-            {children}
-          </main>
-          <Footer />
+          <ThemeProvider>
+            <MainNavigation />
+            <main>
+              {children}
+            </main>
+            <Footer />
+          </ThemeProvider>
         </Provider>
       </body>
     </html>
