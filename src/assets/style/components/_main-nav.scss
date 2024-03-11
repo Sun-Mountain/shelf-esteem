@@ -3,10 +3,11 @@ $nav-bg: $primary;
 $nav-text: $base;
 $nav-icon-bg: $base;
 $nav-icon-text: $primary;
-$nav-btn-color: $greyscale03;
+$nav-btn-color: $shadow03;
 $drawer-link: $neutral;
-$drawer-link-hover: $greyscale01;
+$drawer-link-hover: $shadow01;
 $drawer-link-bg-h: $neutral10;
+$drawer-link-border: $shadow06;
 
 nav {
   background-color: $nav-bg;
@@ -117,7 +118,7 @@ nav {
       top: 0px;
       left: 25%;
       width: 50%;
-      border-top: 1px solid $base-dark;
+      border-top: 1px solid $drawer-link-border;
     }
   }
 

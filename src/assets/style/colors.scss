@@ -17,19 +17,20 @@ $rose-taupe30: rgba(143, 93, 93, .3);
 $rose-taupe10: rgba(143, 93, 93, .1);
 $rose-taupe05: rgba(143, 93, 93, .05);
 $eggplant: rgba(102, 79, 92, 1);
-$eggplant5: rgba(102, 79, 92, .5);
-$eggplant3: rgba(102, 79, 92, .3);
+$eggplant50: rgba(102, 79, 92, .5);
+$eggplant30: rgba(102, 79, 92, .3);
+$eggplant10: rgba(102, 79, 92, .1);
+$eggplant05: rgba(102, 79, 92, .05);
 $delft-blue: #3d405b;
 $delft-blue50: rgba(61, 64, 91, .5);
 $delft-blue30: rgba(61, 64, 91, .3);
 $delft-blue10: rgba(61, 64, 91, .1);
 $delft-blue05: rgba(61, 64, 91, .05);
-$slate-gray: rgba(95, 121, 123, 1);
-$slate-gray5: rgba(95, 121, 123, .5);
-$slate-gray3: rgba(95, 121, 123, .3);
 $cambridge-blue: rgba(129, 178, 154, 1);
-$cambridge-blue5: rgba(129, 178, 154, .5);
-$cambridge-blue3: rgba(129, 178, 154, .3);
+$cambridge-blue50: rgba(129, 178, 154, .5);
+$cambridge-blue30: rgba(129, 178, 154, .3);
+$cambridge-blue10: rgba(129, 178, 154, .1);
+$cambridge-blue05: rgba(129, 178, 154, .05);
 $sage: rgba(186, 191, 149, 1);
 $sage50: rgba(186, 191, 149, .5);
 $sage30: rgba(186, 191, 149, .3);
@@ -45,6 +46,16 @@ $neon-blue50: rgba(67, 97, 238, .5);
 $neon-blue30: rgba(67, 97, 238, .3);
 $neon-blue10: rgba(67, 97, 238, .1);
 $neon-blue05: rgba(67, 97, 238, .05);
+$cardinal: rgba(199, 31, 55, 1);
+$cardinal50: rgba(199, 31, 55, .5);
+$cardinal30: rgba(199, 31, 55, .3);
+$cardinal10: rgba(199, 31, 55, .1);
+$cardinal05: rgba(199, 31, 55, .05);
+$kelly-green: rgba(41, 191, 18, 1);
+$kelly-green50: rgba(41, 191, 18, .5);
+$kelly-green30: rgba(41, 191, 18, .3);
+$kelly-green10: rgba(41, 191, 18, .1);
+$kelly-green05: rgba(41, 191, 18, .05);
 
 $eerie-black: rgba(33, 37, 41, 1);
 $onyx: rgba(52, 58, 64, 1);
@@ -63,6 +74,16 @@ $base50: $eggshell50;
 $base30: $eggshell30;
 $base10: $eggshell10;
 $base05: $eggshell05;
+$base-cool: $cambridge-blue;
+$base-cool50: $cambridge-blue50;
+$base-cool30: $cambridge-blue30;
+$base-cool10: $cambridge-blue10;
+$base-cool05: $cambridge-blue05;
+$base-warm: $apricot;
+$base-warm50: $apricot50;
+$base-warm30: $apricot30;
+$base-warm10: $apricot10;
+$base-warm05: $apricot05;
 $primary: $delft-blue;
 $primary50: $delft-blue50;
 $primary30: $delft-blue30;
@@ -83,27 +104,36 @@ $accent50: $neon-blue50;
 $accent30: $neon-blue30;
 $accent10: $neon-blue10;
 $accent05: $neon-blue05;
+$accent-error: $cardinal;
+$accent-error50: $cardinal50;
+$accent-error30: $cardinal30;
+$accent-error10: $cardinal10;
+$accent-error05: $cardinal05;
+$accent-success: $kelly-green;
+$accent-success50: $kelly-green50;
+$accent-success30: $kelly-green30;
+$accent-success10: $kelly-green10;
+$accent-success05: $kelly-green05;
 $neutral: $rose-taupe;
 $neutral50: $rose-taupe50;
 $neutral30: $rose-taupe30;
 $neutral10: $rose-taupe10;
 $neutral05: $rose-taupe05;
-$greyscale01: $eerie-black;
-$greyscale02: $onyx;
-$greyscale03: $outer-space;
-$greyscale04: $slate-gray;
-$greyscale05: $french-gray-2;
-$greyscale06: $french-gray;
-$greyscale07: $platinum;
-$greyscale08: $antiflash-white;
-$greyscale09: $seasalt;
-$greyscale10: $white;
-$base-lightest: $white;
-$base-lighter: $antiflash-white;
-$base-light: $platinum;
-$base-dark: $french-gray;
-$base-darker: $slate-gray;
-$base-darkest: $outer-space;
+$neutral-cool: $eggplant;
+$neutral-cool50: $eggplant50;
+$neutral-cool30: $eggplant30;
+$neutral-cool10: $eggplant10;
+$neutral-cool05: $eggplant05;
+$shadow01: $eerie-black;
+$shadow02: $onyx;
+$shadow03: $outer-space;
+$shadow04: $slate-gray;
+$shadow05: $french-gray-2;
+$shadow06: $french-gray;
+$shadow07: $platinum;
+$shadow08: $antiflash-white;
+$shadow09: $seasalt;
+$shadow10: $white;
 
 $ink: $onyx;
 
@@ -126,6 +156,46 @@ $ink: $onyx;
 
 .base05-color {
   background-color: $base05;
+}
+
+.base-cool-color {
+  background-color: $base-cool;
+}
+
+.base-cool50-color {
+  background-color: $base-cool50;
+}
+
+.base-cool30-color {
+  background-color: $base-cool30;
+}
+
+.base-cool10-color {
+  background-color: $base-cool10;
+}
+
+.base-cool05-color {
+  background-color: $base-cool05;
+}
+
+.base-warm-color {
+  background-color: $base-warm;
+}
+
+.base-warm50-color {
+  background-color: $base-warm50;
+}
+
+.base-warm30-color {
+  background-color: $base-warm30;
+}
+
+.base-warm10-color {
+  background-color: $base-warm10;
+}
+
+.base-warm05-color {
+  background-color: $base-warm05;
 }
 
 .primary-color {
@@ -208,6 +278,46 @@ $ink: $onyx;
   background-color: $accent05;
 }
 
+.accent-error-color {
+  background-color: $accent-error;
+}
+
+.accent-error50-color {
+  background-color: $accent-error50;
+}
+
+.accent-error30-color {
+  background-color: $accent-error30;
+}
+
+.accent-error10-color {
+  background-color: $accent-error10;
+}
+
+.accent-error05-color {
+  background-color: $accent-error05;
+}
+
+.accent-success-color {
+  background-color: $accent-success;
+}
+
+.accent-success50-color {
+  background-color: $accent-success50;
+}
+
+.accent-success30-color {
+  background-color: $accent-success30;
+}
+
+.accent-success10-color {
+  background-color: $accent-success10;
+}
+
+.accent-success05-color {
+  background-color: $accent-success05;
+}
+
 .neutral-color {
   background-color: $neutral;
 }
@@ -228,88 +338,66 @@ $ink: $onyx;
   background-color: $neutral05;
 }
 
-.greyscale1-color {
-  background-color: $greyscale01;
+.neutral-cool-color {
+  background-color: $neutral-cool;
 }
 
-.greyscale2-color {
-  background-color: $greyscale02;
+.neutral-cool50-color {
+  background-color: $neutral-cool50;
 }
 
-.greyscale3-color {
-  background-color: $greyscale03;
+.neutral-cool30-color {
+  background-color: $neutral-cool30;
 }
 
-.greyscale4-color {
-  background-color: $greyscale04;
+.neutral-cool10-color {
+  background-color: $neutral-cool10;
 }
 
-.greyscale5-color {
-  background-color: $greyscale05;
+.neutral-cool05-color {
+  background-color: $neutral-cool05;
 }
 
-.greyscale6-color {
-  background-color: $greyscale06;
+.shadow01-color{
+  background-color: $shadow01;
 }
 
-.greyscale7-color {
-  background-color: $greyscale07;
+.shadow02-color {
+  background-color: $shadow02;
 }
 
-.greyscale8-color {
-  background-color: $greyscale08;
+.shadow03-color {
+  background-color: $shadow03;
 }
 
-.greyscale9-color {
-  background-color: $greyscale09;
+.shadow04-color {
+  background-color: $shadow04;
 }
 
-.greyscale10-color {
-  background-color: $greyscale10;
+.shadow05-color {
+  background-color: $shadow05;
+}
+
+.shadow06-color {
+  background-color: $shadow06;
+}
+
+.shadow07-color {
+  background-color: $shadow07;
+}
+
+.shadow08-color {
+  background-color: $shadow08;
+}
+
+.shadow09-color {
+  background-color: $shadow09;
+}
+
+.shadow10-color {
+  background-color: $shadow10;
 }
 
 .white-text {
   color: $white;
 }
-
-// $base-lightest: $gray-5;
-// $base-lighter: $gray-10;
-// $base-light: $gray-30;
-// $base-extra-light: $gray-3;
-// $base-dark: $gray-60;
-// $base-darker: $gray-70;
-// $base-darkest: $gray-90;
-// $ink: $gray-90;
-// $primary: $blue-60v;
-// $primary-vivid: $blue-warm-60v;
-// $primary-light: $blue-30;
-// $primary-lighter: $blue-10;
-// $primary-extra-light: $blue-5;
-// $primary-dark: $blue-warm-70v;
-// $primary-darker: $blue-warm-80v;
-// $secondary: $green-cool-50v;
-// $secondary-light: $green-cool-20;
-// $secondary-lighter: $green-cool-5;
-// $secondary-extra-light: #f6f9f6;
-// $secondary-vivid: $green-cool-60v;
-// $secondary-dark: $green-cool-70v;
-// $secondary-darker: $green-cool-80v;
-// $tertiary: $indigo-50;
-// $tertiary-light: $indigo-30;
-// $tertiary-lighter: $indigo-cool-5v;
-// $tertiary-extra-light: #f8f8ff;
-// $tertiary-vivid: $indigo-50v;
-// $tertiary-dark: $indigo-60v;
-// $tertiary-darker: $indigo-70v;
-// $accent-cool: $cyan-30v;
-// $accent-cool-light: $blue-cool-20v;
-// $accent-cool-lighter: $blue-cool-10v;
-// $accent-cool-extra-light: #f0f9fc;
-// $accent-cool-dark: $blue-cool-40v;
-// $accent-cool-darker: $blue-cool-60v;
-// $accent-warm: $orange-30v;
-// $accent-warm-light: $orange-20v;
-// $accent-warm-lighter: $orange-10;
-// $accent-warm-extra-light: $orange-5v;
-// $accent-warm-dark: $orange-50v;
-// $accent-warm-darker: $orange-60;

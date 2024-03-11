@@ -1,5 +1,16 @@
+$border-color: $shadow06;
+
+.group + .group {
+  margin-top: 3rem;
+
+  h2 {
+    margin: 0;
+    margin-bottom: 1rem;
+  }
+}
+
 .color-shield {
-  margin: 1rem 0;
+  margin: 1rem 2rem;
   max-width: 50rem;
   text-align: center;
 
@@ -8,17 +19,37 @@
   }
 
   .color-stripe:first-of-type {
+    border: 1px solid $border-color;
+    border-bottom: 0;
     border-top-left-radius: $border-radius;
     border-top-right-radius: $border-radius;
   }
-}
 
-.color-stripe {
-  padding: 0.5rem 1rem;
+  .color-stripe,
+  .detail {
+    border-left: 1px solid $border-color;
+    border-right: 1px solid $border-color;
+    padding: 0.5rem 1rem;
+  }
+
+  .detail:first-of-type {
+    border-top: 1px solid $border-color;
+  }
+
+  .detail:last-of-type {
+    border: 1px solid $border-color;
+    border-top: 0;
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+    width: 100%;
+  }
+
+  .title {
+    font-weight: 700;
+  }
 }
 
 .color-details {
-
   .detail {
     padding: 0.5rem 1rem;
   }
@@ -27,8 +58,14 @@
 .shields-container {
   display: flex;
   flex-wrap: wrap;
+}
+
+.typograph-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   
-  .color-shield + .color-shield {
-    margin-left: 4rem;
+  div {
+    width: 50%;
   }
 }
