@@ -14,6 +14,7 @@ interface SignUpFormValues {
 }
 
 const SignUpForm:FC = () => {
+  const router = useRouter();
 
   const methods = useForm<SignUpFormValues>({
     defaultValues: {
