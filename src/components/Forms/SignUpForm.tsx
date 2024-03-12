@@ -27,7 +27,7 @@ const SignUpForm:FC = () => {
 
   const { handleSubmit } = methods;
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: any) => {
     const JsonData = JSON.stringify(data);
     const response = await fetch('/api/users', {
       method: 'POST',

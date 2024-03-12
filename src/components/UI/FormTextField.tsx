@@ -13,7 +13,7 @@ const FormTextField = ({
   label,
   required = false,
   type = "text",
-}) => {
+}: FormTextFieldProps) => {
   const { control } = useFormContext()
   return (
     <Controller

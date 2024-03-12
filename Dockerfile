@@ -4,9 +4,9 @@
 ARG NODE_VERSION=20.4.0
 FROM node:${NODE_VERSION}-slim as base
 
-LABEL fly_launch_runtime="Next.js"
+LABEL fly_launch_runtime="Next.js/Prisma"
 
-# Next.js app lives here
+# Next.js/Prisma app lives here
 WORKDIR /app
 
 # Set production environment
@@ -22,17 +22,23 @@ FROM base as build
 
 # Install packages needed to build node modules
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential node-gyp pkg-config python-is-python3
+    apt-get install --no-install-recommends -y build-essential node-gyp openssl pkg-config python-is-python3
 
 # Install node modules
 COPY --link package.json pnpm-lock.yaml ./
 RUN pnpm install --frozen-lockfile --prod=false
 
+# Generate Prisma Client
+COPY --link prisma .
+RUN npx prisma generate
+
 # Copy application code
 COPY --link . .
 
 # Build application
-RUN pnpm run build
+RUN --mount=type=secret,id=DATABASE_URL \
+    DATABASE_URL="$(cat /run/secrets/DATABASE_URL)" \
+    pnpm run build
 
 # Remove development dependencies
 RUN pnpm prune --prod
@@ -40,6 +46,11 @@ RUN pnpm prune --prod
 
 # Final stage for app image
 FROM base
+
+# Install packages needed for deployment
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y openssl && \
+    rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Copy built application
 COPY --from=build /app /app

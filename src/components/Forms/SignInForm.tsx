@@ -23,15 +23,14 @@ const SignInForm:FC = () => {
 
   const { handleSubmit } = methods;
 
-  const onSubmit = async (data) => {
-
+  const onSubmit = async (data: any) => {
     const response = await signIn('credentials', {
       redirect: false,
       email: data.email,
       password: data.password,
     });
     
-    if (response.error) {
+    if (response?.error) {
       console.log('Sign in failed.')
     } else {
       router.refresh();

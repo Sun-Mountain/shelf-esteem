@@ -7,16 +7,18 @@ import { Button as MuiButton} from '@mui/material';
 interface ButtonProps {
   children: ReactNode;
   buttonAction?: MouseEventHandler<HTMLButtonElement> | undefined;
+  className?: string;
   color?: 'primary' | 'secondary' | 'tertiary' | 'error' | 'inherit' | 'accent' | 'default';
   disabled?: boolean;
   size?: 'small' | 'medium' | 'large'; 
-  type?: 'button' | 'submit' | 'link';
+  type?: 'button' | 'submit' | 'reset' | undefined;
   variant?: 'contained' | 'outlined' | 'text';
 }
 
 const Button = ({
   children,
   buttonAction,
+  className,
   color = 'accent',
   disabled = false,
   size = 'medium',
@@ -30,6 +32,7 @@ const Button = ({
 
   return (
     <MuiButton
+      className={className}
       disabled={disabled}
       onClick={handleOnClick}
       size={size}

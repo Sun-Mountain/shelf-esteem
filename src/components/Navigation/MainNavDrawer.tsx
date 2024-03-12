@@ -10,6 +10,8 @@ import NavLinks from './MainNavLinks';
 
 const MainNavDrawer = ({
   user
+}: {
+  user: any
 }) => {
   const [open, setOpen] = useState(false);
 

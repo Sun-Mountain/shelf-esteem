@@ -7,6 +7,8 @@ import Button from "@components/UI/Button";
 
 const NavLinks = ({
   user
+}: {
+  user: any
 }) => {
 
   function handleSignOut () {
