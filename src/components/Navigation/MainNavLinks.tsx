@@ -29,9 +29,11 @@ const NavLinks = ({
           <Link className="link-w-icon" href="/addBook">
             Add Books <BookmarkAdd />
           </Link>
-          <Button className='nav-link' buttonAction={handleSignOut}>
-            Sign Out
-          </Button>
+          <div className="sign-out-container">
+            <Button className='nav-link' buttonAction={handleSignOut}>
+              Sign Out
+            </Button>
+          </div>
         </>
       ) : (
         <Link href="/sign-in">

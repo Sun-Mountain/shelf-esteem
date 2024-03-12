@@ -7,11 +7,12 @@ import {
   Menu
 } from '@mui/icons-material';
 import NavLinks from './MainNavLinks';
+import { Session } from 'next-auth';
 
 const MainNavDrawer = ({
-  user
+  session
 }: {
-  user: any
+  session: Session
 }) => {
   const [open, setOpen] = useState(false);
 
@@ -31,7 +32,7 @@ const MainNavDrawer = ({
               <Close />
             </IconButton>
           </div>
-          <NavLinks user={user} />
+          <NavLinks user={session?.user} />
         </div>
       </Drawer>
     </div>

@@ -23,6 +23,7 @@ const MainNavigation = async () => {
             </div>
           </Link>
         </div>
+        <MainNavDrawer session={session} />
         <div id="nav-link-group">
           <NavLinks user={session?.user} />
         </div>
