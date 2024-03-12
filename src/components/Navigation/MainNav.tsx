@@ -1,20 +1,18 @@
-'use client';
-
-import { useState } from 'react';
 import Link from 'next/link';
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/authOptions";
 import { Drawer, IconButton } from '@mui/material';
-import {
-  AutoStoriesTwoTone,
-  Close,
-  Menu
-} from '@mui/icons-material';
+import { AutoStoriesTwoTone } from '@mui/icons-material';
 import NavLinks from './MainNavLinks';
+import MainNavDrawer from './MainNavDrawer';
 
+async function getSession() {
+  const session = await getServerSession(authOptions);
+  return session;
+}
 
-
-const MainNavigation = () => {
-  const [open, setOpen] = useState(false);
-
+const MainNavigation = async () => {
+  const session = await getSession();
   return (
     <nav>
       <div id="main-navigation">
@@ -25,27 +23,8 @@ const MainNavigation = () => {
             </div>
           </Link>
         </div>
-        <div id="drawer-container">
-          <IconButton onClick={() => setOpen(true)}>
-            <Menu />
-          </IconButton>
-          <Drawer
-            anchor="right"
-            open={open}
-            onClose={() => setOpen(false)}
-          >
-            <div id="main-nav-drawer" className="nav-content">
-              <div className="close-btn-container">
-                <IconButton onClick={() => setOpen(false)}>
-                  <Close />
-                </IconButton>
-              </div>
-              <NavLinks />
-            </div>
-          </Drawer>
-        </div>
         <div id="nav-link-group">
-          <NavLinks />
+          <NavLinks user={session?.user} />
         </div>
       </div>
     </nav>

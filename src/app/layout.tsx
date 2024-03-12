@@ -6,7 +6,6 @@ import "@styles/_index.scss";
 import Footer from "@components/Footer";
 import MainNavigation from "@components/Navigation/MainNav";
 import Provider from "@/components/Providers/SessionProvider";
-import ThemeProvider from "@/components/Providers/ThemeProvider";
 
 export const metadata: Metadata = {
   title: "Shelf Esteem",
@@ -22,13 +21,13 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Provider>
-          <ThemeProvider>
+          {/* <ThemeProvider> */}
             <MainNavigation />
             <main>
               {children}
             </main>
             <Footer />
-          </ThemeProvider>
+          {/* </ThemeProvider> */}
         </Provider>
       </body>
     </html>

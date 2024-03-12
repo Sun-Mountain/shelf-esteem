@@ -13,22 +13,22 @@ interface SignInFormValues {
 }
 
 const SignInForm:FC = () => {
-  const methods = useForm<SignUpFormValues>({
+  const router = useRouter();
+  const methods = useForm<SignInFormValues>({
     defaultValues: {
-      username: "",
       email: "",
-      password: "",
-      passwordConfirm: "",
+      password: ""
     }
   });
 
   const { handleSubmit } = methods;
 
   const onSubmit = async (data) => {
+
     const response = await signIn('credentials', {
       redirect: false,
-      email: formValues.email,
-      password: formValues.password,
+      email: data.email,
+      password: data.password,
     });
     
     if (response.error) {
