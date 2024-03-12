@@ -6,7 +6,7 @@ interface ButtonProps {
   color?: 'primary' | 'secondary' | 'tertiary' | 'error' | 'inherit' | 'accent' | 'default';
   disabled?: boolean;
   size?: 'small' | 'medium' | 'large'; 
-  type?: 'button' | 'submit' | 'reset';
+  type?: 'button' | 'submit' | 'link';
   variant?: 'contained' | 'outlined' | 'text';
 }
 

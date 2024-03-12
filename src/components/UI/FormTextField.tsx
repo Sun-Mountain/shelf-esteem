@@ -4,12 +4,14 @@ import { TextField } from "@mui/material";
 interface FormTextFieldProps {
   label: string;
   name: string;
+  required?: boolean;
   type?: "text" | "password" | "number";
 }
 
 const FormTextField = ({
   name,
   label,
+  required = false,
   type = "text",
 }) => {
   const { control } = useFormContext()
@@ -28,6 +30,7 @@ const FormTextField = ({
           helperText={error ? error.message : null}
           onChange={onChange}
           label={label}
+          required={required}
           type={type}
           value={value || ""}
           variant="outlined"

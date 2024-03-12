@@ -13,7 +13,7 @@ interface SignUpFormValues {
   passwordConfirm: string;
 }
 
-const SignUpForm = () => {
+const SignUpForm:FC = () => {
 
   const methods = useForm<SignUpFormValues>({
     defaultValues: {
@@ -27,8 +27,20 @@ const SignUpForm = () => {
   const { handleSubmit } = methods;
 
   const onSubmit = async (data) => {
-    // handle form submission
-    console.log(data)
+    const JsonData = JSON.stringify(data);
+    const response = await fetch('/api/users', {
+      method: 'POST',
+      body: JsonData,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (response.ok) {
+      router.push('/sign-in');
+    } else {
+      console.log('Registration failed.')
+    }
   }
 
   return (
@@ -39,18 +51,21 @@ const SignUpForm = () => {
             <FormTextField
               name="username"
               label="Username"
+              required={true}
             />
           </div>
           <div className="input-container">
             <FormTextField
               label="Email"
               name="email"
+              required={true}
             />
           </div>
           <div className="input-container">
             <FormTextField
               label="Password"
               name="password"
+              required={true}
               type="password"
             />
           </div>
@@ -58,6 +73,7 @@ const SignUpForm = () => {
             <FormTextField
               label="Confirm Password"
               name="passwordConfirm"
+              required={true}
               type="password"
             />
           </div>
