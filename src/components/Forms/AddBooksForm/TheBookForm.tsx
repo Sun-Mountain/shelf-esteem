@@ -46,6 +46,10 @@ const TheBookForm = ({
         message: 'Invalid ISBN'
       });
     }
+
+    if (isbn === '') {
+      clearErrors('isbn');
+    }
   };
 
   return (
@@ -55,7 +59,7 @@ const TheBookForm = ({
           <div className="input-container">
             <FormTextField
               error={errors.isbn}
-              helperText={errors.isbn ? errors.isbn.message : ""}
+              helperText={errors.isbn ? errors.isbn.message : "Provide a valid ISBN number."}
               name="isbn"
               label="ISBN"
               required={true}

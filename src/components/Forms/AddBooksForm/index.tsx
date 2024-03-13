@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import TheBookForm from "./TheBookForm";
+import RecentlyAdded from "./RecentlyAdded";
 
 const AddBookForm = ({
   userId
@@ -11,7 +12,13 @@ const AddBookForm = ({
   const [isbnList, setIsbnList] = useState<string[]>([]);
 
   return (
-    <TheBookForm isbnList={isbnList} setIsbnList={setIsbnList} />
+    <>
+      <TheBookForm
+        isbnList={isbnList}
+        setIsbnList={setIsbnList}
+      />
+      <RecentlyAdded isbnList={isbnList} />
+    </>
   )
 }
 
