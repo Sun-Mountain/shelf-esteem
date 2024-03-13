@@ -1,8 +1,8 @@
-import { db } from '@/db/lib';
+import { db } from '@db/lib';
 import { Book, Prisma } from '@prisma/client';
 import type { AuthorBook as AuthorBookProps } from '@prisma/client';
-import { AuthorProps, IndustryIdentifierProps } from '@/types/booktypes';
-import { getLogger } from '@/lib/logger';
+import { AuthorProps, IndustryIdentifierProps } from '@types/booktypes';
+import { getLogger } from '@lib/logger';
 
 const logger = getLogger();
 
@@ -119,6 +119,7 @@ export async function createBook(
 ): Promise<BookFull | undefined> {
   const {
     title,
+    subtitle,
     authors,
     description,
     categories,
@@ -136,6 +137,7 @@ export async function createBook(
     const newBook = await db.book.create({
       data: {
         title,
+        subtitle,
         description,
         pageCount,
         language,
@@ -150,7 +152,7 @@ export async function createBook(
       }
     });
 
-    if (categories && newBook) {
+    if (!!categories && newBook) {
       const bookCategories = await findCategories(categories);
       if (bookCategories?.length < categories.length) {
         const newCategories = categories.filter((c) => !bookCategories.some((ec) => ec.name === c));

@@ -1,4 +1,4 @@
-import { db } from '@/db/lib'; 
+import { db } from '@db/lib'; 
 import { createBook, findBookById, findIndustryIdentifiers } from '@/db/lib/books';
 import { createUserLibraryBook, findUserLibraryBook } from '@/db/lib/libraries';
 import { withAuth } from '@/lib/auth';

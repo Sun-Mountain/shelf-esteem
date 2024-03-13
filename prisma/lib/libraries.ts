@@ -1,6 +1,6 @@
-import { db } from '@/db/lib';
+import { db } from '@db/lib';
 import { UserLibraryBook, Prisma } from '@prisma/client';
-import { getLogger } from '@/lib/logger';
+import { getLogger } from '@lib/logger';
 
 const logger = getLogger();
 

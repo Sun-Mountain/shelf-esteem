@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { useSession } from 'next-auth/react';
 import { CircularProgress } from '@mui/material';
 
 interface BookListItemProps {
@@ -9,8 +8,19 @@ interface BookListItemProps {
 const BookListItem = ({
   isbn
 }: BookListItemProps) => {
-  const { data: session } = useSession();
-  
+
+  // useEffect(() => {
+  //   // fetchBookStatus(isbn);
+  //   fetch('/api/userLibraryBooks', {
+  //     method: 'POST',
+  //     body: JSON.stringify({ isbn }),
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //   })
+  //   .then(response => console.log(response.json()))
+    
+  // }, [isbn]);
 
   return (
     <div className="book-list-item">
