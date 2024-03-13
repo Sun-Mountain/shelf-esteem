@@ -1,18 +1,14 @@
+'use client';
+
 import Link from 'next/link';
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/authOptions";
+import { useSession } from 'next-auth/react';
 import { Drawer, IconButton } from '@mui/material';
 import { AutoStoriesTwoTone } from '@mui/icons-material';
 import NavLinks from './MainNavLinks';
 import MainNavDrawer from './MainNavDrawer';
 
-async function getSession() {
-  const session = await getServerSession(authOptions);
-  return session;
-}
-
-const MainNavigation = async () => {
-  const session = await getSession();
+const MainNavigation = () => {
+  const { data: session, status } = useSession();
   return (
     <nav>
       <div id="main-navigation">

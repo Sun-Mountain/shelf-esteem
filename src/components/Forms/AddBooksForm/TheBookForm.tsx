@@ -15,6 +15,7 @@ const TheBookForm = ({
   setIsbnList
 }: BookFormProps) => {
   const [error, setError] = useState<string>('');
+  const [isbn, setIsbn] = useState<string>('');
 
   const handleChange = async (value: string) => {
     event.preventDefault();
@@ -22,11 +23,16 @@ const TheBookForm = ({
 
     if (isbnList.includes(isbn)) {
       setError('This ISBN is already in the list');
+      return;
     }
 
     if (parse(isbn)) {
       setError('');
       setIsbnList([...isbnList, isbn]);
+      setTimeout(() => {
+        setIsbn('');
+      }, 100);
+      return;
     }
 
     if (!parse(isbn)) {
@@ -46,7 +52,11 @@ const TheBookForm = ({
         helperText={error ? error : "Please enter a valid ISBN."}
         id='isbn'
         label='ISBN'
-        onChange={(e) => handleChange(e.target.value)}
+        value={isbn || ""}
+        onChange={(e) => {
+          handleChange(e.target.value)
+          setIsbn(e.target.value)
+        }}
       />
     </div>
   )

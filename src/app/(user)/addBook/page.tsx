@@ -1,4 +1,4 @@
-import AddBookForm from "@/components/Forms/AddBooksForm"
+import AddBookForm from "@/components/Forms/AddBooksForm";
 
 const AddBook = () => {
   return (

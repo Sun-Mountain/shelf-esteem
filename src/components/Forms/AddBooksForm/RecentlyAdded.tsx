@@ -1,10 +1,11 @@
-
+import { useSession } from "next-auth/react";
 
 interface RecentlyAddedProps {
   isbnList: string[];
 }
 
 const RecentlyAdded = ({ isbnList }: RecentlyAddedProps) => {
+  const { data: session, status } = useSession();
   return (
     <div className="recently-added-container">
       <h2>Recently Added</h2>
@@ -15,4 +16,4 @@ const RecentlyAdded = ({ isbnList }: RecentlyAddedProps) => {
   )
 }
 
-export default RecentlyAdded
+export default RecentlyAdded;
