@@ -1,7 +1,9 @@
+'use client';
+
+import { useState } from "react";
 import { Dispatch, SetStateAction } from "react";
-import { useForm, FormProvider } from "react-hook-form";
 import { parse } from "isbn3";
-import FormTextField from "@components/UI/FormTextField";
+import { TextField } from "@mui/material";
 
 interface BookFormProps {
   isbnList: string[];
@@ -12,61 +14,40 @@ const TheBookForm = ({
   isbnList,
   setIsbnList
 }: BookFormProps) => {
-  const methods = useForm({
-    defaultValues: {
-      isbn: ""
-    }
-  });
-  
-  const {
-    clearErrors,
-    formState: { errors },
-    handleSubmit,
-    setError,
-  } = methods;
+  const [error, setError] = useState<string>('');
 
-  const validateIsbn = async (data: any) => {
-    const isbn = data['isbn'];
+  const handleChange = async (value: string) => {
+    event.preventDefault();
+    const isbn = value;
 
     if (isbnList.includes(isbn)) {
-      setError('isbn', {
-        type: 'manual',
-        message: 'This ISBN is already in the list'
-      });
+      setError('This ISBN is already in the list');
     }
 
     if (parse(isbn)) {
-      clearErrors('isbn');
+      setError('');
       setIsbnList([...isbnList, isbn]);
     }
 
     if (!parse(isbn)) {
-      setError('isbn', {
-        type: 'manual',
-        message: 'Invalid ISBN'
-      });
+      setError('Invalid ISBN');
     }
 
     if (isbn === '') {
-      clearErrors('isbn');
+      setError('');
     }
   };
 
   return (
     <div className="form-container">
-      <form onChange={handleSubmit(validateIsbn)}>
-        <FormProvider {...methods}>
-          <div className="input-container">
-            <FormTextField
-              error={errors.isbn}
-              helperText={errors.isbn ? errors.isbn.message : "Provide a valid ISBN number."}
-              name="isbn"
-              label="ISBN"
-              required={true}
-            />
-          </div>
-        </FormProvider>
-      </form>
+      <TextField
+        error={!!error}
+        fullWidth
+        helperText={error ? error : "Please enter a valid ISBN."}
+        id='isbn'
+        label='ISBN'
+        onChange={(e) => handleChange(e.target.value)}
+      />
     </div>
   )
 }
