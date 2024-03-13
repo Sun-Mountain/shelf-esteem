@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { signOut } from 'next-auth/react';
-import { BookmarkAdd, Home } from "@mui/icons-material";
+import { BookmarkAdd, Home, LibraryBooks } from "@mui/icons-material";
 import Button from "@components/UI/Button";
 
 const NavLinks = ({
@@ -26,6 +26,9 @@ const NavLinks = ({
       </Link>
       {user ? (
         <>
+          <Link className="link-w-icon" href="/library">
+            My Library <LibraryBooks />
+          </Link>
           <Link className="link-w-icon" href="/addBook">
             Add Books <BookmarkAdd />
           </Link>

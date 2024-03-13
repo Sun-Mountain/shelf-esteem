@@ -1,7 +1,7 @@
 'use client';
 
 import { FC } from "react";
-import { Controller, FormProvider, useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import Button from "@components/UI/Button";
 import FormTextField from "@components/UI/FormTextField";
