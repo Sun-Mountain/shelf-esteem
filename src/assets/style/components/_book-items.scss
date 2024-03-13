@@ -1,0 +1,12 @@
+$border-color: $shadow05;
+$border-radius: 4px;
+
+$border: 1px solid $border-color;
+
+.book-list-item {
+  border: $border;
+  border-radius: $border-radius;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
