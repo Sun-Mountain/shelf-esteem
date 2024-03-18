@@ -92,6 +92,7 @@ export async function findBookById(id: string): Promise<BookFull | undefined> {
   const book = await db.book.findUnique({
     where: { id },
     include: {
+      authors: true,
       categories: true,
       industryIdentifiers: true,
     },

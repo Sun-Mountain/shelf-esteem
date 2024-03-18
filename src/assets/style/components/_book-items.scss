@@ -20,6 +20,10 @@ $border: 1px solid $border-color;
   }
 
   .book-thumbnail {
-    width: 70px;
+    width: 65px;
   }
+}
+
+.book-list-item + .book-list-item {
+  margin-top: 1rem;
 }
