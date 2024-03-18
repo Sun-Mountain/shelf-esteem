@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from "react";
-import { Dispatch, SetStateAction } from "react";
+import { useState, Dispatch, SetStateAction } from "react";
+import { createUserLibraryBook } from "@/lib/queries";
 import { parse } from "isbn3";
 import { TextField } from "@mui/material";
 
@@ -29,6 +29,7 @@ const TheBookForm = ({
     if (parse(isbn)) {
       setError('');
       setIsbnList([...isbnList, isbn]);
+      await createUserLibraryBook(isbn);
       setTimeout(() => {
         setIsbn('');
       }, 100);

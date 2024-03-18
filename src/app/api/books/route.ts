@@ -1,8 +1,8 @@
 import { db } from '@db/lib'; 
-import { createBook, findBookById, findIndustryIdentifiers } from '@/db/lib/books';
-import { createUserLibraryBook, findUserLibraryBook } from '@/db/lib/libraries';
-import { withAuth } from '@/lib/auth';
-import { getLogger } from '@/lib/logger';
+import { createBook, findBookById, findIndustryIdentifiers } from '@db/lib/books';
+import { createUserLibraryBook, findUserLibraryBook } from '@db/lib/libraries';
+import { withAuth } from '@lib/auth';
+import { getLogger } from '@lib/logger';
 import {
   Book,
   Prisma,

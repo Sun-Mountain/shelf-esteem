@@ -41,7 +41,6 @@ export async function POST(req: NextRequest) {
 
       // Check if book is already in user's library
       const userLibraryBookExists = await findUserLibraryBook({ bookId: book.id, userId });
-      console.log(userLibraryBookExists);
 
       if (!userLibraryBookExists) {
         // Add book to user's library
@@ -69,4 +68,50 @@ export async function POST(req: NextRequest) {
       });
     }
   })
+}
+
+export async function GET(req: NextRequest) {
+  return withAuth({
+    resource: 'userLibraryBooks',
+    action: 'read:own',
+    authErrorMessage: 'You are not authorized to read this library',
+  })(async (session: Session) => {
+    try {
+      const searchParams = await req.nextUrl.searchParams;
+      const isbn = searchParams.get('isbn');
+      const userId = searchParams.get('userId');
+
+      // find book by isbn
+      const bookExists = await findIndustryIdentifiers([{ identifier: isbn }]);
+      
+      // find in User Library
+
+      if (!bookExists.length) {
+        return NextResponse.json({
+          bookFound: false,
+          message: 'Book not found'
+        }, {
+          status: 404
+        });
+      }
+
+      const book = await findBookById(bookExists[0].bookId);
+
+      const userLibraryBookExists = await findUserLibraryBook({ bookId: book.id, userId });
+
+      if (!userLibraryBookExists) {
+        return NextResponse.json({
+          bookFound: false,
+          message: 'Book not found in your library'
+        }, {
+          status: 404
+        });
+      }
+
+      return NextResponse.json({ bookFound: true, book }, { status: 200 });
+    } catch (error) {
+      logger.error(error);
+      return NextResponse.error();
+    }
+  });
 }

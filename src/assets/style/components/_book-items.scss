@@ -9,4 +9,17 @@ $border: 1px solid $border-color;
   display: flex;
   justify-content: space-between;
   padding: 1rem;
+
+
+  .book-info {
+    display: flex;
+  }
+
+  .thumbnail-container {
+    margin-right: 1rem;
+  }
+
+  .book-thumbnail {
+    width: 70px;
+  }
 }
