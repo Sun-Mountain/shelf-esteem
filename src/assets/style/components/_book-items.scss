@@ -3,6 +3,11 @@ $border-radius: 4px;
 
 $border: 1px solid $border-color;
 
+$isbn-color: $shadow04;
+
+$icon-success-color: $accent-success;
+$icon-error-color: $accent-error;
+
 .book-list-item {
   border: $border;
   border-radius: $border-radius;
@@ -19,8 +24,44 @@ $border: 1px solid $border-color;
     margin-right: 1rem;
   }
 
+  .book-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
   .book-thumbnail {
-    width: 65px;
+    width: 50px;
+  }
+
+  .title-container {
+    font-size: 1rem;
+    margin-top: 0;
+    margin-bottom: .25rem;
+  }
+
+  .subtitle-container {
+    font-size: .9rem;
+    margin-top: 0;
+    margin-bottom: .25rem;
+  }
+
+  .authors {
+    font-size: 1rem;
+  }
+
+  .isbn-container {
+    color: $isbn-color;
+    font-size: .9rem;
+    padding-top: .5rem;
+  }
+
+  .icon-success {
+    color: $icon-success-color;
+  }
+
+  .icon-error {
+    color: $icon-error-color;
   }
 }
 

@@ -5,6 +5,8 @@ import { useSession } from 'next-auth/react';
 import { CircularProgress } from '@mui/material';
 import { Check, DoNotDisturb } from '@mui/icons-material';
 
+import BookData from './BookData';
+
 interface BookListItemProps {
   isbn: string;
 }
@@ -14,6 +16,7 @@ const BookListItem = ({
 }: BookListItemProps) => {
   const [bookStatus, setBookStatus] = useState('' as string);
   const [bookData, setBookData] = useState({} as any);
+  const [authors, setAuthors] = useState([] as string[]);
   const { data: session } = useSession();
   const userId = session?.user.id;
 
@@ -28,10 +31,12 @@ const BookListItem = ({
     console.log("Getting book....", data)
     const bookFound = data.bookFound;
     const book = data.book;
-
+    
     if (bookFound) {
+      const authors = book.authors.map(author => author.authorName)
       setBookStatus('inLibrary');
       setBookData(book);
+      setAuthors(authors);
     } else {
       setBookStatus('notInLibrary');
     }
@@ -60,18 +65,13 @@ const BookListItem = ({
     <div className="book-list-item">
       <div className="book-info">
         { bookData ? (
-          <>
-           { bookData.thumbnail && (
-              <div className="thumbnail-container">
-                <img
-                  src={bookData.thumbnail}
-                  alt={bookData.title}
-                  className="book-thumbnail"
-                />
-              </div>
-           )}
-            { bookData.title || isbn }
-          </>
+          <BookData
+            authors={authors}
+            isbn={isbn}
+            thumbnail={bookData?.thumbnail}
+            title={bookData?.title}
+            subtitle={bookData?.subtitle}
+          />
         ) : ( isbn )}
       </div>
       <div className="status">
