@@ -4,6 +4,7 @@ interface BookDataProps {
   subtitle?: string;
   thumbnail?: string;
   title?: string;
+  addedOn?: Date;
 }
 
 const BookData = ({
@@ -11,8 +12,11 @@ const BookData = ({
   authors,
   subtitle,
   thumbnail,
-  title
+  title,
+  addedOn
 }: BookDataProps) => {
+  const date = new Date(addedOn);
+
   return (
     <>
      { thumbnail && (
@@ -25,7 +29,7 @@ const BookData = ({
         </div>
      )}
     <div className="book-details">
-      <h6 className="title-container">
+      <h6 className={`title-container ${!!subtitle && 'has-subtitle'}`}>
         { title || isbn }
       </h6>
       { subtitle && (
@@ -41,6 +45,11 @@ const BookData = ({
       { !!title && (
         <div className="isbn-container">
           { isbn }
+        </div>
+      )}
+      { addedOn && (
+        <div className="added-on">
+          Added on: { date.toDateString() }
         </div>
       )}
     </div>

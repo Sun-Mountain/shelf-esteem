@@ -40,10 +40,14 @@ $icon-error-color: $accent-error;
     margin-bottom: .25rem;
   }
 
+  .has-subtitle {
+    margin-bottom: 0;
+  }
+
   .subtitle-container {
     font-size: .9rem;
     margin-top: 0;
-    margin-bottom: .25rem;
+    margin-bottom: .5rem;
   }
 
   .authors {
@@ -53,7 +57,7 @@ $icon-error-color: $accent-error;
   .isbn-container {
     color: $isbn-color;
     font-size: .9rem;
-    padding-top: .5rem;
+    padding: .5rem 0;
   }
 
   .icon-success {
@@ -62,6 +66,10 @@ $icon-error-color: $accent-error;
 
   .icon-error {
     color: $icon-error-color;
+  }
+
+  .added-on {
+    font-size: .9rem;
   }
 }
 

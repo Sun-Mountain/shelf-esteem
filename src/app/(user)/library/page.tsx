@@ -3,10 +3,11 @@
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { LibraryBookProps } from '@/types';
+import BookListItem from '@/components/BookListItem';
 
 const Library = () => {
   const [loading, setLoading] = useState(true);
-  const [books, setBooks] = useState([] as LibraryBookProps[]);
+  const [bookData, setBookData] = useState([] as LibraryBookProps[]);
   const { data: session } = useSession();
   const userId = session?.user.id;
 
@@ -18,7 +19,7 @@ const Library = () => {
       }
     });
     const data = await response.json();
-    setBooks(data);
+    setBookData(data.userLibraryBooks);
     if (data) setLoading(false);
   }
 
@@ -35,7 +36,18 @@ const Library = () => {
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <p>Not loading</p>
+        <>
+          {bookData.map((data, index) => (
+            <BookListItem
+              key={index}
+              isbn={data.book.industryIdentifiers[0].identifier}
+              id={userId}
+              libraryBookData={data.book}
+              showStatus={false}
+              addedOn={data.createdAt}
+            />
+          ))}
+        </>
       )}
     </section>
   )
