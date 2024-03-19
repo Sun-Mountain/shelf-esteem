@@ -8,6 +8,7 @@ import BookListItem from '@/components/BookListItem';
 const Library = () => {
   const [loading, setLoading] = useState(true);
   const [bookData, setBookData] = useState([] as LibraryBookProps[]);
+  const [bookCount, setBookCount] = useState(0);
   const { data: session } = useSession();
   const userId = session?.user.id;
 
@@ -20,6 +21,7 @@ const Library = () => {
     });
     const data = await response.json();
     setBookData(data.userLibraryBooks);
+    setBookCount(data.userLibraryBooks.length);
     if (data) setLoading(false);
   }
 
@@ -30,6 +32,14 @@ const Library = () => {
       .catch((error) => { console.error('Error:', error) });
   }, [userId]);
 
+  const changeBookCount = (bookNum: number, type: 'add' | 'sub') => {
+    if (type === 'add') {
+      setBookCount(bookCount + bookNum);
+    } else {
+      setBookCount(bookCount - bookNum);
+    }
+  };
+
   return (
     <section>
       <h1>Library</h1>
@@ -37,6 +47,9 @@ const Library = () => {
         <p>Loading...</p>
       ) : (
         <>
+          <div className="lib-stats-container">
+            {bookCount} books in your library.
+          </div>
           {bookData.map((data, index) => (
             <BookListItem
               key={index}
@@ -46,6 +59,7 @@ const Library = () => {
               showStatus={false}
               addedOn={data.createdAt}
               defaultLibId={data.id}
+              changeBookCount={changeBookCount}
             />
           ))}
         </>

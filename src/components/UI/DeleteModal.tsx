@@ -9,12 +9,14 @@ interface DeleteModalProps {
   title: string;
   libraryId: string;
   removeBook: () => void;
+  changeBookCount: (bookNum: number, type: 'add' | 'sub') => void;
 }
 
 const DeleteModal = ({
   title,
   libraryId,
-  removeBook
+  removeBook,
+  changeBookCount
 }: DeleteModalProps) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -29,9 +31,9 @@ const DeleteModal = ({
       }
     });
     const data = await response.json();
-    console.log('Delete response:', data);
 
     if (data.status === 200) {
+      changeBookCount(1, 'sub');
       removeBook();
       handleClose();
     };

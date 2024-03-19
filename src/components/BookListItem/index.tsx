@@ -17,6 +17,7 @@ interface BookListItemProps {
   showStatus?: boolean;
   addedOn?: Date;
   defaultLibId?: string;
+  changeBookCount?: (bookNum: number, type: 'add' | 'sub') => void;
 }
 
 const BookListItem = ({
@@ -26,6 +27,7 @@ const BookListItem = ({
   showStatus = true,
   addedOn,
   defaultLibId,
+  changeBookCount
 }: BookListItemProps) => {
   const [bookStatus, setBookStatus] = useState('' as string);
   const [bookData, setBookData] = useState(libraryBookData || {} as BookProps);
@@ -112,6 +114,7 @@ const BookListItem = ({
             title={bookData?.title}
             libraryId={defaultLibId || libraryId}
             removeBook={removeBook}
+            changeBookCount={changeBookCount}
           />
         )}
       </div>
