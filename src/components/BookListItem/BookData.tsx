@@ -47,11 +47,13 @@ const BookData = ({
           { isbn }
         </div>
       )}
-      { addedOn && (
-        <div className="added-on">
-          Added on: { date.toDateString() }
-        </div>
-      )}
+      <div className="actions">
+        { addedOn && (
+          <div className="added-on">
+            Added on: { date.toDateString() }
+          </div>
+        )}
+      </div>
     </div>
     </>
   )

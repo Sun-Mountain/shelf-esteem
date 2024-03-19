@@ -2,11 +2,13 @@
 
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
-import { CircularProgress } from '@mui/material';
+import { CircularProgress, IconButton } from '@mui/material';
 import { Check, DoNotDisturb } from '@mui/icons-material';
 
-import BookData from './BookData';
 import { BookProps } from '@/types';
+import BookData from './BookData';
+import Button from '@components/UI/Button';
+import DeleteModal from '@components/UI/DeleteModal';
 
 interface BookListItemProps {
   isbn: string;
@@ -95,6 +97,7 @@ const BookListItem = ({
       </div>
       <div className="status">
         {showStatus && bookStatusDisplay() }
+        <DeleteModal />
       </div>
     </div>
   )
