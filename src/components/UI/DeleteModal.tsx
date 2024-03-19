@@ -26,8 +26,16 @@ const DeleteModal = () => {
           <div className="modal-content">
             <h2 id="modal-modal-title">Delete Book</h2>
             <p id="modal-modal-description">Are you sure you want to delete this book?</p>
-            <Button buttonAction={handleClose}>Cancel</Button>
-            <Button>Delete</Button>
+            <div className="button-container">
+              <Button
+                buttonAction={handleClose}
+                color="error"
+                variant="text"
+              >
+                Cancel
+              </Button>
+              <Button color="error">Delete</Button>
+            </div>
           </div>
         </div>      
       </Modal>
