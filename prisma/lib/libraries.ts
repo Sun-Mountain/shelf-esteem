@@ -52,7 +52,7 @@ export async function createUserLibraryBook(values: UserLibraryBookCreateInput):
   }
 }
 
-export async function getUserLibraryBooks(userId: string) {
+export async function getUserLibraryBooks(userId: string): Promise<UserLibraryBookGetFullPayload[]> {
   try {
     const userLibraryBooks = await db.userLibraryBook.findMany({
       where: {
@@ -62,6 +62,7 @@ export async function getUserLibraryBooks(userId: string) {
         book: {
           include: {
             authors: true,
+            categories: true,
             industryIdentifiers: true
           }
         }

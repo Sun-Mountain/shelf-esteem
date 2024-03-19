@@ -21,14 +21,13 @@ const BookListItem = ({
   const userId = session?.user.id;
 
   const fetchBookData = async () => {
-    const response = await fetch(`/api/userLibraryBooks?isbn=${isbn}&&userId=${userId}`, {
+    const response = await fetch(`/api/userLibraryBooks/${userId}?isbn=${isbn}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
       }
     });
     const data = await response.json();
-    console.log("Getting book....", data)
     const bookFound = data.bookFound;
     const book = data.book;
     

@@ -1,7 +1,7 @@
 import { Session } from 'next-auth';
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@db/lib';
-import { createUserLibraryBook, findUserLibraryBook } from '@db/lib/libraries';
+import { createUserLibraryBook, findUserLibraryBook, getUserLibraryBooks } from '@db/lib/libraries';
 import { createBook, findBookById, findIndustryIdentifiers } from '@db/lib/books';
 import { withAuth } from '@lib/auth';
 
@@ -70,48 +70,37 @@ export async function POST(req: NextRequest) {
   })
 }
 
-export async function GET(req: NextRequest) {
+export async function GET(req: NextREquest) {
   return withAuth({
     resource: 'userLibraryBooks',
     action: 'read:own',
     authErrorMessage: 'You are not authorized to read this library',
   })(async (session: Session) => {
     try {
+      logger.info('GET /api/userLibraryBooks');
       const searchParams = await req.nextUrl.searchParams;
-      const isbn = searchParams.get('isbn');
       const userId = searchParams.get('userId');
-
-      // find book by isbn
-      const bookExists = await findIndustryIdentifiers([{ identifier: isbn }]);
       
-      // find in User Library
-
-      if (!bookExists.length) {
+      if (!userId) {
         return NextResponse.json({
-          bookFound: false,
-          message: 'Book not found'
+          message: 'User ID is required'
         }, {
-          status: 404
+          status: 401
         });
       }
 
-      const book = await findBookById(bookExists[0].bookId);
+      const userLibraryBooks = await getUserLibraryBooks(userId);
 
-      const userLibraryBookExists = await findUserLibraryBook({ bookId: book.id, userId });
-
-      if (!userLibraryBookExists) {
-        return NextResponse.json({
-          bookFound: false,
-          message: 'Book not found in your library'
-        }, {
-          status: 404
-        });
-      }
-
-      return NextResponse.json({ bookFound: true, book }, { status: 200 });
+      return NextResponse.json({
+        userLibraryBooks
+      }, { status: 200 })
     } catch (error) {
       logger.error(error);
-      return NextResponse.error();
+      return NextResponse.error({
+        message: `An error occurred while fetching your library: ${error}`,
+      }, {
+        status: 500,
+      });
     }
-  });
+  })
 }
