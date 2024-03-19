@@ -1,0 +1,13 @@
+.auth-links-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+
+  a {
+    margin-left: .5rem;
+
+    &:hover {
+      border-bottom: 1px solid $accent;
+    }
+  }
+}

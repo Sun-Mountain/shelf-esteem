@@ -3,19 +3,25 @@
 @import "general.scss";
 
 // Components
+@import "components/auth-forms.scss";
+@import "components/book-items.scss";
+@import "components/buttons.scss";
 @import "components/footer.scss";
+@import "components/forms.scss";
 @import "components/main-nav.scss";
 
 // Pages
+@import "pages/book-form-page.scss";
+@import "pages/style-guide.scss";
 @import "pages/tos-page.scss";
 
-$body-bg: $base;
-$main-bg: $white;
-$main-border: 1px solid $base-dark;
-$main-boxshadow: 0 0 5px $base-dark;
+$body-bg: $base30;
+$main-bg: $shadow10;
+$main-border: 1px solid $shadow07;
+$main-boxshadow: 0 0 5px $shadow07;
 
 a, a:visited {
-  color: $neon-blue;
+  color: $accent;
   text-decoration: none;
 }
 
@@ -25,16 +31,9 @@ body {
   display: flex;
   flex-direction: column;
   font-family: 'Roboto', sans-serif;
+  font-size: 1.125rem;
   height: 100vh;
   margin: 0 auto;
-  padding: 0;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  color: $ink;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400;
-  margin: 0;
   padding: 0;
 }
 
@@ -51,4 +50,8 @@ main {
 
 section {
   padding: 1.5rem;
+
+  h1:first-of-type {
+    margin-top: 0;
+  }
 }

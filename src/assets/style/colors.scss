@@ -1,105 +1,403 @@
 $eggshell: rgba(244, 241, 222, 1);
-$eggshell5: rgba(244, 241, 222, 0.5);
-$eggshell3: rgba(244, 241, 222, 0.3);
+$eggshell50: rgba(244, 241, 222, 0.5);
+$eggshell30: rgba(244, 241, 222, 0.3);
+$eggshell10: rgba(244, 241, 222, 0.1);
+$eggshell05: rgba(244, 241, 222, 0.05);
 $apricot: rgba(234, 182, 159, 1);
-$apricot5: rgba(234, 182, 159, .5);
-$apricot3: rgba(234, 182, 159, .3);
+$apricot50: rgba(234, 182, 159, .5);
+$apricot30: rgba(234, 182, 159, .3);
+$apricot10: rgba(234, 182, 159, .1);
+$apricot05: rgba(234, 182, 159, .05);
 $burnt-sienna: rgba(224, 122, 95, 1);
 $burnt-sienna5: rgba(224, 122, 95, .5);
 $burnt-sienna3: rgba(224, 122, 95, .3);
 $rose-taupe: rgba(143, 93, 93, 1);
-$rose-taupe5: rgba(143, 93, 93, .5);
-$rose-taupe3: rgba(143, 93, 93, .3);
-$rose-taupe1: rgba(143, 93, 93, .1);
+$rose-taupe50: rgba(143, 93, 93, .5);
+$rose-taupe30: rgba(143, 93, 93, .3);
+$rose-taupe10: rgba(143, 93, 93, .1);
+$rose-taupe05: rgba(143, 93, 93, .05);
 $eggplant: rgba(102, 79, 92, 1);
-$eggplant5: rgba(102, 79, 92, .5);
-$eggplant3: rgba(102, 79, 92, .3);
+$eggplant50: rgba(102, 79, 92, .5);
+$eggplant30: rgba(102, 79, 92, .3);
+$eggplant10: rgba(102, 79, 92, .1);
+$eggplant05: rgba(102, 79, 92, .05);
 $delft-blue: rgba(61, 64, 91, 1);
-$delft-blue5: rgba(61, 64, 91, .5);
-$delft-blue3: rgba(61, 64, 91, .3);
+$delft-blue50: rgba(61, 64, 91, .5);
+$delft-blue30: rgba(61, 64, 91, .3);
+$delft-blue10: rgba(61, 64, 91, .1);
 $delft-blue05: rgba(61, 64, 91, .05);
-$slate-gray: rgba(95, 121, 123, 1);
-$slate-gray5: rgba(95, 121, 123, .5);
-$slate-gray3: rgba(95, 121, 123, .3);
-$cambridge-blue: rgba(129, 178, 154, 1);
-$cambridge-blue5: rgba(129, 178, 154, .5);
-$cambridge-blue3: rgba(129, 178, 154, .3);
+$cambridge-blue: #81b29a;
+$cambridge-blue50: rgba(129, 178, 154, .5);
+$cambridge-blue30: rgba(129, 178, 154, .3);
+$cambridge-blue10: rgba(129, 178, 154, .1);
+$cambridge-blue05: rgba(129, 178, 154, .05);
 $sage: rgba(186, 191, 149, 1);
-$sage5: rgba(186, 191, 149, .5);
-$sage3: rgba(186, 191, 149, .3);
+$sage50: rgba(186, 191, 149, .5);
+$sage30: rgba(186, 191, 149, .3);
+$sage10: rgba(186, 191, 149, .1);
+$sage05: rgba(186, 191, 149, .05);
 $sunset: rgba(242, 204, 143, 1);
-$sunset5: rgba(242, 204, 143, .5);
-$sunset3: rgba(242, 204, 143, .3);
-$neon-blue: rgba(67, 97, 238, 1);
+$sunset50: rgba(242, 204, 143, .5);
+$sunset30: rgba(242, 204, 143, .3);
+$sunset10: rgba(242, 204, 143, .1);
+$sunset05: rgba(242, 204, 143, .05);
+$neon-blue: rgb(67, 97, 238);
+$neon-blue50: rgba(67, 97, 238, .5);
+$neon-blue30: rgba(67, 97, 238, .3);
+$neon-blue10: rgba(67, 97, 238, .1);
+$neon-blue05: rgba(67, 97, 238, .05);
+$cardinal: rgb(199, 31, 55);
+$cardinal50: rgba(199, 31, 55, .5);
+$cardinal30: rgba(199, 31, 55, .3);
+$cardinal10: rgba(199, 31, 55, .1);
+$cardinal05: rgba(199, 31, 55, .05);
+$kelly-green: rgba(41, 191, 18, 1);
+$kelly-green50: rgba(41, 191, 18, .5);
+$kelly-green30: rgba(41, 191, 18, .3);
+$kelly-green10: rgba(41, 191, 18, .1);
+$kelly-green05: rgba(41, 191, 18, .05);
 
+$eerie-black: rgba(33, 37, 41, 1);
+$onyx: rgba(52, 58, 64, 1);
+$outer-space: rgba(73, 80, 87, 1);
+$slate-gray: rgba(108, 117, 125, 1);
+$french-gray-2: rgba(173, 181, 189, 1);
+$french-gray: rgba(206, 212, 218, 1);
 $seasalt: rgba(248, 249, 250, 1);
 $antiflash-white: rgba(233, 236, 239, 1);
 $platinum: rgba(222, 226, 230, 1);
-$french-gray: rgba(206, 212, 218, 1);
-$french-gray-2: rgba(173, 181, 189, 1);
-$slate-gray: rgba(108, 117, 125, 1);
-$outer-space: rgba(73, 80, 87, 1);
-$onyx: rgba(52, 58, 64, 1);
-$eerie-black: rgba(33, 37, 41, 1);
 $white: rgba(255, 255, 255, 1);
 
 // THEME COLORS
-$base: $eggshell3;
-$base-cool: $delft-blue5;
-$base-warm: $sunset5;
-$base-lightest: $white;
-$base-lighter: $antiflash-white;
-$base-light: $platinum;
-$base-dark: $french-gray;
-$base-darker: $slate-gray;
-$base-darkest: $outer-space;
-$ink: $onyx;
+$base: $eggshell;
+$base50: $eggshell50;
+$base30: $eggshell30;
+$base10: $eggshell10;
+$base05: $eggshell05;
+$base-cool: $cambridge-blue;
+$base-cool50: $cambridge-blue50;
+$base-cool30: $cambridge-blue30;
+$base-cool10: $cambridge-blue10;
+$base-cool05: $cambridge-blue05;
+$base-warm: $apricot;
+$base-warm50: $apricot50;
+$base-warm30: $apricot30;
+$base-warm10: $apricot10;
+$base-warm05: $apricot05;
 $primary: $delft-blue;
-$primary-light: $delft-blue5;
-$primary-lighter: $delft-blue3;
-$primary-lightest: $delft-blue05;
-
-$secondary: $eggshell;
+$primary50: $delft-blue50;
+$primary30: $delft-blue30;
+$primary10: $delft-blue10;
+$primary05: $delft-blue05;
+$secondary: $sunset;
+$secondary50: $sunset50;
+$secondary30: $sunset30;
+$secondary10: $sunset10;
+$secondary05: $sunset05;
 $tertiary: $sage;
+$tertiary50: $sage50;
+$tertiary30: $sage30;
+$tertiary10: $sage10;
+$tertiary05: $sage05;
+$accent: $neon-blue;
+$accent50: $neon-blue50;
+$accent30: $neon-blue30;
+$accent10: $neon-blue10;
+$accent05: $neon-blue05;
+$accent-error: $cardinal;
+$accent-error50: $cardinal50;
+$accent-error30: $cardinal30;
+$accent-error10: $cardinal10;
+$accent-error05: $cardinal05;
+$accent-success: $cambridge-blue;
+$accent-success50: $cambridge-blue50;
+$accent-success30: $cambridge-blue30;
+$accent-success10: $cambridge-blue10;
+$accent-success05: $cambridge-blue05;
+$neutral: $rose-taupe;
+$neutral50: $rose-taupe50;
+$neutral30: $rose-taupe30;
+$neutral10: $rose-taupe10;
+$neutral05: $rose-taupe05;
+$neutral-cool: $eggplant;
+$neutral-cool50: $eggplant50;
+$neutral-cool30: $eggplant30;
+$neutral-cool10: $eggplant10;
+$neutral-cool05: $eggplant05;
+$shadow01: $eerie-black;
+$shadow02: $onyx;
+$shadow03: $outer-space;
+$shadow04: $slate-gray;
+$shadow05: $french-gray-2;
+$shadow06: $french-gray;
+$shadow07: $platinum;
+$shadow08: $antiflash-white;
+$shadow09: $seasalt;
+$shadow10: $white;
 
-// $base-lightest: $gray-5;
-// $base-lighter: $gray-10;
-// $base-light: $gray-30;
-// $base-extra-light: $gray-3;
-// $base-dark: $gray-60;
-// $base-darker: $gray-70;
-// $base-darkest: $gray-90;
-// $ink: $gray-90;
-// $primary: $blue-60v;
-// $primary-vivid: $blue-warm-60v;
-// $primary-light: $blue-30;
-// $primary-lighter: $blue-10;
-// $primary-extra-light: $blue-5;
-// $primary-dark: $blue-warm-70v;
-// $primary-darker: $blue-warm-80v;
-// $secondary: $green-cool-50v;
-// $secondary-light: $green-cool-20;
-// $secondary-lighter: $green-cool-5;
-// $secondary-extra-light: #f6f9f6;
-// $secondary-vivid: $green-cool-60v;
-// $secondary-dark: $green-cool-70v;
-// $secondary-darker: $green-cool-80v;
-// $tertiary: $indigo-50;
-// $tertiary-light: $indigo-30;
-// $tertiary-lighter: $indigo-cool-5v;
-// $tertiary-extra-light: #f8f8ff;
-// $tertiary-vivid: $indigo-50v;
-// $tertiary-dark: $indigo-60v;
-// $tertiary-darker: $indigo-70v;
-// $accent-cool: $cyan-30v;
-// $accent-cool-light: $blue-cool-20v;
-// $accent-cool-lighter: $blue-cool-10v;
-// $accent-cool-extra-light: #f0f9fc;
-// $accent-cool-dark: $blue-cool-40v;
-// $accent-cool-darker: $blue-cool-60v;
-// $accent-warm: $orange-30v;
-// $accent-warm-light: $orange-20v;
-// $accent-warm-lighter: $orange-10;
-// $accent-warm-extra-light: $orange-5v;
-// $accent-warm-dark: $orange-50v;
-// $accent-warm-darker: $orange-60;
+$ink: $onyx;
+
+// CLASSNAMES
+.base-color {
+  background-color: $base;
+}
+
+.base50-color {
+  background-color: $base50;
+}
+
+.base30-color {
+  background-color: $base30;
+}
+
+.base10-color {
+  background-color: $base10;
+}
+
+.base05-color {
+  background-color: $base05;
+}
+
+.base-cool-color {
+  background-color: $base-cool;
+}
+
+.base-cool50-color {
+  background-color: $base-cool50;
+}
+
+.base-cool30-color {
+  background-color: $base-cool30;
+}
+
+.base-cool10-color {
+  background-color: $base-cool10;
+}
+
+.base-cool05-color {
+  background-color: $base-cool05;
+}
+
+.base-warm-color {
+  background-color: $base-warm;
+}
+
+.base-warm50-color {
+  background-color: $base-warm50;
+}
+
+.base-warm30-color {
+  background-color: $base-warm30;
+}
+
+.base-warm10-color {
+  background-color: $base-warm10;
+}
+
+.base-warm05-color {
+  background-color: $base-warm05;
+}
+
+.primary-color {
+  background-color: $primary;
+}
+
+.primary50-color {
+  background-color: $primary50;
+}
+
+.primary30-color {
+  background-color: $primary30;
+}
+
+.primary10-color {
+  background-color: $primary10;
+}
+
+.primary05-color {
+  background-color: $primary05;
+}
+
+.secondary-color {
+  background-color: $secondary;
+}
+
+.secondary50-color {
+  background-color: $secondary50;
+}
+
+.secondary30-color {
+  background-color: $secondary30;
+}
+
+.secondary10-color {
+  background-color: $secondary10;
+}
+
+.secondary05-color {
+  background-color: $secondary05;
+}
+
+.tertiary-color {
+  background-color: $tertiary;
+}
+
+.tertiary50-color {
+  background-color: $tertiary50;
+}
+
+.tertiary30-color {
+  background-color: $tertiary30;
+}
+
+.tertiary10-color {
+  background-color: $tertiary10;
+}
+
+.tertiary05-color {
+  background-color: $tertiary05;
+}
+
+.accent-color {
+  background-color: $accent;
+}
+
+.accent50-color {
+  background-color: $accent50;
+}
+
+.accent30-color {
+  background-color: $accent30;
+}
+
+.accent10-color {
+  background-color: $accent10;
+}
+
+.accent05-color {
+  background-color: $accent05;
+}
+
+.accent-error-color {
+  background-color: $accent-error;
+}
+
+.accent-error50-color {
+  background-color: $accent-error50;
+}
+
+.accent-error30-color {
+  background-color: $accent-error30;
+}
+
+.accent-error10-color {
+  background-color: $accent-error10;
+}
+
+.accent-error05-color {
+  background-color: $accent-error05;
+}
+
+.accent-success-color {
+  background-color: $accent-success;
+}
+
+.accent-success50-color {
+  background-color: $accent-success50;
+}
+
+.accent-success30-color {
+  background-color: $accent-success30;
+}
+
+.accent-success10-color {
+  background-color: $accent-success10;
+}
+
+.accent-success05-color {
+  background-color: $accent-success05;
+}
+
+.neutral-color {
+  background-color: $neutral;
+}
+
+.neutral50-color {
+  background-color: $neutral50;
+}
+
+.neutral30-color {
+  background-color: $neutral30;
+}
+
+.neutral10-color {
+  background-color: $neutral10;
+}
+
+.neutral05-color {
+  background-color: $neutral05;
+}
+
+.neutral-cool-color {
+  background-color: $neutral-cool;
+}
+
+.neutral-cool50-color {
+  background-color: $neutral-cool50;
+}
+
+.neutral-cool30-color {
+  background-color: $neutral-cool30;
+}
+
+.neutral-cool10-color {
+  background-color: $neutral-cool10;
+}
+
+.neutral-cool05-color {
+  background-color: $neutral-cool05;
+}
+
+.shadow01-color{
+  background-color: $shadow01;
+}
+
+.shadow02-color {
+  background-color: $shadow02;
+}
+
+.shadow03-color {
+  background-color: $shadow03;
+}
+
+.shadow04-color {
+  background-color: $shadow04;
+}
+
+.shadow05-color {
+  background-color: $shadow05;
+}
+
+.shadow06-color {
+  background-color: $shadow06;
+}
+
+.shadow07-color {
+  background-color: $shadow07;
+}
+
+.shadow08-color {
+  background-color: $shadow08;
+}
+
+.shadow09-color {
+  background-color: $shadow09;
+}
+
+.shadow10-color {
+  background-color: $shadow10;
+}
+
+.white-text {
+  color: $white;
+}
