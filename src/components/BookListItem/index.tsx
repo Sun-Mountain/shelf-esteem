@@ -16,6 +16,7 @@ interface BookListItemProps {
   libraryBookData?: BookProps;
   showStatus?: boolean;
   addedOn?: Date;
+  defaultLibId?: string;
 }
 
 const BookListItem = ({
@@ -23,11 +24,14 @@ const BookListItem = ({
   id,
   libraryBookData,
   showStatus = true,
-  addedOn
+  addedOn,
+  defaultLibId,
 }: BookListItemProps) => {
   const [bookStatus, setBookStatus] = useState('' as string);
   const [bookData, setBookData] = useState(libraryBookData || {} as BookProps);
   const [authors, setAuthors] = useState([] as string[]);
+  const [libraryId, setLibraryId] = useState(defaultLibId || '' as string);
+  const [deleted, setDeleted] = useState(false);
   const { data: session } = useSession();
   const userId = session?.user.id;
 
@@ -47,6 +51,7 @@ const BookListItem = ({
       setBookStatus('inLibrary');
       setBookData(book);
       setAuthors(authors);
+      setLibraryId(data.libraryId);
     } else {
       setBookStatus('notInLibrary');
     }
@@ -56,7 +61,6 @@ const BookListItem = ({
     if (!!libraryBookData) {
       const authors = libraryBookData.authors.map(author => author.authorName)
       setAuthors(authors);
-      setBookData(libraryBookData);
       setBookStatus('inLibrary');
       return;
     };
@@ -81,6 +85,12 @@ const BookListItem = ({
     }
   };
 
+  const removeBook = () => {
+    setDeleted(true);
+  }
+
+  if (deleted) return null;
+
   return (
     <div className="book-list-item">
       <div className="book-info">
@@ -97,7 +107,13 @@ const BookListItem = ({
       </div>
       <div className="status">
         {showStatus && bookStatusDisplay() }
-        <DeleteModal />
+        {bookStatus === 'inLibrary' && libraryId && (
+          <DeleteModal
+            title={bookData?.title}
+            libraryId={defaultLibId || libraryId}
+            removeBook={removeBook}
+          />
+        )}
       </div>
     </div>
   )

@@ -28,7 +28,7 @@ const Library = () => {
 
     fetchBooks()
       .catch((error) => { console.error('Error:', error) });
-  }, [userId])
+  }, [userId]);
 
   return (
     <section>
@@ -45,6 +45,7 @@ const Library = () => {
               libraryBookData={data.book}
               showStatus={false}
               addedOn={data.createdAt}
+              defaultLibId={data.id}
             />
           ))}
         </>

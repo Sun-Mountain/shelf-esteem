@@ -76,3 +76,16 @@ export async function getUserLibraryBooks(userId: string): Promise<UserLibraryBo
     return error;
   }
 }
+
+export async function deleteUserLibraryBook({ id }): Promise<UserLibraryBookGetFullPayload> {
+  try {
+    const deletedUserLibraryBook = await db.userLibraryBook.delete({
+      where: { id }
+    });
+
+    return deletedUserLibraryBook;
+  } catch (error) {
+    logger.error(error);
+    return error;
+  }
+};

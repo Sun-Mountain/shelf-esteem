@@ -1,7 +1,12 @@
 import { Session } from 'next-auth';
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@db/lib';
-import { createUserLibraryBook, findUserLibraryBook, getUserLibraryBooks } from '@db/lib/libraries';
+import {
+  createUserLibraryBook,
+  findUserLibraryBook,
+  getUserLibraryBooks,
+  deleteUserLibraryBook,
+} from '@db/lib/libraries';
 import { createBook, findBookById, findIndustryIdentifiers } from '@db/lib/books';
 import { withAuth } from '@lib/auth';
 
@@ -98,6 +103,38 @@ export async function GET(req: NextREquest) {
       logger.error(error);
       return NextResponse.error({
         message: `An error occurred while fetching your library: ${error}`,
+      }, {
+        status: 500,
+      });
+    }
+  })
+}
+
+export async function DELETE(req: NextRequest) {
+  return withAuth({
+    resource: 'userLibraryBooks',
+    action: 'delete:own',
+    authErrorMessage: 'You are not authorized to remove a book from this library',
+  })(async (session: Session) => {
+    try {
+      const searchParams = await req.nextUrl.searchParams;
+      const id = searchParams.get('id');
+      
+      if (!id) {
+        return NextResponse.json({
+          message: 'ID is required'
+        }, {
+          status: 401
+        });
+      }
+
+      await deleteUserLibraryBook({ id });
+
+      return NextResponse.json({ status: 200 });
+    } catch (error) {
+      logger.error(error);
+      return NextResponse.error({
+        message: `An error occurred while removing the book from your library: ${error}`,
       }, {
         status: 500,
       });

@@ -1,8 +1,17 @@
 $modal-backdrop: rgba(0, 0, 0, 0.5);
 $modal-border: .5rem solid $delete50;
 $modal-content-border: .5rem solid $delete;
+$modal-btn-color: $delete;
 
 .delete-modal {
+  h3 {
+    margin-top: 0;
+  }
+
+  .MuiButton-contained {
+    background-color: $modal-btn-color;
+  }
+  
   .MuiBackdrop-root {
     background-color: $modal-backdrop !important;
   }

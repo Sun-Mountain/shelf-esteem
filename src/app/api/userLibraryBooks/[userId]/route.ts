@@ -50,7 +50,7 @@ export async function GET(req: NextRequest) {
         });
       }
 
-      return NextResponse.json({ bookFound: true, book }, { status: 200 });
+      return NextResponse.json({ libraryId: userLibraryBookExists.id, bookFound: true, book }, { status: 200 });
     } catch (error) {
       logger.error(error);
       return NextResponse.error();

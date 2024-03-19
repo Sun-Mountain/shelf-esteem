@@ -5,10 +5,37 @@ import { IconButton, Modal } from '@mui/material';
 import { Delete } from '@mui/icons-material';
 import Button from './Button';
 
-const DeleteModal = () => {
+interface DeleteModalProps {
+  title: string;
+  libraryId: string;
+  removeBook: () => void;
+}
+
+const DeleteModal = ({
+  title,
+  libraryId,
+  removeBook
+}: DeleteModalProps) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const handleDelete = async () => {
+    console.log('Delete book with id:', libraryId);
+    const response = await fetch(`/api/userLibraryBooks?id=${libraryId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    const data = await response.json();
+    console.log('Delete response:', data);
+
+    if (data.status === 200) {
+      removeBook();
+      handleClose();
+    };
+  };
 
   return (
     <div>
@@ -24,17 +51,21 @@ const DeleteModal = () => {
       >
         <div className="modal-container">
           <div className="modal-content">
-            <h2 id="modal-modal-title">Delete Book</h2>
-            <p id="modal-modal-description">Are you sure you want to delete this book?</p>
+            <h3 id="modal-modal-title">Delete Book</h3>
+            <p id="modal-modal-description">Are you sure you want to delete <strong>{title}</strong>?</p>
             <div className="button-container">
               <Button
                 buttonAction={handleClose}
-                color="error"
                 variant="text"
               >
                 Cancel
               </Button>
-              <Button color="error">Delete</Button>
+              <Button
+                buttonAction={handleDelete}
+                color="error"
+              >
+                Delete
+              </Button>
             </div>
           </div>
         </div>      
