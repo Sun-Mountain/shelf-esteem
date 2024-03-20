@@ -9,7 +9,7 @@ interface DeleteModalProps {
   title: string;
   libraryId: string;
   removeBook: () => void;
-  changeBookCount: (bookNum: number, type: 'add' | 'sub') => void;
+  changeBookCount?: (bookNum: number, type: 'add' | 'sub') => void;
 }
 
 const DeleteModal = ({
@@ -33,7 +33,7 @@ const DeleteModal = ({
     const data = await response.json();
 
     if (data.status === 200) {
-      changeBookCount(1, 'sub');
+      if (changeBookCount) changeBookCount(1, 'sub');
       removeBook();
       handleClose();
     };

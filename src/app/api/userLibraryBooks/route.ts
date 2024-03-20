@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
       }
 
       // Check if book is already in user's library
-      const userLibraryBookExists = await findUserLibraryBook({ bookId: book.id, userId });
+      const userLibraryBookExists = await findUserLibraryBook(book.id, userId);
 
       if (!userLibraryBookExists) {
         // Add book to user's library
@@ -128,7 +128,7 @@ export async function DELETE(req: NextRequest) {
         });
       }
 
-      await deleteUserLibraryBook({ id });
+      await deleteUserLibraryBook(id);
 
       return NextResponse.json({ status: 200 });
     } catch (error) {

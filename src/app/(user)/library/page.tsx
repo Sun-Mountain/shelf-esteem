@@ -10,6 +10,7 @@ const Library = () => {
   const [bookData, setBookData] = useState([] as LibraryBookProps[]);
   const [bookCount, setBookCount] = useState(0);
   const { data: session } = useSession();
+  // @ts-ignore
   const userId = session?.user.id;
 
   const fetchBooks = async () => {

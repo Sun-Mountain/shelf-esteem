@@ -42,7 +42,7 @@ export async function POST(req: NextRequest) {
       }
 
       // Check if book is already in user's library
-      const userLibraryBookExists = await findUserLibraryBook({ bookId: book.id, userId: addedBy });
+      const userLibraryBookExists = await findUserLibraryBook(book.id, addedBy);
       console.log(userLibraryBookExists);
 
       if (!userLibraryBookExists) {

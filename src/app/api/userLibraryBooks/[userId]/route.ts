@@ -39,7 +39,7 @@ export async function GET(req: NextRequest) {
 
       const book = await findBookById(bookExists[0].bookId);
 
-      const userLibraryBookExists = await findUserLibraryBook({ bookId: book.id, userId });
+      const userLibraryBookExists = await findUserLibraryBook(book.id, userId);
 
       if (!userLibraryBookExists) {
         return NextResponse.json({
