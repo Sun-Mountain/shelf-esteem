@@ -1,8 +1,24 @@
 import { db } from '@db/lib';
-import { Book, Prisma } from '@prisma/client';
+import {
+  Book,
+  Prisma
+} from '@prisma/client';
 import type { AuthorBook as AuthorBookProps } from '@prisma/client';
-import { AuthorProps, IndustryIdentifierProps } from '@types/booktypes';
+
 import { getLogger } from '@lib/logger';
+
+interface IndustryIdentifierProps {
+  id: string;
+  identifier: string;
+  type: string;
+  bookId: string;
+}
+
+interface AuthorProps {
+  id: string;
+  authorName: string;
+  bookId: string;
+}
 
 const logger = getLogger();
 
@@ -15,40 +31,44 @@ export type IndustryIdentifierCreateInput = Prisma.IndustryIdentifierCreateInput
 export type BookCategoryCreateInput = Prisma.BookCategoryCreateInput;
 
 export type BookCreateInput = Prisma.BookCreateInput&{
-  authors: AuthorCreateInput;
+  addedBy: string;
+  authors: string[] | undefined;
   categories: string[] | undefined;
+  imageLinks: {
+    smallThumbnail: string;
+    thumbnail: string;
+  };
   industryIdentifiers: IndustryIdentifierCreateInput;
 }
 
 export type BookGetFullPayload = Prisma.BookGetPayload<{}>;
 
 export type BookFull = BookGetFullPayload& {
-  authors: AuthorBookProps[];
+  authors: { id: string; authorName: string; }[];
   categories: string[] | undefined;
-  industryIdentifiers: IndustryIdentifierProps[];
+  industryIdentifiers: { identifier: string; type: string; }[];
 };
 
-export async function findIndustryIdentifiers(industryIdentifiers: IndustryIdentifierCreateInput[]): Promise<IndustryIdentifierCreateInput[]> {
+export async function findIndustryIdentifiers(isbn: string): Promise<{ type: string; identifier: string; bookId: string | null; } | undefined> {
   try {
-    const foundIndustryIdentifiers = await db.industryIdentifier.findMany({
+    const foundIndustryIdentifiers = await db.industryIdentifier.findUnique({
       where: {
-        OR: industryIdentifiers.map((ii) => ({
-          identifier: ii.identifier.trim(),
-          type: ii.type,
-        })),
+        identifier: isbn,
       },
     });
+
+    if (!foundIndustryIdentifiers) return;
 
     return foundIndustryIdentifiers;
   } catch (error) {
     logger.error(error);
-    return [];
+    return;
   }
 }
 
 export async function findAuthors(
-  authors: AuthorCreateInput[]
-): Promise<AuthorProps[]> {
+  authors: string[] | undefined
+): Promise<{ id: string; name: string; }[] | undefined> {
   if (!authors) return;
 
   try {
@@ -98,6 +118,13 @@ export async function findBookById(id: string): Promise<BookFull | undefined> {
     },
   });
 
+  if (!book) return;
+
+  const authors = book?.authors.map((a) => ({
+    id: a.id,
+    authorName: a.authorName
+  }));
+
   const categories = book?.categories.map((c) => ({
     categoryId: c.id,
     category: c.categoryName
@@ -110,8 +137,9 @@ export async function findBookById(id: string): Promise<BookFull | undefined> {
 
   return {
     ...book,
-    categories,
-    industryIdentifiers,
+    authors,
+    categories: categories.map((c) => c.category),
+    industryIdentifiers
   };
 };
 
@@ -155,7 +183,7 @@ export async function createBook(
 
     if (!!categories && newBook) {
       const bookCategories = await findCategories(categories);
-      if (bookCategories?.length < categories.length) {
+      if (bookCategories && bookCategories.length < categories.length) {
         const newCategories = categories.filter((c) => !bookCategories.some((ec) => ec.name === c));
         await db.category.createMany({
           data: newCategories.map((c) => ({ name: c.toUpperCase() }))
@@ -171,9 +199,9 @@ export async function createBook(
       }
     }
 
-    if (authors && newBook) {
+    if (!!authors && newBook) {
       const existingAuthors = await findAuthors(authors);
-      if (existingAuthors?.length < authors.length) {
+      if (existingAuthors && existingAuthors.length < authors.length) {
         const newAuthors = authors.filter((a) => !existingAuthors.some((ea) => ea.name === a));
         await db.author.createMany({
           data: newAuthors.map((a) => ({ name: a }))

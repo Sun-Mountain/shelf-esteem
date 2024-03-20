@@ -2,11 +2,14 @@
 
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
-import { CircularProgress } from '@mui/material';
+import { CircularProgress, IconButton } from '@mui/material';
 import { Check, DoNotDisturb } from '@mui/icons-material';
 
-import BookData from './BookData';
 import { BookProps } from '@/types';
+import BookData from './BookData';
+import Button from '@components/UI/Button';
+import DeleteModal from '@components/UI/DeleteModal';
+import { AuthorProps } from '@/types';
 
 interface BookListItemProps {
   isbn: string;
@@ -14,6 +17,8 @@ interface BookListItemProps {
   libraryBookData?: BookProps;
   showStatus?: boolean;
   addedOn?: Date;
+  defaultLibId?: string;
+  changeBookCount?: (bookNum: number, type: 'add' | 'sub') => void;
 }
 
 const BookListItem = ({
@@ -21,12 +26,17 @@ const BookListItem = ({
   id,
   libraryBookData,
   showStatus = true,
-  addedOn
+  addedOn,
+  defaultLibId,
+  changeBookCount
 }: BookListItemProps) => {
   const [bookStatus, setBookStatus] = useState('' as string);
   const [bookData, setBookData] = useState(libraryBookData || {} as BookProps);
   const [authors, setAuthors] = useState([] as string[]);
+  const [libraryId, setLibraryId] = useState(defaultLibId || '' as string);
+  const [deleted, setDeleted] = useState(false);
   const { data: session } = useSession();
+  // @ts-ignore
   const userId = session?.user.id;
 
   const fetchBookData = async () => {
@@ -41,10 +51,11 @@ const BookListItem = ({
     const book = data.book;
     
     if (bookFound) {
-      const authors = book.authors.map(author => author.authorName)
+      const authors = book.authors.map((author: AuthorProps) => author.authorName)
       setBookStatus('inLibrary');
       setBookData(book);
       setAuthors(authors);
+      setLibraryId(data.libraryId);
     } else {
       setBookStatus('notInLibrary');
     }
@@ -52,9 +63,8 @@ const BookListItem = ({
 
   useEffect(() => {
     if (!!libraryBookData) {
-      const authors = libraryBookData.authors.map(author => author.authorName)
+      const authors = libraryBookData.authors.map((author: AuthorProps) => author.authorName)
       setAuthors(authors);
-      setBookData(libraryBookData);
       setBookStatus('inLibrary');
       return;
     };
@@ -79,6 +89,12 @@ const BookListItem = ({
     }
   };
 
+  const removeBook = () => {
+    setDeleted(true);
+  }
+
+  if (deleted) return null;
+
   return (
     <div className="book-list-item">
       <div className="book-info">
@@ -89,12 +105,20 @@ const BookListItem = ({
             thumbnail={bookData?.thumbnail}
             title={bookData?.title}
             subtitle={bookData?.subtitle}
-            addedOn={addedOn}
+            addedOn={`${addedOn}`}
           />
         ) : ( isbn )}
       </div>
       <div className="status">
         {showStatus && bookStatusDisplay() }
+        {bookStatus === 'inLibrary' && libraryId && (
+          <DeleteModal
+            title={bookData?.title}
+            libraryId={defaultLibId || libraryId}
+            removeBook={removeBook}
+            changeBookCount={changeBookCount}
+          />
+        )}
       </div>
     </div>
   )

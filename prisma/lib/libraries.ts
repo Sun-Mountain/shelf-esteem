@@ -8,7 +8,7 @@ export type UserLibraryBookCreateInput = Prisma.UserLibraryBookCreateInput;
 
 export type UserLibraryBookGetFullPayload = Prisma.UserLibraryBookGetPayload<{}>;
 
-export async function findUserLibraryBook({ bookId, userId }): Promise<UserLibraryBookGetFullPayload[]> {
+export async function findUserLibraryBook(bookId: string, userId: string): Promise<UserLibraryBookGetFullPayload | undefined> {
   try {
     const foundUserLibraryBooks = await db.userLibraryBook.findFirst({
       where: {
@@ -26,33 +26,36 @@ export async function findUserLibraryBook({ bookId, userId }): Promise<UserLibra
     return foundUserLibraryBooks;
   } catch (error) {
     logger.error(error);
-    return error;
+    return;
   }
 }
 
-export async function createUserLibraryBook(values: UserLibraryBookCreateInput): Promise<UserLibraryBookGetFullPayload> {
+export async function createUserLibraryBook({ bookId, userId }: {
+  bookId: string;
+  userId: string;
+}): Promise<UserLibraryBookGetFullPayload | undefined> {
   try {
     const createdUserLibraryBook = await db.book.update({
-      where: { id: values.bookId },
+      where: { id: bookId },
       data: {
         libraries: {
           create: {
-            userId: values.userId,
+            userId: userId,
           }
         }
       }
     });
 
-    const foundUserLibraryBook = await findUserLibraryBook({ bookId: values.bookId, userId: values.userId });
+    const foundUserLibraryBook = await findUserLibraryBook(bookId, userId);
 
     return foundUserLibraryBook;
   } catch (error) {
     logger.error(error);
-    return error;
+    return;
   }
 }
 
-export async function getUserLibraryBooks(userId: string): Promise<UserLibraryBookGetFullPayload[]> {
+export async function getUserLibraryBooks(userId: string): Promise<UserLibraryBookGetFullPayload[] | undefined> {
   try {
     const userLibraryBooks = await db.userLibraryBook.findMany({
       where: {
@@ -73,6 +76,19 @@ export async function getUserLibraryBooks(userId: string): Promise<UserLibraryBo
     return userLibraryBooks;
   } catch (error) {
     logger.error(error);
-    return error;
+    return;
   }
 }
+
+export async function deleteUserLibraryBook(id: string): Promise<UserLibraryBookGetFullPayload | undefined> {
+  try {
+    const deletedUserLibraryBook = await db.userLibraryBook.delete({
+      where: { id }
+    });
+
+    return deletedUserLibraryBook;
+  } catch (error) {
+    logger.error(error);
+    return;
+  }
+};

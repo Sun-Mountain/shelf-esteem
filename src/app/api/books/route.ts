@@ -19,16 +19,16 @@ export async function POST(req: NextRequest) {
     resource: 'books',
     action: 'create:any',
     authErrorMessage: 'You are not authorized to create a book',
-  })(async (session: Session, permission: Permission) => {
+  })(async () => {
     try {
       const body = await req.json();
       const { isbn, addedBy } = body;
       let book;
 
       // Check if book already exists
-      const bookExists = await findIndustryIdentifiers([{ identifier: isbn }]);
+      const bookExists = await findIndustryIdentifiers(isbn.trim());
 
-      if (!bookExists.length) {
+      if (!bookExists) {
         // Find book in database
         logger.info(`Book with ISBN ${isbn} not found in database. Fetching from Open Library API`);
         const apiBook = await fetch(`${process.env.BOOK_API_URL}?q=isbn:${isbn.trim()}&key=${process.env.BOOK_API_KEY}`)
@@ -38,11 +38,18 @@ export async function POST(req: NextRequest) {
         const bookData = apiBook.items[0].volumeInfo;
         book = await createBook({ ...bookData, addedBy })
       } else {
-        book = await findBookById(bookExists[0].bookId);
+        if (!!bookExists.bookId) book = await findBookById(bookExists.bookId);
+      }
+
+      if (!book) {
+        return NextResponse.json(
+          { message: 'Book not found' },
+          { status: 404 }
+        );
       }
 
       // Check if book is already in user's library
-      const userLibraryBookExists = await findUserLibraryBook({ bookId: book.id, userId: addedBy });
+      const userLibraryBookExists = await findUserLibraryBook(book.id, addedBy);
       console.log(userLibraryBookExists);
 
       if (!userLibraryBookExists) {

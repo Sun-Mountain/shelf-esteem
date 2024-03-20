@@ -16,19 +16,27 @@ export async function GET(req: NextRequest) {
     resource: 'userLibraryBooks',
     action: 'read:own',
     authErrorMessage: 'You are not authorized to read this library',
-  })(async (session: Session) => {
+  })(async () => {
     try {
       const searchParams = await req.nextUrl.searchParams;
       const pathname = await req.nextUrl.pathname;
       const isbn = searchParams.get('isbn');
       const userId = pathname.replace('/api/userLibraryBooks/', '');
 
+      if (!isbn) {
+        return NextResponse.json({
+          message: 'ISBN is required'
+        }, {
+          status: 400
+        });
+      }
+
       // find book by isbn
-      const bookExists = await findIndustryIdentifiers([{ identifier: isbn }]);
+      const bookExists = await findIndustryIdentifiers(isbn);
       
       // find in User Library
 
-      if (!bookExists.length) {
+      if (!bookExists || !bookExists.bookId) {
         return NextResponse.json({
           bookFound: false,
           message: 'Book not found'
@@ -37,9 +45,18 @@ export async function GET(req: NextRequest) {
         });
       }
 
-      const book = await findBookById(bookExists[0].bookId);
+      const book = await findBookById(bookExists.bookId);
 
-      const userLibraryBookExists = await findUserLibraryBook({ bookId: book.id, userId });
+      if (!book) {
+        return NextResponse.json({
+          bookFound: false,
+          message: 'Book not found'
+        }, {
+          status: 404
+        });
+      }
+
+      const userLibraryBookExists = await findUserLibraryBook(book.id, userId);
 
       if (!userLibraryBookExists) {
         return NextResponse.json({
@@ -50,7 +67,7 @@ export async function GET(req: NextRequest) {
         });
       }
 
-      return NextResponse.json({ bookFound: true, book }, { status: 200 });
+      return NextResponse.json({ libraryId: userLibraryBookExists.id, bookFound: true, book }, { status: 200 });
     } catch (error) {
       logger.error(error);
       return NextResponse.error();

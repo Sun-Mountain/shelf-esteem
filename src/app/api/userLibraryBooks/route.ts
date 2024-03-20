@@ -1,7 +1,12 @@
 import { Session } from 'next-auth';
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@db/lib';
-import { createUserLibraryBook, findUserLibraryBook, getUserLibraryBooks } from '@db/lib/libraries';
+import {
+  createUserLibraryBook,
+  findUserLibraryBook,
+  getUserLibraryBooks,
+  deleteUserLibraryBook,
+} from '@db/lib/libraries';
 import { createBook, findBookById, findIndustryIdentifiers } from '@db/lib/books';
 import { withAuth } from '@lib/auth';
 
@@ -16,18 +21,20 @@ export async function POST(req: NextRequest) {
     resource: 'userLibraryBooks',
     action: 'create:own',
     authErrorMessage: 'You are not authorized to add a book to this library',
-  })(async (permission: Permission, session: Session) => {
+  })(async () => {
     try {
       const body = await req.json();
-      const { isbn } = body;
-      const userId = session.user.id;
+      const { isbn, userId } = body;
 
       // Find book in database
-      const bookExists = await findIndustryIdentifiers([{ identifier: isbn }]);
+      const bookExists = await findIndustryIdentifiers(isbn);
       
       let book;
 
-      if (!bookExists.length) {
+      if (bookExists && bookExists.bookId) {
+        book = await findBookById(bookExists.bookId);
+      } else {
+        logger.info(`Book with ISBN ${isbn} not found in database. Fetching from Open Library API`);
         // Find book in Open Library API
         const apiBook = await fetch(`${process.env.BOOK_API_URL}?q=isbn:${isbn.trim()}&key=${process.env.BOOK_API_KEY}`)
           .then(function(response) {
@@ -35,12 +42,17 @@ export async function POST(req: NextRequest) {
           });
         const bookData = apiBook.items[0].volumeInfo;
         book = await createBook({ ...bookData, addedBy: userId });
-      } else {
-        book = await findBookById(bookExists[0].bookId);
+      }
+
+      if (!book) {
+        return NextResponse.json(
+          { message: 'Book not found' },
+          { status: 404 }
+        );
       }
 
       // Check if book is already in user's library
-      const userLibraryBookExists = await findUserLibraryBook({ bookId: book.id, userId });
+      const userLibraryBookExists = await findUserLibraryBook(book.id, userId);
 
       if (!userLibraryBookExists) {
         // Add book to user's library
@@ -70,12 +82,12 @@ export async function POST(req: NextRequest) {
   })
 }
 
-export async function GET(req: NextREquest) {
+export async function GET(req: NextRequest) {
   return withAuth({
     resource: 'userLibraryBooks',
     action: 'read:own',
     authErrorMessage: 'You are not authorized to read this library',
-  })(async (session: Session) => {
+  })(async () => {
     try {
       logger.info('GET /api/userLibraryBooks');
       const searchParams = await req.nextUrl.searchParams;
@@ -96,11 +108,35 @@ export async function GET(req: NextREquest) {
       }, { status: 200 })
     } catch (error) {
       logger.error(error);
-      return NextResponse.error({
-        message: `An error occurred while fetching your library: ${error}`,
-      }, {
-        status: 500,
-      });
+      return NextResponse.error();
+    }
+  })
+}
+
+export async function DELETE(req: NextRequest) {
+  return withAuth({
+    resource: 'userLibraryBooks',
+    action: 'delete:own',
+    authErrorMessage: 'You are not authorized to remove a book from this library',
+  })(async () => {
+    try {
+      const searchParams = await req.nextUrl.searchParams;
+      const id = searchParams.get('id');
+      
+      if (!id) {
+        return NextResponse.json({
+          message: 'ID is required'
+        }, {
+          status: 401
+        });
+      }
+
+      await deleteUserLibraryBook(id);
+
+      return NextResponse.json({ status: 200 });
+    } catch (error) {
+      logger.error(error);
+      return NextResponse.error();
     }
   })
 }
