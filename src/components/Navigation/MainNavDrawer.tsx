@@ -12,7 +12,7 @@ import { Session } from 'next-auth';
 const MainNavDrawer = ({
   session
 }: {
-  session: Session
+  session: Session | null
 }) => {
   const [open, setOpen] = useState(false);
 

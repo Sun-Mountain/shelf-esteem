@@ -9,6 +9,7 @@ import { BookProps } from '@/types';
 import BookData from './BookData';
 import Button from '@components/UI/Button';
 import DeleteModal from '@components/UI/DeleteModal';
+import { AuthorProps } from '@/types';
 
 interface BookListItemProps {
   isbn: string;
@@ -35,6 +36,7 @@ const BookListItem = ({
   const [libraryId, setLibraryId] = useState(defaultLibId || '' as string);
   const [deleted, setDeleted] = useState(false);
   const { data: session } = useSession();
+  // @ts-ignore
   const userId = session?.user.id;
 
   const fetchBookData = async () => {
@@ -49,7 +51,7 @@ const BookListItem = ({
     const book = data.book;
     
     if (bookFound) {
-      const authors = book.authors.map(author => author.authorName)
+      const authors = book.authors.map((author: AuthorProps) => author.authorName)
       setBookStatus('inLibrary');
       setBookData(book);
       setAuthors(authors);
@@ -61,7 +63,7 @@ const BookListItem = ({
 
   useEffect(() => {
     if (!!libraryBookData) {
-      const authors = libraryBookData.authors.map(author => author.authorName)
+      const authors = libraryBookData.authors.map((author: AuthorProps) => author.authorName)
       setAuthors(authors);
       setBookStatus('inLibrary');
       return;
@@ -103,7 +105,7 @@ const BookListItem = ({
             thumbnail={bookData?.thumbnail}
             title={bookData?.title}
             subtitle={bookData?.subtitle}
-            addedOn={addedOn}
+            addedOn={`${addedOn}`}
           />
         ) : ( isbn )}
       </div>

@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, Dispatch, SetStateAction } from "react";
-import { createUserLibraryBook } from "@/lib/queries";
+import { useState, Dispatch, SetStateAction, ChangeEvent } from "react";
+import { useSession } from 'next-auth/react';
+import { createUserLibraryBook } from "@lib/queries";
 import { parse } from "isbn3";
 import { TextField } from "@mui/material";
 
@@ -16,20 +17,23 @@ const TheBookForm = ({
 }: BookFormProps) => {
   const [error, setError] = useState<string>('');
   const [isbn, setIsbn] = useState<string>('');
+  const { data: session } = useSession();
+  // @ts-ignore
+  const userId = session?.user.id;
 
-  const handleChange = async (value: string) => {
+  const handleChange = async (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     event.preventDefault();
-    const isbn = value;
+    const isbn = event.target.value.trim();
 
     if (isbnList.includes(isbn)) {
       setError('This ISBN is already in the list');
       return;
     }
 
-    if (parse(isbn)) {
+    if (parse(isbn) && userId) {
       setError('');
       setIsbnList([...isbnList, isbn]);
-      await createUserLibraryBook(isbn);
+      await createUserLibraryBook(isbn, userId);
       setTimeout(() => {
         setIsbn('');
       }, 100);
@@ -55,7 +59,7 @@ const TheBookForm = ({
         label='ISBN'
         value={isbn || ""}
         onChange={(e) => {
-          handleChange(e.target.value)
+          handleChange(e)
           setIsbn(e.target.value)
         }}
       />

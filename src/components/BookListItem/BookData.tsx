@@ -4,7 +4,7 @@ interface BookDataProps {
   subtitle?: string;
   thumbnail?: string;
   title?: string;
-  addedOn?: Date;
+  addedOn?: string | number;
 }
 
 const BookData = ({
@@ -15,7 +15,7 @@ const BookData = ({
   title,
   addedOn
 }: BookDataProps) => {
-  const date = new Date(addedOn);
+  const date = () => { if (addedOn) return new Date(addedOn).toDateString()};
 
   return (
     <>
@@ -48,9 +48,9 @@ const BookData = ({
         </div>
       )}
       <div className="actions">
-        { addedOn && (
+        { addedOn && date && (
           <div className="added-on">
-            Added on: { date.toDateString() }
+            Added on: { date() }
           </div>
         )}
       </div>

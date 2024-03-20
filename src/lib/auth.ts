@@ -29,6 +29,7 @@ export const withAuth =
   async (next: (permissionCB: Permission, sessionCB: Session) => void) => {
     return loggedIn((session: Session) => {
       const permission = ac.permission({
+        // @ts-ignore
         role: session?.user?.role,
         resource,
         action,

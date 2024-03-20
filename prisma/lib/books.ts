@@ -49,21 +49,20 @@ export type BookFull = BookGetFullPayload& {
   industryIdentifiers: { identifier: string; type: string; }[];
 };
 
-export async function findIndustryIdentifiers(industryIdentifiers: IndustryIdentifierCreateInput[]): Promise<IndustryIdentifierCreateInput[]> {
+export async function findIndustryIdentifiers(isbn: string): Promise<{ type: string; identifier: string; bookId: string | null; } | undefined> {
   try {
-    const foundIndustryIdentifiers = await db.industryIdentifier.findMany({
+    const foundIndustryIdentifiers = await db.industryIdentifier.findUnique({
       where: {
-        OR: industryIdentifiers.map((ii) => ({
-          identifier: ii.identifier.trim(),
-          type: ii.type,
-        })),
+        identifier: isbn,
       },
     });
+
+    if (!foundIndustryIdentifiers) return;
 
     return foundIndustryIdentifiers;
   } catch (error) {
     logger.error(error);
-    return [];
+    return;
   }
 }
 
@@ -200,7 +199,7 @@ export async function createBook(
       }
     }
 
-    if (authors && newBook) {
+    if (!!authors && newBook) {
       const existingAuthors = await findAuthors(authors);
       if (existingAuthors && existingAuthors.length < authors.length) {
         const newAuthors = authors.filter((a) => !existingAuthors.some((ea) => ea.name === a));
