@@ -1,8 +1,8 @@
-import React from 'react'
-
 const AdminDash = () => {
   return (
-    <div>AdminDash</div>
+    <section>
+      <h1>Admin Dashboard</h1>
+    </section>
   )
 }
 

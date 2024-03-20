@@ -20,6 +20,12 @@ let grantsObject = {
       'delete:own': ['*']
     }
   },
+  [Role.ADMIN]: {
+    categories: { 'read:any': ['*'], 'create:any': ['*'], 'update:any': ['*'], 'delete:any': ['*'] },
+    books: { 'create:any': ['*'], 'update:any': ['*'], 'read:any': ['*'], 'delete:any': ['*'] },
+    userLibraryBooks: { 'create:any': ['*'], 'read:any': ['*'], 'delete:any': ['*'] },
+    users: { 'read:any': ['*'], 'update:any': ['*'], 'delete:any': ['*'] }
+  }
 };
 
 export const ac = new AccessControl(grantsObject).lock();

@@ -22,7 +22,7 @@ const AdminNavigation = () => {
         onClose={() => setOpen(false)}
       >
         <div id="admin-nav-drawer" className="nav-content">
-          <Link href="/adminDash">
+          <Link href="/admin/dash">
             Dashboard 
           </Link>
           <div className="close-btn-container">
