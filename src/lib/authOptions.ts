@@ -10,7 +10,6 @@ export const authOptions: NextAuthOptions = {
     strategy: "jwt"
   },
   pages: {
-    root: '/',
     signIn: '/sign-in',
     signOut: '/sign-out'
   },
@@ -78,5 +77,5 @@ export const authOptions: NextAuthOptions = {
   
       return isAuthenticated;
     },
-  }
+  } as any
 };

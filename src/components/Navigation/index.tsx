@@ -9,9 +9,16 @@ import NavLinks from './MainNavLinks';
 import MainNavDrawer from './MainNavDrawer';
 import AdminNavigation from './Admin';
 
+interface UserProps {
+  id: string;
+  email: string;
+  role: Role;
+  username: string;
+}
+
 const MainNavigation = () => {
   const { data: session, status } = useSession();
-  const user = session?.user;
+  const user = session?.user as UserProps;
 
   const isUser = user?.role === Role.USER;
   const isAdmin = user?.role === Role.ADMIN;

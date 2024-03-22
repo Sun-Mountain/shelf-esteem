@@ -9,21 +9,44 @@ footer {
 
   #footer-content {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     margin: 0 auto;
     min-width: $mobile;
     max-width: $desktop;
-    padding: 2rem 0;
+    padding: 1rem 0;
   }
 
-  a, a:visited {
-    border-bottom: 1px solid $footer-bg;
-    color: $footer-link-color;
-    padding-bottom: 2px;
+  .link-group {
+    margin: auto 1rem;
+    a, a:visited {
+      border-bottom: 1px solid $footer-bg;
+      color: $footer-link-color;
+      margin: .25rem;
+      padding-bottom: 2px;
 
-    &:hover {
-      border-bottom: 1px solid $footer-link-hover;
-      color: $footer-link-hover;
+      &:hover {
+        border-bottom: 1px solid $footer-link-hover;
+        color: $footer-link-hover;
+      }
+    }
+  }
+
+  .social-group {
+    a, a:visited {
+      border: 0;
+      color: $footer-link-color;
+      margin: 0 .5rem;
+      padding: .5rem;
+
+      svg {
+        height: 2.5rem;
+        width: 2.5rem;
+      }
+
+      &:hover {
+        border: 0;
+        color: $footer-link-hover;
+      }
     }
   }
 }
