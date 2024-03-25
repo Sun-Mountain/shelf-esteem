@@ -8,10 +8,11 @@
 @import "components/buttons.scss";
 @import "components/footer.scss";
 @import "components/forms.scss";
-@import "components/main-nav.scss";
 @import "components/modals.scss";
+@import "components/navigation.scss";
 
 // Pages
+@import "pages/admin-dash-page.scss";
 @import "pages/book-form-page.scss";
 @import "pages/library-page.scss";
 @import "pages/style-guide.scss";

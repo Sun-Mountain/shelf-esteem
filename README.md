@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Shelf Esteem
 
-## Getting Started
+**Disclaimer**: This was made as a personal coding project and is not intended for commercial use. Third-party integration is subject to their terms. Shelf Esteem does not endorse specific content, and external information accuracy is not guaranteed.
 
-First, run the development server:
+This is a simple library tracker app built with Next.js and Prisma. It allows users to keep track of books in their library, including details such as title, author, and publication date.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Features
+- Add new books to the library
+- View a list of all books in the library
+- Edit book details ** ~ Coming Soon ~ **
+- Delete books from the library
+
+## Technologies Used
+- Next.js
+- Prisma
+- PostgreSQL
+- React
+- Node.js
+
+## Installation
+1. Clone repository
+```
+https://github.com/Sun-Mountain/shelf-esteem
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependences
+```
+pnpm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Set up `.env` file in root folder
+```
+APP_ENV="development"
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+BOOK_API_KEY="XXXXXXX"
+BOOK_API_URL="XXXXXXX"
 
-## Learn More
+NEXTAUTH_SECRET="secret"
+NEXTAUTH_URL="http://localhost:4000"
 
-To learn more about Next.js, take a look at the following resources:
+DATABASE_URL="XXXXXX"
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+POSTGRES_USER="XXXXXX"
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+4. Set up the database:
+    - Create a PostgreSQL database for the app
+    - Update the `DATABASE_URL` and `POSTGRES_USER` variables in `.env` folder
 
-## Deploy on Vercel
+5. Run database migrations
+```
+npx prisma migrate dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+6. Connect to book api
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The current iteration of this app utilizes the Google Books API. You will need to create an account in order to get an API key that will allow you to make API calls.
+
+7. Start development server
+```
+pnpm dev
+```
+
+8. Open app in new browser
+```
+http://localhost:4000
+```

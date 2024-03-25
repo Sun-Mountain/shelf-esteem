@@ -4,7 +4,7 @@ import { AppProps } from 'next/app';
 import "@styles/_index.scss";
 
 import Footer from "@components/Footer";
-import MainNavigation from "@components/Navigation/MainNav";
+import Navigation from "@components/Navigation";
 import Provider from "@/components/Providers/SessionProvider";
 
 export const metadata: Metadata = {
@@ -22,7 +22,7 @@ export default function RootLayout({
       <body>
         <Provider>
           {/* <ThemeProvider> */}
-            <MainNavigation />
+            <Navigation />
             <main>
               {children}
             </main>

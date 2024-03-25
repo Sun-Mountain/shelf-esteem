@@ -54,12 +54,9 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        return {
-          ...token,
-          username: user.username,
-          id: user.id,
-          role: user.role
-        }
+        token.username = user.username;
+        token.id = user.id;
+        token.role = user.role;
       }
       return token
     },
@@ -75,5 +72,10 @@ export const authOptions: NextAuthOptions = {
       }
       return session
     },
-  }
+    authorized({ auth }) {
+      const isAuthenticated = !!auth?.user;
+  
+      return isAuthenticated;
+    },
+  } as any
 };

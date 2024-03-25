@@ -69,3 +69,19 @@ export async function POST(req: NextRequest) {
     }
   });
 };
+
+export async function GET(req: NextRequest) {
+  return withAuth({
+    resource: 'books',
+    action: 'read:any',
+    authErrorMessage: 'You are not authorized to view books',
+  })(async () => {
+    try {
+      const books = await db.book.findMany();
+      return NextResponse.json(books);
+    } catch (error) {
+      logger.error(error);
+      return NextResponse.json({ message: `Something went wrong: ${error}`, status: 500});
+    }
+  });
+};
