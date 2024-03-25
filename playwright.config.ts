@@ -61,7 +61,7 @@ export default defineConfig({
     // },
   ],
   webServer: {
-    command: process.env.CI ? 'pnpm run preview' : 'pnpm run dev',
+    command: process.env.CI ? 'pnpm run start' : 'pnpm run dev',
     port: port
   },
 });
