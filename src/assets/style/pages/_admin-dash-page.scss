@@ -7,6 +7,8 @@ $colors: $colour1, $colour2, $colour3, $colour4;
 
 $link-text: $shadow04;
 
+$item-separator-color: $base-cool10;
+
 .stat-links {
   display: flex;
   flex-wrap: wrap;
@@ -54,5 +56,17 @@ $link-text: $shadow04;
   .number {
     font-weight: 400;
     margin-top: 0.25rem;
+  }
+}
+
+.dash-list {
+  .list-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+  }
+
+  .list-item:nth-child(odd) {
+    background-color: $item-separator-color;
   }
 }
