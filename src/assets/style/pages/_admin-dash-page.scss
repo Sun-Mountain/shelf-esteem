@@ -1,0 +1,72 @@
+$colour1: $burnt-sienna; // white
+$colour2: $sunset;   // yellow
+$colour3: $cambridge-blue; // red
+$colour4: $sage; // sky blue
+
+$colors: $colour1, $colour2, $colour3, $colour4;
+
+$link-text: $shadow04;
+
+$item-separator-color: $base-cool10;
+
+.stat-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+  a, a:visited {
+    border: 1px solid $shadow07;
+    border-radius: $border-radius;
+    color: $link-text;
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
+    padding: 1rem;
+    text-align: center;
+    min-width: calc(20% - 2rem);
+  }
+
+  a:hover {
+    background-color: $white !important;
+  }
+
+  @for $i from 1 through 3 {
+    a:nth-child(#{$i}) {
+      background-color: rgba(nth($colors, $i), 0.20);
+      border: 3px solid nth($colors, $i);
+    }
+  }
+
+  .icon-container {
+    background: $white;
+    border-radius: 50%;
+    padding: 1rem 1.1rem;
+
+    svg {
+      height: 2rem;
+      width: 2rem;
+    }
+  }
+
+  .text-container {
+    font-weight: 700;
+    margin: auto 1rem;
+  }
+
+  .number {
+    font-weight: 400;
+    margin-top: 0.25rem;
+  }
+}
+
+.dash-list {
+  .list-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+  }
+
+  .list-item:nth-child(odd) {
+    background-color: $item-separator-color;
+  }
+}
